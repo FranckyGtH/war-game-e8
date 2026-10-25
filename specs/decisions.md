@@ -1,7 +1,3 @@
----
-name: edition8-decisions
-description: "Décisions structurantes arbitrées par Francky le 21 octobre 2026 pour la refonte Édition 8 du wargame : mois de 28 jours, modèle temporel actions/flux, multiplicateurs non plafonnés, format des documents."
----
 
 # Décisions de conception — Édition 8 (arbitrées le 21 octobre 2026)
 
@@ -146,3 +142,8 @@ Contexte : refonte des règles « Mondes Fantastiques » (Édition 7) vers une �
 - Ville fixture Corvire : niveau 7, régions 3,2 / 3,3 / 4,2 / 4,1 (Chenal = région d'eau), rues r1 et r2 (entrées 3,2,O ; 4,2,E ; 3,3,O), marché du Gué niveau 4 (somme = nombre de quartiers), banque 2 (½ marché), grenier 12 endommagé, cathédrale (Monument), temple, puits, quai niveau 3 (pose sur rive + pontons hors rive), entrepôt sur pilotis 2, port fortifié sur le côté terre-eau 4,1|4,2, mur intérieur 3,3|4,2 avec porte intérieure fermée, entrée 3,3,O barricadée.
 - Chapitre IX « Melgar-sur-Argent » ajouté au roman et testé : mégapole de niveau 9, 7 régions dont 3 régions d'eau en chaîne (2,3 — 3,3 — 4,2) ; le côté partagé par deux régions d'eau n'est pas une rive — le ruban du quai s'y interrompt, la pose initiale y est refusée, le littoral extérieur l'admet ; quota de 3 régions d'eau pour 7 validé, 4 refusées.
 - Correction du chapitre VII du roman : l'état « ruiné » est légal pour toute construction dans le moteur v0.1 (seuls les états hors registre intact/endommagé/ruine sont refusés) ; l'ancienne version du roman prétendait à tort qu'un Monument ruiné serait signalé incohérent. L'endommagement en cours de partie demeure la question ouverte du chantier Siège.
+
+## 2026-10-25 — Question ouverte du chantier Siège : validation des tours et des fortifications
+
+- Constat de la fixture Corvire : `controlesCoherence` valide les portes (entrées et portes intérieures dérivées des rues, états du registre) et les installations portuaires (côtés terre-eau, condition de quai), mais ni les tours ni l'état des fortifications — une tour posée sur une position de sommet inexistante, ou un état de côté hors du cycle aucun/mur/citadelle, ne sont pas signalés.
+- Question à arbitrer au chantier Siège : étendre les contrôles de cohérence aux tours (position valide, type du répertoire : guet, archers, artillerie, mage, sous-marine) et aux fortifications (états du registre, distinction périmètre/intérieur, cohérence de l'état « mur et tours » comme somme du rempart et des tours posées).
