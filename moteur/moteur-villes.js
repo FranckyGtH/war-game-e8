@@ -35,7 +35,8 @@
 //   - remplissage décoratif déterministe (graine enregistrée, mulberry32).
 //
 // Exécution des jeux d'essais : runTests() en console renvoie la liste des
-// contrôles { nom, ok } ; 45 jeux d'essais au vert à la livraison.
+// contrôles { nom, ok } ; 53 jeux d'essais au vert (45 à la livraison, 8 ajoutés
+// avec l'arbitrage « fortification porteuse » du 25 octobre 2026).
 // ============================================================================
 
 const MOTEUR_VILLES = (function () {
@@ -102,6 +103,18 @@ const MOTEUR_VILLES = (function () {
   const ETATS = ["intact", "endommage", "ruine"];
   const PORTES_ETATS = ["ouverte", "fermee", "barricadee"];
   const PORTS_ETATS = ["aucun", "port1", "port2", "port3", "fortifie"];
+  // Tours de fortification (arbitrage du 25 octobre 2026 : fortification porteuse)
+  // — guet : sommet, sans porteur ; tours de tir : côté fortifié porteur.
+  const TYPES_TOURS = {
+    guet: { nom: "Tour de guet" },
+    archers: { nom: "Tour d'archers" },
+    artillerie: { nom: "Tour d'artillerie" },
+    mage: { nom: "Tour de mage" },
+    sousmarine: { nom: "Tour sous-marine", maritime: true },
+    baliste: { nom: "Tour de balistes" },
+  };
+  const FORTIF_ETATS = ["aucun", "mur", "citadelle"];
+  const SOMMETS = [-90, -30, 30, 90, 150, 210];
 
   // ---- Emprise : niveaux 0-12, tailles 1/3/4/7 ----
   const empriseParNiveau = (n) => (n <= 2 ? 1 : n <= 5 ? 3 : n <= 8 ? 4 : 7);
@@ -357,6 +370,34 @@ const MOTEUR_VILLES = (function () {
       if (etat !== "aucun") { const eauQ = k.split("|").find((x) => eauSet.has(x)); if (eauQ && !quaiOf(ville, eauQ)) portsOk = false; }
     }
     add(portsOk, portsOk ? "Installations portuaires cohérentes (côtés terre-eau, condition de quai)." : "Installation portuaire invalide (côté, état ou absence de quai).");
+    // Fortifications et tours (arbitrage du 25 octobre 2026 : fortification porteuse)
+    // Côtés valides : périmètre et côtés intérieurs, hors côtés terre-eau (cycle portuaire).
+    const regSet = new Set(ville.regions);
+    const perimSet = new Set(perimSides(ville));
+    const innerSidesSet = new Set();
+    for (const qk of ville.regions) { const [c, r] = qk.split(",").map(Number);
+      for (const [s] of SIDES) { const nk = neighborOf(c, r, s).join(","); if (regSet.has(nk)) innerSidesSet.add(innerKey(qk, nk)); } }
+    let fortifOk = true;
+    for (const [k, etat] of Object.entries(ville.fortif || {}))
+      if (!(perimSet.has(k) || innerSidesSet.has(k)) || te.has(k) || !FORTIF_ETATS.includes(etat)) fortifOk = false;
+    add(fortifOk, fortifOk ? "Fortifications cohérentes (côtés existants hors terre-eau, états du registre)." : "Fortification invalide (côté inexistant, terre-eau ou état hors registre aucun/mur/citadelle).");
+    let toursOk = true;
+    for (const t of ville.tours || []) {
+      const carte = TYPES_TOURS[t.type];
+      if (!carte) { toursOk = false; continue; }
+      if (t.type === "guet") {
+        const m = (t.key || "").match(/^(\d+),(\d+),(-?\d+)$/);
+        if (!m || !regSet.has(`${m[1]},${m[2]}`) || !SOMMETS.includes(+m[3])) toursOk = false;
+      } else {
+        if (!(perimSet.has(t.key) || innerSidesSet.has(t.key)) || te.has(t.key) || !["mur", "citadelle"].includes((ville.fortif || {})[t.key])) toursOk = false;
+        if (carte.maritime) {
+          const m = (t.key || "").match(/^(\d+),(\d+),\w+$/);
+          const eauCote = m ? eauSet.has(`${m[1]},${m[2]}`) : (t.key || "").split("|").some((x) => eauSet.has(x));
+          if (!eauCote) toursOk = false;
+        }
+      }
+    }
+    add(toursOk, toursOk ? "Tours cohérentes (registre, position, fortification porteuse)." : "Tour invalide (type hors registre, position inexistante ou fortification porteuse absente).");
     // Portes toujours dérivées des rues ; ville sans entrée : avertissement non bloquant
     const { entrees, portesInterieures } = deriverRues(ville);
     for (const [k, etat] of Object.entries(ville.portes || {})) {
@@ -398,7 +439,7 @@ const MOTEUR_VILLES = (function () {
     return v;
   };
 
-  return { SIDES, sideAngle, neighborOf, sideBetween, innerKey, CELLS, hasCell, CATALOGUE, CLASSE_LABEL, ETATS, PORTES_ETATS, PORTS_ETATS,
+  return { SIDES, sideAngle, neighborOf, sideBetween, innerKey, CELLS, hasCell, CATALOGUE, CLASSE_LABEL, ETATS, PORTES_ETATS, PORTS_ETATS, TYPES_TOURS, FORTIF_ETATS, SOMMETS,
     empriseParNiveau, orientationsFor, connexe, validerEmprise, perimSides, deriverRues, rueCells, deriverRives, terreEauSides,
     occupied, contigu, controlesPose, controlesCoherence, remplissageDecoratif, nextId, exporter, importer };
 })();
@@ -507,6 +548,29 @@ function runTests() {
   const vPortQ = { ...vQ, ports: { "3,1|4,1": "port1" } };
   t("aménagement portuaire avec quai cohérent", M.controlesCoherence(vPortQ).every((c) => c.ok));
   t("cohérence de la ville de démonstration", M.controlesCoherence(demo).every((c) => c.ok));
+
+  // Fortifications et tours (arbitrage du 25 octobre 2026 : fortification porteuse)
+  const vT = { ...demo, fortif: { "3,2,O": "mur", "3,2|4,2": "citadelle" }, tours: [
+    { id: "t1", key: "3,2,-90", type: "guet" },
+    { id: "t2", key: "3,2,O", type: "archers" },
+    { id: "t3", key: "3,2|4,2", type: "baliste" },
+  ] };
+  t("tours cohérentes : guet au sommet, archers sur mur de périmètre, baliste sur citadelle intérieure",
+    M.controlesCoherence(vT).every((c) => c.ok));
+  t("tour de tir sans fortification porteuse signalée",
+    !M.controlesCoherence({ ...vT, fortif: {}, tours: [{ id: "t1", key: "3,2,O", type: "archers" }] }).every((c) => c.ok));
+  t("tour de guet sur sommet inexistant signalée",
+    !M.controlesCoherence({ ...vT, tours: [{ id: "t1", key: "9,9,45", type: "guet" }] }).every((c) => c.ok));
+  t("tour de tir au sommet signalée (porteur exigé)",
+    !M.controlesCoherence({ ...vT, tours: [{ id: "t1", key: "3,2,-90", type: "archers" }] }).every((c) => c.ok));
+  t("type de tour hors registre signalé",
+    !M.controlesCoherence({ ...vT, tours: [{ id: "t1", key: "3,2,O", type: "catapulte" }] }).every((c) => c.ok));
+  t("état de fortification hors registre signalé",
+    !M.controlesCoherence({ ...vT, fortif: { "3,2,O": "douves" } }).every((c) => c.ok));
+  t("fortification sur côté inexistant signalée",
+    !M.controlesCoherence({ ...vT, fortif: { "9,9,E": "mur" } }).every((c) => c.ok));
+  t("fortification sur côté terre-eau signalée (cycle portuaire)",
+    !M.controlesCoherence({ ...vT, fortif: { "4,1|4,2": "mur" } }).every((c) => c.ok));
   t("état endommagé admis, état inconnu signalé",
     M.controlesCoherence({ ...demo, constructions: [...demo.constructions.map((b) => b.id === "b4" ? { ...b, etat: "endommage" } : b)] }).every((c) => c.ok) &&
     M.controlesCoherence({ ...demo, constructions: [...demo.constructions.map((b) => b.id === "b4" ? { ...b, etat: "detruit" } : b)] }).some((c) => !c.ok));
@@ -530,7 +594,4 @@ function runTests() {
   return res; // 45 contrôles ; les échecs éventuels portent ok = false
 }
 
-// Export Node (tests, CI) sans altérer l'usage navigateur (MOTEUR_VILLES global).
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = { MOTEUR_VILLES, runTests };
-}
+if (typeof module !== "undefined") module.exports = { MOTEUR_VILLES, runTests };

@@ -1,11 +1,16 @@
 // ============================================================================
-// FIXTURE « LA CITÉ DE CORVIRE » — roman de test urbain (Édition 8), v0.1
+// FIXTURE « LA CITÉ DE CORVIRE » — roman de test urbain (Édition 8), v0.2
 // ----------------------------------------------------------------------------
 // Ville scénario du roman de test urbain (voir specs/roman-test-urbain.md) :
 // chaque chapitre du roman correspond à une étape de construction de la ville
 // et à des contrôles du module moteur. La variante « Melgar-sur-Argent »
 // (chapitre IX) couvre le cas d'un fleuve à plusieurs régions d'eau : un côté
 // partagé par deux régions d'eau n'est pas une rive.
+//
+// Arbitrage du 25 octobre 2026 (fortification porteuse) : la tour de guet se
+// pose seule aux sommets ; les tours de tir (archers, artillerie, mage,
+// sous-marine, baliste) exigent un côté fortifié porteur, la tour sous-marine
+// un côté maritime.
 //
 // Exécution : runFixtureTests() renvoie la liste des contrôles { nom, ok }.
 // La construction de la ville est auto-validée : toute pose impossible lève
@@ -87,9 +92,17 @@ function corvire() {
       { id: "r1", nodes: [{ k: "A3,2O" }, { k: "C3,2" }, { k: "A3,2E" }, { k: "C4,2" }, { k: "A4,2E" }] },
       { id: "r2", nodes: [{ k: "A3,3O" }, { k: "C3,3" }, { k: "A3,3NE" }, { k: "C4,2" }] },
     ],
-    fortif: { "3,3,SO": "mur", "3,3,O": "mur", "3,3|4,2": "mur" }, // périmètre + mur intérieur (réduit du Gué)
+    // périmètre + mur intérieur (réduit du Gué) + littoral fortifié du Chenal
+    fortif: { "3,3,SO": "mur", "3,3,O": "mur", "3,3|4,2": "mur", "4,1,SE": "mur" },
     portes: { "3,2,O": "ouverte", "4,2,E": "ouverte", "3,3,O": "barricadee", "3,3|4,2": "fermee" },
-    ports: {}, tours: [{ id: "t1", key: "3,3,90", type: "archers" }],
+    ports: {},
+    // arbitrage « fortification porteuse » : guet au sommet, tours de tir sur côtés fortifiés
+    tours: [
+      { id: "t1", key: "3,3,90", type: "guet" },        // tour de guet : sommet, sans porteur
+      { id: "t2", key: "3,3,SO", type: "archers" },     // tour d'archers : mur sud de la Rive Basse
+      { id: "t3", key: "3,3|4,2", type: "baliste" },    // tour de balistes : mur intérieur du réduit
+      { id: "t4", key: "4,1,SE", type: "sousmarine" },   // tour sous-marine : littoral fortifié du Chenal
+    ],
     graineRemplissage: 7,
   };
 
@@ -230,10 +243,22 @@ function runFixtureTests() {
   t("V. port fortifié avec quai cohérent",
     M.controlesCoherence(v).every((c) => c.ok || !c.msg.includes("portuaire")));
 
-  // Chapitre VI — La muraille intérieure
+  // Chapitre VI — La muraille intérieure et les tours (fortification porteuse)
   t("VI. mur intérieur fortifié (3,3|4,2)", v.fortif["3,3|4,2"] === "mur");
   t("VI. porte intérieure dérivée et fermée (coupe la circulation inter-quartiers)",
     dr.portesInterieures.includes("3,3|4,2") && v.portes["3,3|4,2"] === "fermee");
+  t("VI. tour de guet au sommet, sans porteur, cohérente",
+    v.tours.find((x) => x.id === "t1").type === "guet" && M.controlesCoherence(v).every((c) => c.ok));
+  t("VI. tours de tir sur fortifications porteuses (archers, baliste, sous-marine maritime)",
+    M.controlesCoherence(v).every((c) => c.ok));
+  t("VI. tour de tir sans fortification porteuse signalée",
+    !M.controlesCoherence({ ...v, fortif: {}, tours: [{ id: "tx", key: "3,2,O", type: "archers" }] }).every((c) => c.ok));
+  t("VI. tour sous-marine hors côté maritime signalée",
+    !M.controlesCoherence({ ...v, tours: [...v.tours, { id: "tx", key: "3,3,SO", type: "sousmarine" }] }).every((c) => c.ok));
+  t("VI. type de tour hors registre signalé",
+    !M.controlesCoherence({ ...v, tours: [...v.tours, { id: "tx", key: "3,3,SO", type: "catapulte" }] }).every((c) => c.ok));
+  t("VI. état de fortification hors registre signalé",
+    !M.controlesCoherence({ ...v, fortif: { ...v.fortif, "3,2,O": "douves" } }).every((c) => c.ok));
 
   // Chapitre VII — Le siège
   t("VII. grenier endommagé demeure cohérent",

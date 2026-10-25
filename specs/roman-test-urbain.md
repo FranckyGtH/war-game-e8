@@ -54,11 +54,11 @@ Attendu : marqueurs d'ancre en vue Fortifications, section « ports » de l'expo
 
 ## Chapitre VI — La muraille intérieure (Mois 5)
 
-La guerre approche. Deor fait murer les côtés du périmètre, barricader la porte sud, et — c'est la nouveauté — fortifier le côté intérieur entre le Gué et la Rive Basse : une porte intérieure y est dérivée du tracé de la rue, ouverte en temps de paix, fermée à la première alarme. Le Gué devient un réduit urbain : greniers, puits et citerne y suffisent à un siège d'un mois. Les rues traversant un côté intérieur fortifié y passent par une porte intérieure ; une porte barricadée coupe la circulation inter-quartiers.
+La guerre approche. Deor fait murer les côtés du périmètre, barricader la porte sud, et — c'est la nouveauté — fortifier le côté intérieur entre le Gué et la Rive Basse : une porte intérieure y est dérivée du tracé de la rue, ouverte en temps de paix, fermée à la première alarme. Le Gué devient un réduit urbain : greniers, puits et citerne y suffisent à un siège d'un mois. Les rues traversant un côté intérieur fortifié y passent par une porte intérieure ; une porte barricadée coupe la circulation inter-quartiers. Aux créneaux, l'arbitrage du jour : la tour de guet veille seule, au sommet nord, sans autre porteur qu'elle-même ; les tours de tir, elles, ne s'élèvent plus que sur une fortification porteuse — la tour d'archers couronne le mur sud, la baliste garnit le mur intérieur du réduit, et la tour sous-marine garde le littoral fortifié du Chenal. Une tour de tir sans rempart porteur est orpheline, et le moteur la signale comme une porte sans rue.
 
-Encadré technique — Règle : fortifications côté par côté du périmètre et des côtés intérieurs, entrées fortifiées (ouverte, fermée, barricadée), portes intérieures dérivées, réduit urbain.
-Appels : fortification des côtés périphériques et intérieurs ; `deriverRues(ville)` expose portes intérieures ; état de porte barricadée refuse la traversée ; `controlesCoherence(ville)` vérifie l'ensemble.
-Attendu : lignes de défense internes possibles, isolement d'un quartier, cohérence au vert.
+Encadré technique — Règle : fortifications côté par côté du périmètre et des côtés intérieurs, entrées fortifiées (ouverte, fermée, barricadée), portes intérieures dérivées, réduit urbain ; tours sous fortification porteuse (guet seul admis aux sommets, tours de tir — archers, artillerie, mage, sous-marine, baliste — exigeant un côté fortifié porteur, la tour sous-marine un côté maritime).
+Appels : fortification des côtés périphériques et intérieurs ; `deriverRues(ville)` expose portes intérieures ; état de porte barricadée refuse la traversée ; `controlesCoherence(ville)` vérifie l'ensemble, y compris le registre des types de tours, les positions, la fortification porteuse et les états du registre aucun, mur, citadelle.
+Attendu : lignes de défense internes possibles, isolement d'un quartier, tours cohérentes avec leur porteur, cohérence au vert.
 
 ## Chapitre VII — Le siège (Mois 6–7)
 
@@ -87,7 +87,7 @@ Attendu : ruban de rive interrompu à la frontière des eaux, refus motivé à l
 
 ## Fixture exécutable
 
-Le roman est implémenté dans le dépôt sous `moteur/fixture-corvire.js` : la fonction `corvire()` construit la ville chapitre par chapitre (chaque pose passe par `controlesPose`, la fixture ne peut pas décrire une ville illégale), `melgar()` construit la variante du chapitre IX, et `runFixtureTests()` exécute les 37 contrôles numérotés par chapitre (préfixes I à IX, synthèse X). L'exécuteur `moteur/run-tests.js` enchaîne les 45 jeux d'essais du moteur et la fixture : 82 contrôles au total, code de sortie 1 en cas d'échec, exécutés par la CI à chaque poussée.
+Le roman est implémenté dans le dépôt sous `moteur/fixture-corvire.js` : la fonction `corvire()` construit la ville chapitre par chapitre (chaque pose passe par `controlesPose`, la fixture ne peut pas décrire une ville illégale), `melgar()` construit la variante du chapitre IX, et `runFixtureTests()` exécute les 43 contrôles numérotés par chapitre (préfixes I à IX, synthèse X). L'exécuteur `moteur/run-tests.js` enchaîne les 53 jeux d'essais du moteur et la fixture : 96 contrôles au total, code de sortie 1 en cas d'échec, exécutés par la CI à chaque poussée.
 
 ## Synthèse — ce que le roman fait subir au moteur
 

@@ -1,3 +1,7 @@
+---
+name: edition8-decisions
+description: "Décisions structurantes arbitrées par Francky le 21 octobre 2026 pour la refonte Édition 8 du wargame : mois de 28 jours, modèle temporel actions/flux, multiplicateurs non plafonnés, format des documents."
+---
 
 # Décisions de conception — Édition 8 (arbitrées le 21 octobre 2026)
 
@@ -147,3 +151,18 @@ Contexte : refonte des règles « Mondes Fantastiques » (Édition 7) vers une �
 
 - Constat de la fixture Corvire : `controlesCoherence` valide les portes (entrées et portes intérieures dérivées des rues, états du registre) et les installations portuaires (côtés terre-eau, condition de quai), mais ni les tours ni l'état des fortifications — une tour posée sur une position de sommet inexistante, ou un état de côté hors du cycle aucun/mur/citadelle, ne sont pas signalés.
 - Question à arbitrer au chantier Siège : étendre les contrôles de cohérence aux tours (position valide, type du répertoire : guet, archers, artillerie, mage, sous-marine) et aux fortifications (états du registre, distinction périmètre/intérieur, cohérence de l'état « mur et tours » comme somme du rempart et des tours posées).
+
+## Proposition de Francky — la tour de fortification comme contenu de la fortification (soumise le 25 octobre 2026, non encore arbitrée)
+
+- Principe proposé : une tour de fortification est installée sur une fortification, dont elle est un contenu ; elle doit correspondre à une fortification porteuse au même emplacement — une tour sans fortification porteuse serait orpheline et signalée par les contrôles de cohérence, à l'instar d'une porte sans rue traversante. Le répertoire des types s'établit à : guet, archers, artillerie, mage, sous-marine et baliste.
+- Effet sur le constat de la fixture Corvire : la règle du contenant résout la validation des positions (la tour exige un porteur réel, donc une position existante) ; la validation des types reste à ajouter au registre.
+- Frictions relevées avec les arbitrages en vigueur : les fortifications sont définies côté par côté (périmètre et côtés intérieurs) tandis que les tours se posent aux sommets, qui touchent jusqu'à trois côtés (l'arbitrage du 25 octobre admettait les deux placements : sommets du périmètre ou côtés) ; l'état « mur et tours » était défini comme la somme du rempart et des tours posées, la proposition inversant la dépendance (la fortification précède et porte la tour).
+- Points à arbitrer : direction de la dérivation (fortification porteuse ou état sommé) ; sort des tours de guet aux sommets (suggestion de l'assistant : le guet, organe de détection et de signal, resterait seul admis aux sommets sans porteur, les tours de tir — archers, artillerie, mage, sous-marine, baliste — exigeant un côté fortifié porteur ; la tour sous-marine appelant en outre un côté maritime ou portuaire).
+
+## Arbitrages « fortification porteuse » (25 octobre 2026) et implémentation
+
+- Arbitré par Francky : la tour de fortification est un contenu de la fortification (fortification porteuse) — une tour de tir exige un côté fortifié porteur au même emplacement ; la direction de la dérivation est donc : la fortification précède et porte la tour (l'ancienne lecture « état mur et tours sommé depuis les tours posées » est écartée).
+- Arbitré par Francky (suggestion de l'assistant acceptée) : la tour de guet, organe de détection et de signal, reste seule admise aux sommets, sans porteur ; les tours de tir (archers, artillerie, mage, sous-marine, baliste) se posent sur un côté fortifié ; la tour sous-marine exige en outre un côté maritime (côté d'une région d'eau de l'emprise). Répertoire des types : guet, archers, artillerie, mage, sous-marine, baliste (la baliste est une carte nouvelle proposée par Francky).
+- Implémenté dans le module moteur v0.1 (canevas « Moteur Villes ») : `controlesCoherence` valide désormais les fortifications (côtés existants du périmètre et intérieurs, hors côtés terre-eau qui relèvent du cycle portuaire ; états du registre aucun/mur/citadelle) et les tours (registre des types, position, sommet valide pour le guet, fortification porteuse pour les tours de tir, côté maritime pour la sous-marine). Huit jeux d'essais ajoutés au moteur (53 au total) ; six contrôles ajoutés à la fixture Corvire (43 au total, 96 contrôles globaux).
+- Conséquence sur la ville de Corvire : la tour d'archers du sommet devient une tour de guet au sommet nord ; la tour d'archers couronne le mur sud (3,3,SO), la baliste garnit le mur intérieur du réduit (3,3|4,2), la tour sous-marine garde le littoral fortifié du Chenal (4,1,SE). Le roman de test (chapitre VI) et son encadré technique sont mis à jour.
+- Restent au chantier Siège : l'endommagement en cours de partie (machines de siège, seuils de brèche, effets des tours en combat) et l'usage opérationnel des tours (détection, NFR, DI, NFA, NFS).
