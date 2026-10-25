@@ -1,0 +1,9 @@
+{
+  "name": "war-game-e8",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Wargame Mondes Fantastiques — Édition 8 : moteur de règles, maquettes et spécifications.",
+  "scripts": {
+    "test": "node moteur/run-tests.js"
+  }
+}
