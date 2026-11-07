@@ -114,8 +114,8 @@ type: "text/html"
         <tr class="ecl"><td>Valeur morale (VM)</td><td>8 — perte de moral de la puissance en cas de mort ou capture ; l'ordre de grandeur n'est pas table au corpus</td></tr>
         <tr class="cal"><td>Points de faveur divine (PFD)</td><td>0 — pas d'investissement religieux ; règle d'accès du non-prêtre à préciser</td></tr>
         <tr><td>Trésor personnel</td><td>74 S sur lui (plafond 100 S sans pénaliser le déplacement)</td></tr>
-        <tr class="chant"><td>Pion leader</td><td>Oui — fiche séparée à prévoir (escorte, PF, moitié des PMB)</td></tr>
-        <tr><td>État-major</td><td>15 personnes (fourchette native 10 à 20) — escorte et assiste</td></tr>
+        <tr><td>Pion leader = état-major</td><td class="cal">SENTENCE : le pion leader EST l'état-major — l'unité d'élite associée au leader (10 à 20 créatures) ; sa fiche d'unité (PF, PMV, PST, moitié des PMB, features d'unité) reste à ouvrir</td></tr>
+        <tr><td>État-major</td><td>15 créatures (fourchette native 10 à 20) — escorte et assiste le leader ; c'est lui, en tant qu'unité, qui figure sur la carte</td></tr>
       </table>
     </div>
     <div class="bloc">
@@ -218,7 +218,7 @@ type: "text/html"
         <tr><th>Poste</th><th class="num">Besoins / jour</th><th>Statut</th></tr>
         <tr><td>Kaelen (CCSN 1, omnivore)</td><td class="num">1 ration</td><td><span class="etat ok">CONSERVÉ</span></td></tr>
         <tr class="cal"><td>État-major (15 personnes)</td><td class="num">15 rations</td><td><span class="etat cal">INTERPRÉTATION</span></td></tr>
-        <tr class="chant"><td>Escorte du pion leader</td><td class="num">—</td><td><span class="etat chant">À DÉFINIR</span></td></tr>
+        <tr class="chant"><td>Escorte du pion leader</td><td class="num">—</td><td><span class="etat chant">À DÉFINIR</span> — le pion leader EST l'état-major (sentence) : unité d'élite associée, 10 à 20 créatures</td></tr>
         <tr><td>En campagne avec un stack</td><td class="num">au prorata du stack</td><td><span class="etat ok">NATIF</span></td></tr>
       </table>
       <p class="note">Le CCSN (0, 1 ou 2) est une donnée d'unité ; la lecture individuelle du leader et de son état-major n'est pas table au corpus : l'interprétation « une ration par tête » est proposée pour l'audit. Le sort Nourriture (1 PST nourri par PMR) couvre les pénuries ; en réflecte de survie, double coût.</p>
@@ -398,7 +398,7 @@ type: "text/html"
         <tr class="exercee"><td>Pénétrante / Perforante</td><td>Équipement : épée +2</td><td>déclarée</td><td>features d'arme déclarées sur l'onglet Équipement — empilement régi par le chantier armures</td></tr>
         <tr><td>Aucune feature raciale</td><td>Race : Humain</td><td>—</td><td>l'humain vhalornais ne porte pas de capacité spéciale de race</td></tr>
       </table>
-      <p class="note">Registre des features natives (relevé complet §8.1.3) : Archer, Berserker, bonus/malus de terrain (+x), Dissimulation (DIS), Embarquement, Ignore fortification (IF), Immortels (Imm), Immunité au poison (IP), Infravision (INF), Infravision active (INFA), Peur, Poison (x), Résistance magique (MR), Résistance à la peur (RPE), Résistance au poison (RPO), Résistance au tournage (RAT), Raider, Ravitaillement, Régénération, Tournage, Vision dans les ténèbres, Vol mono-hex. Le leader en déclare au titre de sa race, de ses professions, de son équipement ou de sorts permanents — les features d'unités (Berserker, Raider, régiments) vivent sur la fiche du pion leader. La RPE du leader et l'amortissement de la peur par [10 + 3×(BCM+BC+BR)] : chantier leaders L8.</p>
+      <p class="note">Registre des features natives (relevé complet §8.1.3) : Archer, Berserker, bonus/malus de terrain (+x), Dissimulation (DIS), Embarquement, Ignore fortification (IF), Immortels (Imm), Immunité au poison (IP), Infravision (INF), Infravision active (INFA), Peur, Poison (x), Résistance magique (MR), Résistance à la peur (RPE), Résistance au poison (RPO), Résistance au tournage (RAT), Raider, Ravitaillement, Régénération, Tournage, Vision dans les ténèbres, Vol mono-hex. Le leader en déclare au titre de sa race, de ses professions, de son équipement ou de sorts permanents ; les features d'unités vivent sur la fiche du pion leader — l'état-major, son unité d'élite associée (10 à 20 créatures, sentence). La RPE du leader et l'amortissement de la peur par [10 + 3×(BCM+BC+BR)] : chantier leaders L8.</p>
     </div>
   </div>
 </section>
@@ -476,7 +476,7 @@ const audit = [
   ["VM (valeur morale)", "ordre de grandeur non table", "ÉLUCIDER", "à calibrer"],
   ["PFD du non-prêtre", "règle d'accès", "CAL", "à préciser"],
   ["LDS du leader militaire", "double profil guilde", "CAL", "chantier bas-fonds"],
-  ["Pion leader", "fiche séparée (escorte, PF, PMB)", "CHANTIER", "à ouvrir"],
+  ["Pion leader", "NATURE SENTENCÉE : le pion leader EST l'état-major, l'unité d'élite associée (10 à 20 créatures) ; fiche d'unité (PF, PMV, PST, ½ PMB, features d'unité)", "CHANTIER", "fiche à ouvrir — nature gravée"],
   ["Jet de survie du leader", "proposition v2 déposée", "CHANTIER", "sentence attendue"],
   ["Protection magique personnelle", "remplacement RAM/TAM", "CHANTIER", "banc d'essai"],
   ["BCM, BC, BR — application", "châssis à deux étages", "OK", "sentencé ce soir"],
