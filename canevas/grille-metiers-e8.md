@@ -1,12 +1,12 @@
 ---
 name: "grille-metiers-e8"
-title: "La grille des métiers et des habiletés — Édition 8, v0.2"
+title: "La grille des métiers et des habiletés — Édition 8, v0.3"
 type: "text/markdown"
 ---
 
-# La grille des métiers et des habiletés — Édition 8, v0.2 (7 novembre 2026)
+# La grille des métiers et des habiletés — Édition 8, v0.3 (7 novembre 2026)
 
-Statut : v0.2 — la matrice passe en mode vérification : ligne Base (entraînement, sentences du 7 novembre) et colonnes Itd\* / Dsf\* (créations É8, propositions à valider) ajoutées à la transcription V7. v0.1 arbitrée dans la nuit du 27 octobre 2026 (les quatre métiers, les cinq habiletés, Templier et Warlock retenus) ; les fiches de la première cuvée sont déposées au canevas « La première cuvée des fiches de métier ». Sources : liste des professions et des habiletés de l'É7 (conservées selon le chapitre 8 v01 en rédaction), matrices des classeurs É7 (génération « par déduction », supersédée), table des unités spéciales des règles É7, relevé consolidé des capacités v0.7 (architecture des trois origines, suites 17 et 20 du journal). Manquent toujours à la bibliothèque : Stormwrack (environnement maritime — le Player's Handbook 3.5, châssis des classes de base, est arrivé au sixième ajout, 27 octobre au petit matin).
+Statut : v0.3 — sentence du soir : LA BASE EST LA VALEUR NATIVE (base 5 tentable à 5 par tous, base 0 interdite sans formation professionnelle, Adm base 10 native, Itd 5 / Dsf 0) ; six canaux créés par l'auteur à sa passe de vérification, marqués en gras. v0.2 — la matrice passe en mode vérification : ligne Base et colonnes Itd\* / Dsf\* (créations É8, propositions à valider) ajoutées à la transcription V7. v0.1 arbitrée dans la nuit du 27 octobre 2026 (les quatre métiers, les cinq habiletés, Templier et Warlock retenus) ; les fiches de la première cuvée sont déposées au canevas « La première cuvée des fiches de métier ». Sources : liste des professions et des habiletés de l'É7 (conservées selon le chapitre 8 v01 en rédaction), matrices des classeurs É7 (génération « par déduction », supersédée), table des unités spéciales des règles É7, relevé consolidé des capacités v0.7 (architecture des trois origines, suites 17 et 20 du journal). Manquent toujours à la bibliothèque : Stormwrack (environnement maritime — le Player's Handbook 3.5, châssis des classes de base, est arrivé au sixième ajout, 27 octobre au petit matin).
 
 ## 1. Fondations — le métier dans l'architecture des capacités
 
@@ -86,12 +86,12 @@ Règle de calcul (chapitre 8 v01) : le niveau d'habileté se calcule en pourcent
 
 ## 4. La matrice métier × habileté (matrice V7 transcrite)
 
-Transcription depuis l'É7 ; une passe de vérification page à page accompagnera la curation des fiches. Le niveau d'habileté est le pourcentage indiqué du niveau dans la profession. Pour la passe de vérification : la ligne BASE (entraînement) porte les sentences du 7 novembre (base 5 = à entraîner, jet interdit au niveau 0 ; base 0 = libre, valant 0) ; les colonnes Itd\* et Dsf\* sont les créations É8 (Itd libre, Dsf à entraîner, sentencées), dont les canaux sont des PROPOSITIONS marquées d'un astérisque, à valider ligne par ligne par l'auteur. Administration est absente de la matrice : compétence dérivée (Adm = Plt ÷ 2, processus inversé pour les administrateurs).
+Transcription depuis l'É7 ; une passe de vérification page à page accompagnera la curation des fiches. Le niveau d'habileté est le pourcentage indiqué du niveau dans la profession. Pour la passe de vérification : la ligne BASE (NATIVE, sentence du 7 novembre au soir, inversion des sentences du matin) — LA BASE EST LA VALEUR NATIVE : base 5 = tentable à 5 par quiconque, sans formation ; base 0 = jet interdit sans formation professionnelle (la valeur vient d'une profession) ; Administration, base native 10 (Adm = Plt ÷ 2 pour les politiciens). Les colonnes Itd\* et Dsf\* sont les créations É8 sentencées (Itd base 5 natif, Dsf base 0 professionnelle), dont les canaux sont des PROPOSITIONS marquées d'un astérisque, à valider ligne par ligne par l'auteur.
 
 
 | Métier              | Ass    | Bbl    | Cbt | Cpt | Cst | Dse    | Dsv | Esp    | Exa | Exf | Exm | Frg | Ngc | Plt    | Sed | Srv | Trc | Vol | Itd\* | Dsf\* |
 | ------------------- | ------ | ------ | --- | --- | --- | ------ | --- | ------ | --- | --- | --- | --- | --- | ------ | --- | --- | --- | --- | ----- | ----- |
-| Base (entraînement) | 5      | 5      | 0   | 0   | 0   | 5      | 5   | 5      | 0   | 0   | 0   | 0   | 0   | 0      | 5   | 0   | 5   | 5   | 0     | 5     |
+| Base (native)       | 5      | 5      | 0   | 0   | 0   | 5      | 5   | 5      | 0   | 0   | 0   | 0   | 0   | 0      | 5   | 0   | 5   | 5   | 5     | 0     |
 | Alchimiste          | —      | 75     | —   | —   | 50  | —      | —   | —      | —   | —   | —   | 100 | —   | —      | —   | —   | —   | —   | —     | —     |
 | Archimage           | —      | 100    | —   | —   | —   | —      | —   | —      | —   | —   | —   | —   | —   | —      | —   | —   | —   | —   | —     | —     |
 | Artiste martial     | 50     | —      | 100 | —   | —   | 75     | 50  | 25     | —   | —   | —   | —   | —   | —      | —   | 75  | 25  | 25  | 50\*  | 25\*  |
@@ -128,8 +128,8 @@ Notes de transcription :
 
 - Passe de vérification du 7 novembre (l'auteur) : SIX CANAUX CRÉÉS, marqués en gras dans la matrice — Chaman Esp 25, Houri Ass 25, Illusionniste Dse 25, Sicaire Bbl 25, Sorcier Plt 25, Sorcier des mers Plt 25. Vérification faite contre la matrice native É7 : ces six cellules y sont vides — ce sont des créations É8 de l'auteur, non des corrections de transcription. Le reste de la transcription est conforme au natif (contrôlé ligne à ligne).
 - Conjurateur : matrice vide dans l'É7, à compléter à la curation (proposition indicatrice : Bbl 75, Esp 50, par analogie d'école d'invocation ; Dsf 25 proposé en même analogie).
-- Colonne Itd\* (Intimidation, création É8 libre) : propositions aux métiers de la menace — sicaire 75, maléficant 75, artiste martial 50, assassin 50, démoniste 50, guerrier 50, templier 50, barde 25, houri 25, marchand 25, mentaliste 25, paladin 25, sorcier des mers 25, voleur 25, warmage 25.
-- Colonne Dsf\* (Désinformation, création É8 à entraîner) : propositions aux métiers de l'ombre et de l'influence — sicaire 75, assassin 50, barde 50, courtisane 50, illusionniste 50, maléficant 50, mentaliste 50, voleur 50, conjurateur 25, démoniste 25, devin 25, houri 25, marchand 25, artiste martial 25.
+- Colonne Itd\* (Intimidation, création É8, base 5 native) : propositions aux métiers de la menace — sicaire 75, maléficant 75, artiste martial 50, assassin 50, démoniste 50, guerrier 50, templier 50, barde 25, houri 25, marchand 25, mentaliste 25, paladin 25, sorcier des mers 25, voleur 25, warmage 25.
+- Colonne Dsf\* (Désinformation, création É8, base 0 professionnelle) : propositions aux métiers de l'ombre et de l'influence — sicaire 75, assassin 50, barde 50, courtisane 50, illusionniste 50, maléficant 50, mentaliste 50, voleur 50, conjurateur 25, démoniste 25, devin 25, houri 25, marchand 25, artiste martial 25.
 - La variante « par déduction » des classeurs É7 (nombre à ôter du niveau d'énergie) est une génération antérieure, supersédée par la matrice en pourcentages retenue par le chapitre 8 v01.
 - Templier et Warlock figurent dans les matrices de l'É7 sans figurer au tableau des familles du chapitre 8 v01 : statut à arbitrer (section 9).
 
@@ -211,7 +211,7 @@ Arbitrage de Francky (27 octobre au soir) : les quatre métiers et les cinq habi
 | Médecine       | Med  | 0    | Soins des blessés, épidémies, hygiène des armées                                            | Pertes et soins, Cycle du Destin                                                     |
 | Logistique     | Lgs  | 0    | Ravitaillement, convois, lignes d'approvisionnement                                         | Phase ravitaillement, efficacité des PS des guildes                                  |
 | Intimidation   | Itd  | 5    | Menace exercée, recrutement forcé, peur non naturelle                                       | Règle Peur v0.2 (leaders), mobilisation, mercenaires                                 |
-| Désinformation | Dsf  | 5    | Manipulation de l'information, rumeurs, fausses pistes — le verbe offensif du renseignement | Guilde des Espions et contre-espionnage (chantier Bas-fonds, arbitrée le 27 octobre) |
+| Désinformation | Dsf  | 0    | Manipulation de l'information, rumeurs, fausses pistes — le verbe offensif du renseignement | Guilde des Espions et contre-espionnage (chantier Bas-fonds, arbitrée le 27 octobre ; base 0 professionnelle, sentence du 7 novembre au soir) |
 
 
 Lecture de conception : chaque ajout rend payable un mécanisme existant du jeu — le siège, la mer, les soins, le ravitaillement, la peur, la guerre de l'information — sans créer de sous-système. Les six colonnes s'ajoutent à la matrice ; les métiers existants recevront leurs lignes à la curation des fiches (proposition indicatrice : marchand Lgs 75, barde Med 25 et Itd 25, rôdeur Srv et Trc inchangés).
@@ -229,4 +229,3 @@ Guerrier (légion hellène), Nécromant (horde de squelettes), Mage (conjonction
 5. Les quatre métiers et les cinq habiletés — arbitré le 27 octobre au soir : tous retenus ; le berserker demeure en outre une capacité de doctrine (carte dédoublée par attachement).
 6. Conjurateur : matrice É7 vide, à compléter.
 7. Passe de vérification page à page de la matrice transcrite ; la génération « par déduction » des classeurs est supersédée.
-8. La chaîne professionnelle est armée de bout en bout (le PHB au sixième ajout ; Tome and Blood et Sword and Fist déposés au septième) ; Stormwrack est déposé en conversation (septième ajout) — à ajouter à la bibliothèque pour l'indexation ; la trilogie des environnements est bouclée.
