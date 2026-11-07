@@ -1,7 +1,7 @@
 ---
-name: maquette-fiche-leader-e8
+name: "maquette-fiche-leader-e8"
 title: "Maquette de la fiche de leader — Édition 8"
-type: text/html
+type: "text/html"
 ---
 
 <!doctype html>
@@ -95,6 +95,7 @@ type: text/html
   <div class="tab" data-p="sante">Santé et besoins</div>
   <div class="tab" data-p="magie">Magie</div>
   <div class="tab" data-p="equipement">Équipement</div>
+  <div class="tab" data-p="epreuve">Épreuve (jet D20)</div>
   <div class="tab" data-p="audit">Audit de complétude</div>
 </div>
 
@@ -143,7 +144,7 @@ type: text/html
         <div class="filtre" onclick="filtreHab('militaires', this)">Militaires</div>
       </div>
       <table id="tHab"></table>
-      <p class="note">La conversion en bonus D20 reste en proposition : bonus = (niveau − 20) ÷ 2, arrondi vers le bas ; l'échelle militaire garde [(niveau + 10) × 2] en conversion de référence.</p>
+      <p class="note">Lien 3.5 proposé : conv. = (niveau − 20) ÷ 2, arrondi vers le bas ; BE = conv. + mod. de la caractéristique dirigeante (colonne Car. dir.). Le niveau paie, la caractéristique bonifie. L'échelle militaire garde [(niveau + 10) × 2] en conversion de référence.</p>
     </div>
   </div>
 </section>
@@ -299,6 +300,53 @@ type: text/html
   </div>
 </section>
 
+<!-- ============ EPREUVE ============ -->
+<section class="panneau" id="p-epreuve">
+  <div class="grille2">
+    <div class="bloc">
+      <h3>La chaîne de l'épreuve (lien D&D 3.5, proposition)</h3>
+      <p class="mini">Le niveau paie, la caractéristique bonifie, la situation penche, le dé tranche.</p>
+      <table>
+        <tr><td><span class="k">1. La caractéristique</span></td><td>assise 3.5 : modificateur = (score − 10) ÷ 2, arrondi vers le bas</td></tr>
+        <tr><td><span class="k">2. Le niveau</span></td><td>l'habileté = pourcentage du niveau dans la profession (matrice), meilleur calcul entre professions</td></tr>
+        <tr><td><span class="k">3. La bonification</span></td><td>bonus d'épreuve BE = (niveau d'habileté − 20) ÷ 2 + mod. de la caractéristique dirigeante</td></tr>
+        <tr><td><span class="k">4. La situation</span></td><td>avantage ou désavantage : deux dé, on garde le meilleur ou le pire (jamais cumulables, ils s'annulent)</td></tr>
+        <tr><td><span class="k">5. Le verdict</span></td><td>réussite si d20 + BE ≥ 11 + difficulté ; marge = d20 + BE − 11 − difficulté</td></tr>
+      </table>
+      <p class="note">Le jet des actions individuelles (leaders, unités spéciales, actions hors combat de masse) est OUVERT : le 20 relance et cumule (le critique explose), le 1 enchaîne (le fumble cascade). La résolution de masse par lots demeure FERMÉE [11 + difficulté] — la marge y reste la seule monnaie de dégâts, les caractéristiques n'y entrent jamais.</p>
+    </div>
+    <div class="bloc">
+      <h3>L'éventail des résultats (proposition)</h3>
+      <table>
+        <tr><th>Résultat</th><th>Déclencheur</th><th>Effet</th></tr>
+        <tr><td><span class="etat ecl">FUMBLE</span></td><td>1 naturel : relance et soustrais, cascade tant que le 1 revient</td><td>marge très négative ; complication à l'arbitrage du MdM — arme lâchée, bruit, chute, exposition ; en embuscade : repérage automatique</td></tr>
+        <tr><td><span class="etat cal">ÉCHEC GRAVE</span></td><td>marge ≤ −5</td><td>échec avec conséquence : en combat individuel, l'état passe à blessé ; contre-temps majeur pour l'action</td></tr>
+        <tr><td>Échec</td><td>d20 + BE &lt; 11 + difficulté</td><td>rien ne se passe, ou presque — la marge négative module la contre-performance</td></tr>
+        <tr><td>Réussite</td><td>d20 + BE ≥ 11 + difficulté</td><td>effet standard ; la marge positive module la portée</td></tr>
+        <tr><td><span class="etat ok">FRANCHE</span></td><td>marge ≥ 5</td><td>réussite éclatante : information totale, chef-d'œuvre, avantage au jet lié de la suite</td></tr>
+        <tr><td><span class="etat ok">CRITIQUE</span></td><td>20 naturel : relance et cumule, cascade tant que le 20 revient</td><td>la marge s'emballe ; en combat individuel : blessure maximale ; le MdM offre l'effet héroïque</td></tr>
+      </table>
+      <p class="note">Cas particuliers natifs conservés : capture sur jet de survie raté de moins de 5 ; « à moins d'un fumble, le jet est réussi » des embuscades faciles.</p>
+    </div>
+  </div>
+  <div class="bloc">
+    <h3>Simulateur d'épreuve (échantillon)</h3>
+    <div class="filtres" id="sAction">
+      <div class="filtre actif" data-be="7" onclick="choixAction(this)">Attaque à l'épée (Cbt 28 + F +3) — BE +7</div>
+      <div class="filtre" data-be="0" onclick="choixAction(this)">Discours de guerre (Itd 17 + Cha +2) — BE +0</div>
+      <div class="filtre" data-be="-2" onclick="choixAction(this)">Repérage en rase campagne (Dse 14 + D +1) — BE −2</div>
+    </div>
+    <div class="filtres">
+      <div class="filtre actif" id="mNormal" onclick="choixMode('normal', this)">Normal</div>
+      <div class="filtre" id="mAv" onclick="choixMode('avantage', this)">Avantage</div>
+      <div class="filtre" id="mDes" onclick="choixMode('desavantage', this)">Désavantage</div>
+      <label class="mini" style="margin-left:12px">Difficulté : <input type="number" id="sDiff" value="0" style="width:52px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"> <span class="cle">(réussite à 11 + difficulté)</span></label>
+    </div>
+    <button class="btn-audit" style="color:var(--or2);border-color:var(--or)" onclick="lancer()">LANCER LE DÉ</button>
+    <div id="sResultat" style="margin-top:12px"></div>
+  </div>
+</section>
+
 <!-- ============ AUDIT ============ -->
 <section class="panneau" id="p-audit">
   <div class="legende">
@@ -366,6 +414,7 @@ const audit = [
   ["Habiletés", "matrice métier × habileté", "OK", "matrice V7 transcrite"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
   ["Conversion habileté vers bonus D20", "(niveau − 20) ÷ 2", "CAL", "proposition à valider"],
+  ["Chaîne de l'épreuve (lien 3.5)", "BE = conv. + mod. caractéristique dirigeante ; avantage/désavantage ; éventail fumble-critique", "CAL", "sentences attendues"],
   ["NE et PV du leader", "formule de dérivation individuelle", "ÉLUCIDER", "annexes de profils, étage 1"],
   ["Nourriture du leader et de l'état-major", "CCSN 1 par tête : interprétation", "CAL", "à trancher"],
   ["VM (valeur morale)", "ordre de grandeur non table", "ÉLUCIDER", "à calibrer"],
@@ -404,21 +453,28 @@ $("tProfs").innerHTML = profs.map(p => {
     "<div class='mini' style='margin-top:4px'>Lignes de matrice : " + p.canal + "</div></div>";
 }).join("");
 
+const modsCar = { "F": 3, "D": 1, "C": 2, "I": 3, "S": 1, "Cha": 2 }; // F17 D13 C14 I16 S12 Cha15
+const dirige = { "Cbt": "F", "Frg": "I", "Srv": "S", "Dse": "D", "Trc": "S", "Bbl": "I", "Dsv": "D", "Itd": "Cha", "Adm": "I", "Plt": "Cha", "Ngc": "Cha", "Sed": "Cha", "Vol": "D", "Ass": "D", "Esp": "I", "Dsf": "Cha" };
+const be = (niv, sig) => Math.floor((niv - 20) / 2) + modsCar[dirige[sig]];
+
 function ligneHab(h) {
   const [nom, sig, niv, src, ex] = h;
   const conv = niv > 0 ? Math.floor((niv - 20) / 2) : null;
+  const vBE = niv > 0 ? be(niv, sig) : null;
   return "<tr class='hab " + (ex ? "exercee" : "") + "'>" +
     "<td>" + nom + " <span class='cle'>(" + sig + ")</span></td><td class='num'>" + (niv > 0 ? niv : "—") + "</td>" +
     "<td class='num'>" + (niv > 0 ? ((conv >= 0 ? "+" + conv : conv)) : "—") + "</td>" +
+    "<td class='num'>" + (niv > 0 ? dirige[sig] + " " + (modsCar[dirige[sig]] >= 0 ? "+" : "") + modsCar[dirige[sig]] : "—") + "</td>" +
+    "<td class='num be" + (vBE !== null && vBE >= 0 ? "pos" : "neg") + "'>" + (vBE !== null ? (vBE >= 0 ? "+" + vBE : vBE) : "—") + "</td>" +
     "<td class='mini'>" + src + "</td></tr>";
 }
-const enteteHab = "<tr><th>Habileté</th><th class='num'>Niveau</th><th class='num'>Bonus D20</th><th>Source</th></tr>";
+const enteteHab = "<tr><th>Habileté</th><th class='num'>Niveau</th><th class='num'>Conv.</th><th class='num'>Car. dir.</th><th class='num'>BE</th><th>Source</th></tr>";
 $("tHab").innerHTML = enteteHab + habiletes.map(ligneHab).join("") +
   [["Capacité militaire terrestre", "CMT", "+5", "échelle militaire −10 à +10"],
    ["Capacité militaire aérienne", "CMA", "+2", "dérivé de CMT (−3)"],
    ["Capacité militaire maritime", "CMM", "−1", "dérivé de CMT (−6)"],
    ["Leadership", "LDS", "—", "leaders secrets uniquement"]]
-  .map(x => "<tr class='hab milit'><td>" + x[0] + " <span class='cle'>(" + x[1] + ")</span></td><td class='num'>" + x[2] + "</td><td class='num'>—</td><td class='mini'>" + x[3] + "</td></tr>").join("");
+  .map(x => "<tr class='hab milit'><td>" + x[0] + " <span class='cle'>(" + x[1] + ")</span></td><td class='num'>" + x[2] + "</td><td class='num'>—</td><td class='num'>—</td><td class='num'>—</td><td class='mini'>" + x[3] + "</td></tr>").join("");
 
 function filtreHab(mode, el) {
   document.querySelectorAll("#p-professions .filtre").forEach(f => f.classList.remove("actif"));
@@ -462,6 +518,46 @@ function toggleAudit() {
   document.body.classList.toggle("audit");
   $("btnAudit").classList.toggle("actif");
 }
+
+// ---------- SIMULATEUR D'EPREUVE ----------
+let sBE = 7, sMode = "normal";
+function choixAction(el) {
+  document.querySelectorAll("#sAction .filtre").forEach(f => f.classList.remove("actif"));
+  el.classList.add("actif");
+  sBE = +el.dataset.be;
+  $("sResultat").innerHTML = "";
+}
+function choixMode(mode, el) {
+  ["mNormal", "mAv", "mDes"].forEach(id => $(id).classList.remove("actif"));
+  el.classList.add("actif");
+  sMode = mode;
+  $("sResultat").innerHTML = "";
+}
+const d20 = () => 1 + Math.floor(Math.random() * 20);
+function lancer() {
+  const diff = +($("sDiff").value || 0);
+  let detail = "", de;
+  if (sMode === "avantage") { const a = d20(), b = d20(); de = Math.max(a, b); detail = "2d20 (" + a + ", " + b + ") — on garde le meilleur : " + de; }
+  else if (sMode === "desavantage") { const a = d20(), b = d20(); de = Math.min(a, b); detail = "2d20 (" + a + ", " + b + ") — on garde le pire : " + de; }
+  else { de = d20(); detail = "1d20 : " + de; }
+  let total = de, fumble = de === 1, critique = de === 20;
+  if (critique) { let r = d20(); detail += " — 20 naturel : relance et cumule"; while (r === 20) { detail += " (encore 20 !)"; total += r; r = d20(); } total += r; detail += " (+" + r + ")"; }
+  if (fumble) { let r = d20(); detail += " — 1 naturel : relance et soustrais"; while (r === 1) { detail += " (encore 1 ...)"; total -= r; r = d20(); } total -= r; detail += " (−" + r + ")"; }
+  const score = total + sBE;
+  const marge = score - 11 - diff;
+  let verdict, cls;
+  if (fumble) { verdict = "FUMBLE — le 1 enchaîne"; cls = "ecl"; }
+  else if (critique) { verdict = "CRITIQUE — le 20 relance et cumule"; cls = "ok"; }
+  else if (marge >= 5) { verdict = "RÉUSSITE FRANCHE (marge ≥ 5)"; cls = "ok"; }
+  else if (marge >= 0) { verdict = "RÉUSSITE"; cls = "ok"; }
+  else if (marge <= -5) { verdict = "ÉCHEC GRAVE (marge ≤ −5)"; cls = "cal"; }
+  else { verdict = "ÉCHEC"; cls = "cal"; }
+  $("sResultat").innerHTML =
+    "<table><tr><td class='mini'>" + detail + "</td></tr>" +
+    "<tr><td>d20 " + (total !== de ? "(" + total + ") " : "") + "+ BE (" + (sBE >= 0 ? "+" : "") + sBE + ") = <b>" + score + "</b> contre 11 + " + diff + " — marge <b>" + (marge >= 0 ? "+" : "") + marge + "</b></td></tr>" +
+    "<tr><td><span class='etat " + cls + "'>" + verdict + "</span></td></tr></table>";
+}
+
 </script>
 </body>
 </html>
