@@ -121,7 +121,7 @@ Statut : v0.2 — section 9 « Le moteur de combat » ajoutée le 28 octobre au 
 | LDS par Cbt | 3-6 : −2 ; 7-10 : 0 ; 11-14 : +1 ; 15-18 : +2 ; 19-22 : +3 ; 23-26 : +4 ; 27-30 : +5 ; 31-34 : +6 ; 35-38 : +7 ; 39-42 : +8 ; 43-46 : +9 | CONSERVÉ É7 | Commandement |
 | Commandement du général | le meilleur domaine à plein, les autres à −3 et −6 (ex. Cbt 30 : +5/+2/−1 en T/A/M) | CONSERVÉ É7 | Leaders |
 | Leader secret | Lds réduit de moitié hors de ses domaines — Ls(x) | CONSERVÉ É7 | Opérations mixtes des guildes |
-| Jets É8 | fermé : [11 + difficulté] sur D20 ; ouvert : le 20 relance et cumule, le 1 enchaîne | CONSERVÉ É7 | Toute résolution |
+| Jets É8 | fermé : [11 + difficulté] sur D20 ; l'éventail se lit en tranches de marge — franche ≥ +5, grave ≤ −5, critique ≥ +10, fumble ≤ −10 (tranches à évaluer au banc d'essai) ; les relances natives (20 cumule, 1 enchaîne) sont ABANDONNÉES par sentence ; avantage/désavantage (2d20, meilleur/pire, non cumulables) s'applique aux actions individuelles ET aux engagements de masse pour les situations maîtresses non chiffrables | SENTENCE É8 | Toute résolution |
 
 ## 8. Les unités — valeurs structurelles conservées
 
