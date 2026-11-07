@@ -311,24 +311,42 @@ type: "text/html"
         <tr><td><span class="k">2. Le niveau</span></td><td>l'habileté = niveau de la profession × % de canal (table 100/75/50 %), meilleur calcul entre professions</td></tr>
         <tr><td><span class="k">2 bis. L'entretien</span></td><td>chaque profession fournit une valeur de base dans certaines caractéristiques selon le niveau (canaux 100/75/50 %) — cadence exacte au fichier de calibrage (proposition)</td></tr>
         <tr><td><span class="k">3. La bonification</span></td><td>BE = niveau × % + les bonus des deux caractéristiques associées, CUMULÉS ; au-delà de 100 : aucun souci (sentence de l'auteur)</td></tr>
+        <tr><td><span class="k">3 bis. Les bonus applicables</span></td><td>PA investis : +2 par point (proposition) ; S dépensés : +1 par solaire (proposition) ; sorts de soutien, équipement magique, terrain : selon leurs tables — plafonds par jet au fichier de calibrage</td></tr>
         <tr><td><span class="k">4. La situation</span></td><td>avantage ou désavantage : deux dé, on garde le meilleur ou le pire (jamais cumulables, ils s'annulent) — actions individuelles ET engagements de masse (sentence de l'auteur)</td></tr>
-        <tr><td><span class="k">5. Le verdict</span></td><td>réussite si d20 + BE ≥ 11 + difficulté ; marge = d20 + BE − 11 − difficulté ; PAS de relances (sentence)</td></tr>
+        <tr><td><span class="k">5. Le verdict (challenge)</span></td><td>réussite si d20 + BE + bonus ≥ 11 + difficulté ; marge = total − 11 − difficulté ; PAS de relances (sentence)</td></tr>
+        <tr><td><span class="k">6. Le verdict (opposition)</span></td><td>les deux camps roulent leur total ; l'ÉCART des deux jets est la marge du vainqueur — et le miroir du perdant ; la même échelle se lit sur cet écart, l'égalité d'échelle fait le par</td></tr>
       </table>
       <p class="note">Le jet est FERMÉ : plus de relances sur 1 ou 20 (sentence de l'auteur). L'éventail se lit en tranches de marge. Dans la résolution de masse, l'avantage/désavantage s'applique à l'engagement pour les situations maîtresses non chiffrables (embuscade, nuit aveugle, enfoncement) ; les modificateurs chiffrés du terrain restent en marge — les deux monnaies ne se mélangent pas.</p>
     </div>
     <div class="bloc">
-      <h3>L'éventail des résultats (par tranches de marge, tranches à évaluer)</h3>
+      <h3>L'éventail des résultats (symétrique, x = 5 en proposition)</h3>
       <table>
         <tr><th>Résultat</th><th>Déclencheur</th><th>Effet</th></tr>
-        <tr><td><span class="etat ecl">FUMBLE</span></td><td>marge ≤ −10</td><td>complication à l'arbitrage du MdM — arme lâchée, bruit, chute, exposition ; en embuscade : repérage automatique</td></tr>
-        <tr><td><span class="etat cal">ÉCHEC GRAVE</span></td><td>marge ≤ −5</td><td>échec avec conséquence : en combat individuel, l'état passe à blessé ; contre-temps majeur pour l'action</td></tr>
-        <tr><td>Échec</td><td>marge &lt; 0</td><td>rien ne se passe, ou presque — la marge négative module la contre-performance</td></tr>
-        <tr><td>Réussite</td><td>marge ≥ 0</td><td>effet standard ; la marge positive module la portée</td></tr>
-        <tr><td><span class="etat ok">FRANCHE</span></td><td>marge ≥ +5</td><td>réussite éclatante : information totale, chef-d'œuvre, avantage au jet lié de la suite</td></tr>
-        <tr><td><span class="etat ok">CRITIQUE</span></td><td>marge ≥ +10</td><td>en combat individuel : blessure maximale ; le MdM offre l'effet héroïque</td></tr>
+        <tr><td><span class="etat chant">SUPER FUMBLE</span></td><td>marge ≤ −2x (≤ −10)</td><td>catastrophe : en combat individuel, blessé et désarmé ou pire ; l'action se retourne contre son auteur ; en embuscade : repérage automatique</td></tr>
+        <tr><td><span class="etat ecl">FUMBLE</span></td><td>marge ≤ −x (≤ −5)</td><td>complication à l'arbitrage du MdM — arme lâchée, bruit, chute, exposition ; en combat individuel, l'état passe à blessé</td></tr>
+        <tr><td>Échec</td><td>0 &gt; marge &gt; −x</td><td>rien ne se passe, ou presque — la marge négative module la contre-performance</td></tr>
+        <tr><td>Réussite</td><td>0 ≤ marge &lt; +x</td><td>effet standard ; la marge positive module la portée</td></tr>
+        <tr><td><span class="etat ok">SPÉCIALE</span></td><td>marge &gt; +x (&gt; +5)</td><td>réussite bonifiée : information totale, chef-d'œuvre, avantage au jet lié de la suite — effets à définir par domaine</td></tr>
+        <tr><td><span class="etat ok">CRITIQUE</span></td><td>marge &gt; +2x (&gt; +10)</td><td>en combat individuel : blessure maximale ; le MdM offre l'effet héroïque</td></tr>
       </table>
-      <p class="note">Tranches de 5 pour l'échelle intermédiaire (grave/franche), de 10 pour les extrêmes (fumble/critique) — proposition ; la largeur exacte des tranches part au banc d'essai. Cas particuliers natifs conservés : capture sur jet de survie raté de moins de 5 ; « à moins d'un fumble, le jet est réussi » des embuscades faciles se lira désormais « à moins d'une marge ≤ −10 ».</p>
+      <p class="note">Une seule largeur de tranche, x, sert les six marches : spéciale à +x, critique à +2x, fumble à −x, super fumble à −2x (proposition de l'auteur ; x = 5 déposé, largeur au banc d'essai). En opposition, l'écart des deux jets se lit sur cette même échelle : le vainqueur lit +écart, le perdant lit −écart en miroir. Cas particuliers natifs conservés : capture sur jet de survie raté de moins de 5 ; « à moins d'un fumble » des embuscades se lit désormais « à moins d'une marge ≤ −x ».</p>
     </div>
+  </div>
+  <div class="bloc">
+    <h3>L'échelle des challenges (proposition — de 10 en 10, la difficulté porte le numéro du niveau qui l'affronte à par)</h3>
+    <table>
+      <tr><th class="num">Défi</th><th>Nom</th><th>À par pour</th><th>Exemples</th></tr>
+      <tr><td class="num">20</td><td>Ordinaire</td><td>professionnel de métier (niveau 20, bande F)</td><td>le pain quotidien du métier : forge d'une lame droite, discours de garnison</td></tr>
+      <tr><td class="num">30</td><td>Exigeant</td><td>vétéran confirmé</td><td>siege d'une serrure de guilde, saut du fossé au galop</td></tr>
+      <tr><td class="num">40</td><td>Remarquable</td><td>maître de métier</td><td>lame de qualité supérieure, embuscade en terrain hostile</td></tr>
+      <tr><td class="num">50</td><td>Extraordinaire</td><td>grand maître</td><td>œuvre de cour, évasion d'une citadelle</td></tr>
+      <tr><td class="num">60</td><td>Prodige</td><td>sommet de la condition mortelle</td><td>tenir seul une brèche, décrocher une alliance impossible</td></tr>
+      <tr><td class="num">70</td><td>Héroïque</td><td>les exploits des chants</td><td>quête de légende, duel contre un champion de cour</td></tr>
+      <tr><td class="num">80</td><td>Légendaire</td><td>actes qui fondent des dynasties</td><td>la geste que l'on grave sur les portes de la ville</td></tr>
+      <tr><td class="num">90</td><td>Mythique</td><td>les douze travaux</td><td>ce que les dieux regardent</td></tr>
+      <tr><td class="num">100+</td><td>Épique / divin</td><td>haute magie et héros divins</td><td>les actes des dieux incarnés</td></tr>
+    </table>
+    <p class="note">Sous la marche 20, le MdM ne demande pas de jet : la compétence courante suffit (règle de routine). « À par » : un praticien à 100 % du niveau nommé réussit à 11 sur le d20 — l'échelle des défis calque l'échelle des niveaux, le modificateur de tranche se lit d'un coup d'œil (défi 40 pour un niveau 30 : −10, soit deux marches de fumble en cas d'échec).</p>
   </div>
   <div class="bloc">
     <h3>Simulateur d'épreuve (échantillon)</h3>
@@ -341,7 +359,10 @@ type: "text/html"
       <div class="filtre actif" id="mNormal" onclick="choixMode('normal', this)">Normal</div>
       <div class="filtre" id="mAv" onclick="choixMode('avantage', this)">Avantage</div>
       <div class="filtre" id="mDes" onclick="choixMode('desavantage', this)">Désavantage</div>
-      <label class="mini" style="margin-left:12px">Difficulté : <input type="number" id="sDiff" value="0" style="width:52px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"> <span class="cle">(réussite à 11 + difficulté — la difficulté vit à l'échelle du niveau : face à un égal, difficulté ≈ BE adverse)</span></label>
+      <label class="mini" style="margin-left:12px">Difficulté : <input type="number" id="sDiff" value="0" style="width:52px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"></label>
+      <label class="mini">PA investis (+2/pa) : <input type="number" id="sPA" value="0" min="0" style="width:40px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"></label>
+      <label class="mini">S dépensés (+1/S) : <input type="number" id="sS" value="0" min="0" style="width:40px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"></label>
+      <span class="cle">(réussite à 11 + difficulté — la difficulté vit à l'échelle du niveau : face à un égal, difficulté ≈ BE adverse)</span>
     </div>
     <button class="btn-audit" style="color:var(--or2);border-color:var(--or)" onclick="lancer()">LANCER LE DÉ</button>
     <div id="sResultat" style="margin-top:12px"></div>
@@ -415,7 +436,7 @@ const audit = [
   ["Habiletés", "matrice métier × habileté", "OK", "matrice V7 transcrite"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
   ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
-  ["Chaîne de l'épreuve", "BE sentencé ; avantage/désavantage partout (SENTENCE) ; éventail par tranches, sans relances (SENTENCE)", "CAL", "tranches à évaluer au banc d'essai"],
+  ["Chaîne de l'épreuve", "BE sentencé ; avantage/désavantage partout (SENTENCE) ; DEUX types de jet : challenge (échelle 20-100+) et opposition (écart des jets) ; éventail symétrique x/2x sans relances", "CAL", "x, PA, S et effets de la spéciale au banc d'essai"],
   ["NE et PV du leader", "formule de dérivation individuelle", "ÉLUCIDER", "annexes de profils, étage 1"],
   ["Nourriture du leader et de l'état-major", "CCSN 1 par tête : interprétation", "CAL", "à trancher"],
   ["VM (valeur morale)", "ordre de grandeur non table", "ÉLUCIDER", "à calibrer"],
@@ -538,22 +559,25 @@ function choixMode(mode, el) {
 const d20 = () => 1 + Math.floor(Math.random() * 20);
 function lancer() {
   const diff = +($("sDiff").value || 0);
+  const pa = Math.max(0, +($("sPA").value || 0));
+  const sol = Math.max(0, +($("sS").value || 0));
+  const bonusApp = 2 * pa + sol;
   let detail = "", de;
   if (sMode === "avantage") { const a = d20(), b = d20(); de = Math.max(a, b); detail = "2d20 (" + a + ", " + b + ") — on garde le meilleur : " + de; }
   else if (sMode === "desavantage") { const a = d20(), b = d20(); de = Math.min(a, b); detail = "2d20 (" + a + ", " + b + ") — on garde le pire : " + de; }
   else { de = d20(); detail = "1d20 : " + de; }
-  const score = de + sBE;
+  const score = de + sBE + bonusApp;
   const marge = score - 11 - diff;
   let verdict, cls;
-  if (marge >= 10) { verdict = "CRITIQUE (marge ≥ +10)"; cls = "ok"; }
-  else if (marge >= 5) { verdict = "RÉUSSITE FRANCHE (marge ≥ +5)"; cls = "ok"; }
+  if (marge >= 10) { verdict = "CRITIQUE (marge > +2x = +10)"; cls = "ok"; }
+  else if (marge >= 5) { verdict = "SPÉCIALE (marge > +x = +5)"; cls = "ok"; }
   else if (marge >= 0) { verdict = "RÉUSSITE"; cls = "ok"; }
-  else if (marge <= -10) { verdict = "FUMBLE (marge ≤ −10)"; cls = "ecl"; }
-  else if (marge <= -5) { verdict = "ÉCHEC GRAVE (marge ≤ −5)"; cls = "cal"; }
+  else if (marge <= -10) { verdict = "SUPER FUMBLE (marge ≤ −2x = −10)"; cls = "chant"; }
+  else if (marge <= -5) { verdict = "FUMBLE (marge ≤ −x = −5)"; cls = "ecl"; }
   else { verdict = "ÉCHEC"; cls = "cal"; }
   $("sResultat").innerHTML =
     "<table><tr><td class='mini'>" + detail + "</td></tr>" +
-    "<tr><td>d20 + BE (" + (sBE >= 0 ? "+" : "") + sBE + ") = <b>" + score + "</b> contre 11 + " + diff + " — marge <b>" + (marge >= 0 ? "+" : "") + marge + "</b></td></tr>" +
+    "<tr><td>d20 + BE (" + sBE + ")" + (bonusApp ? " + bonus applicables (+" + bonusApp + (pa ? " — " + pa + " PA" : "") + (sol ? (pa ? ", " : " — ") + sol + " S" : "") + ")" : "") + " = <b>" + score + "</b> contre 11 + " + diff + " — marge <b>" + (marge >= 0 ? "+" : "") + marge + "</b></td></tr>" +
     "<tr><td><span class='etat " + cls + "'>" + verdict + "</span></td></tr></table>";
 }
 
