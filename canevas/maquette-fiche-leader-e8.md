@@ -67,6 +67,7 @@ type: "text/html"
   .prof { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
   .prof .nom { font-size: 17px; color: var(--or2); }
   .prof .niv { font-size: 24px; font-weight: bold; color: var(--texte); font-variant-numeric: tabular-nums; }
+  .prof.vide { opacity: .45; border-style: dashed; }
   .bandes { display: flex; gap: 3px; margin-top: 6px; }
   .bande { flex: 1; text-align: center; font-family: Verdana, sans-serif; font-size: 10px; padding: 3px 0; background: #2b2318; color: var(--sous); border-radius: 3px; }
   .bande.presente { background: var(--or); color: #14100c; font-weight: bold; }
@@ -95,7 +96,7 @@ type: "text/html"
 
 <div class="tabs">
   <div class="tab actif" data-p="identite">Informations générales</div>
-  <div class="tab" data-p="professions">Professions et habiletés</div>
+  <div class="tab" data-p="professions">Classes et compétences</div>
   <div class="tab" data-p="commandement">Commandement</div>
   <div class="tab" data-p="sante">Santé et besoins</div>
   <div class="tab" data-p="magie">Magie</div>
@@ -153,26 +154,36 @@ type: "text/html"
   </div>
 </section>
 
-<!-- ============ PROFESSIONS ============ -->
+<!-- ============ CLASSES ET COMPETENCES ============ -->
 <section class="panneau" id="p-professions">
   <div class="grille2">
     <div class="bloc">
-      <h3>Les professions et leurs niveaux</h3>
-      <p class="mini">SENTENCE : un leader ne peut pas avoir plus de TROIS professions. Le niveau est enregistré séparément pour chaque profession ; les ressources ne se prennent qu'une fois ; l'habileté prend le meilleur calcul parmi les professions exercées (proposition à valider).</p>
+      <h3>Les classes (SENTENCE : trois places au plus)</h3>
+      <p class="mini">Sur une fiche de personnage, les professions s'appellent des classes et les habiletés des compétences. Le niveau est enregistré séparément pour chaque classe ; les ressources ne se prennent qu'une fois ; la compétence prend le meilleur calcul parmi les classes exercées.</p>
       <div id="tProfs"></div>
       <p class="mini" style="margin-top:10px">Bandes É8 (mapping adopté) : A 1-2, B 3-7, C 8-11, D 12-15, E 16-19, F 20 et au-delà.</p>
-      <p class="note">SENTENCE : il n'y a PAS de notion de qualité pour un leader — ce sont ses niveaux de profession qui la définissent. La qualité (A à F) est une donnée d'UNITÉ : elle fixe le niveau d'habileté de base à la création (A=5, B=10, C=15, D=20, E=25, F=37) ; l'expérience élève ensuite le niveau sans changer forcément la qualité. L'échelle des qualités s'étend jusqu'au SEMI-DIVIN et au DIVIN (lettres et niveaux de base à calibrer — fiche du pion leader).</p>
+      <h3 style="margin-top:18px">Capacités militaires et leadership</h3>
+      <table>
+        <tr><th>Capacité</th><th class="num">Valeur</th><th>Lecture</th></tr>
+        <tr><td>CMT (terrestre)</td><td class="num">+5</td><td>échelle militaire −10 à +10</td></tr>
+        <tr><td>CMA (aérienne)</td><td class="num">+2</td><td>dérivée du CMT (−3) ; ajustements MdM 1:1</td></tr>
+        <tr><td>CMM (maritime)</td><td class="num">−1</td><td>dérivée du CMT (−6) ; ajustements MdM 1:2</td></tr>
+        <tr><td>LDS (leadership)</td><td class="num">—</td><td>leaders secrets uniquement ; double profil guilde au chantier bas-fonds</td></tr>
+      </table>
+      <p class="note">Base 10 natives, régies par le chapitre leaders (BCM et LDS). SENTENCE : pas de notion de qualité pour un leader — ce sont ses niveaux de classe qui la définissent ; la qualité (A à F, étendue au semi-divin et au divin) est une donnée d'unité : base à la création A=5, B=10, C=15, D=20, E=25, F=37 ; l'expérience élève le niveau sans changer forcément la qualité.</p>
     </div>
     <div class="bloc">
-      <h3>Les habiletés (liste É7 conservée + six nouvelles)</h3>
-      <p class="mini">Échelle non militaire : −6 (aucune compétence) à 40 (maître de renommée mondiale) ; l'habileté est le pourcentage du niveau dans la profession, arrondi au supérieur.</p>
+      <h3>Les compétences (habiletés É7 + créations É8)</h3>
+      <p class="mini">Échelle non militaire : −6 (aucune compétence) à 40 (maître de renommée mondiale) ; la compétence est le pourcentage du niveau dans la classe, arrondi au supérieur.</p>
+      <p class="note">SENTENCE de l'auteur : une compétence À ENTRAÎNER vaut −5 au niveau 0 ; une compétence LIBRE vaut 0. PROPOSITION DE CLASSEMENT : la colonne Base native de la grille des métiers fait déjà ce travail — base 5 (panoplies des métiers de spécialiste) = à entraîner ; base 0 (compétences d'usage courant) = libre ; Administration dérivée (Plt ÷ 2). Créations É8 à arbitrer : Itd proposée libre, Dsf proposée à entraîner.</p>
       <div class="filtres">
         <div class="filtre actif" onclick="filtreHab('tous', this)">Toutes</div>
         <div class="filtre" onclick="filtreHab('exercees', this)">Exercées</div>
-        <div class="filtre" onclick="filtreHab('militaires', this)">Militaires</div>
+        <div class="filtre" onclick="filtreHab('entrainees', this)">À entraîner</div>
+        <div class="filtre" onclick="filtreHab('libres', this)">Libres</div>
       </div>
       <table id="tHab"></table>
-      <p class="note">Sentence de l'auteur : BE (bonus d'épreuve) = valeur d'habileté (niveau de profession × % de canal) + les bonus des DEUX caractéristiques associées, cumulés. Si les chiffres dépassent 100, ce n'est pas grave — le niveau paie, les caractéristiques bonifient sans jamais écraser le niveau. L'échelle militaire garde [(niveau + 10) × 2] en conversion de référence.</p>
+      <p class="note">Sentence de l'auteur : BE (bonus d'épreuve) = valeur de compétence (niveau de classe × % de canal) + les bonus des DEUX caractéristiques associées, cumulés. Si les chiffres dépassent 100, ce n'est pas grave — le niveau paie, les caractéristiques bonifient sans jamais écraser le niveau. L'échelle militaire garde [(niveau + 10) × 2] en conversion de référence.</p>
     </div>
   </div>
 </section>
@@ -438,22 +449,22 @@ const profs = [
   { nom: "Nécromant", sig: "Nc", niv: 22, famille: "Pur lanceur — théurgie et essence", canal: "Bbl 75, Dsv 75" },
 ];
 const habiletes = [
-  ["Combat", "Cbt", 28, "Guerrier 100 %", true],
-  ["Forgeage", "Frg", 21, "Guerrier 75 %", true],
-  ["Survie", "Srv", 21, "Guerrier 75 %", true],
-  ["Discrétion extérieure", "Dse", 14, "Guerrier 50 %", true],
-  ["Tracking", "Trc", 14, "Guerrier 50 %", true],
-  ["Bibliothèque", "Bbl", 17, "Nécromant 75 %", true],
-  ["Discrétion en ville", "Dsv", 17, "Nécromant 75 %", true],
-  ["Intimidation", "Itd", 17, "création É8 — MdM (histoire)", true],
-  ["Administration", "Adm", 0, "par défaut Plt ÷ 2", false],
-  ["Politique", "Plt", 0, "—", false],
-  ["Négoce", "Ngc", 0, "—", false],
-  ["Séduction", "Sed", 0, "—", false],
-  ["Vol", "Vol", 0, "—", false],
-  ["Assassinat", "Ass", 0, "—", false],
-  ["Espionnage", "Esp", 0, "—", false],
-  ["Désinformation", "Dsf", 0, "—", false],
+  ["Combat", "Cbt", 28, "Guerrier 100 %", true, "libre"],
+  ["Forgeage", "Frg", 21, "Guerrier 75 %", true, "libre"],
+  ["Survie", "Srv", 21, "Guerrier 75 %", true, "libre"],
+  ["Discrétion extérieure", "Dse", 14, "Guerrier 50 %", true, "requis"],
+  ["Tracking", "Trc", 14, "Guerrier 50 %", true, "requis"],
+  ["Bibliothèque", "Bbl", 17, "Nécromant 75 %", true, "requis"],
+  ["Discrétion en ville", "Dsv", 17, "Nécromant 75 %", true, "requis"],
+  ["Intimidation", "Itd", 17, "création É8 — MdM (histoire)", true, "libre"],
+  ["Administration", "Adm", 0, "par défaut Plt ÷ 2", false, "dérivée"],
+  ["Politique", "Plt", 0, "—", false, "libre"],
+  ["Négoce", "Ngc", 0, "—", false, "libre"],
+  ["Séduction", "Sed", 0, "—", false, "requis"],
+  ["Vol", "Vol", 0, "—", false, "requis"],
+  ["Assassinat", "Ass", 0, "—", false, "requis"],
+  ["Espionnage", "Esp", 0, "—", false, "requis"],
+  ["Désinformation", "Dsf", 0, "—", false, "requis"],
 ];
 const sorts = [
   ["Aide aux opérations secrètes", 3, 30, "soutien"], ["Aide au combat", 5, 6, "soutien"],
@@ -477,9 +488,10 @@ const sorts = [
 const audit = [
   ["Identité et statut", "Pop initiale (statut), trésor, état-major", "OK", "natives É7"],
   ["Caractéristiques", "trigrammes For/Dex/Con/Int/Sag/Cha + conversion D20", "OK", "annexes de profils"],
-  ["Professions, niveaux, bandes", "niveaux séparés, bandes A-F ; MAXIMUM TROIS PROFESSIONS (SENTENCE)", "OK", "grille des métiers"],
+  ["Classes (ex-professions)", "TROIS PLACES au plus (SENTENCE) ; niveaux séparés, bandes A-F", "OK", "grille des métiers"],
   ["Qualité du leader", "AUCUNE (SENTENCE) : les niveaux de profession définissent la valeur du leader", "OK", "onglet Professions"],
-  ["Habiletés", "matrice métier × habileté", "OK", "matrice V7 transcrite"],
+  ["Compétences (ex-habiletés)", "matrice métier × habileté ; entraînement : requis → −5 à 0, libre → 0 (SENTENCE du seuil)", "OK", "matrice V7 transcrite"],
+  ["Classement entraîné / libre", "PROPOSITION : la colonne Base native (5 = à entraîner, 0 = libre, 10 = dérivée) ; Itd libre et Dsf à entraîner proposées", "CAL", "à sentencer"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
   ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
   ["Chaîne de l'épreuve", "règle première sentencée (jet par action déclarée) ; échelle des challenges SENTENCÉE ; opposition écart/miroir SENTENCÉE ; x au banc d'essai", "CAL", "x, effets de la spéciale et ressources (PS, PC, PFD, PMR) à arbitrer"],
@@ -523,7 +535,7 @@ $("tProfs").innerHTML = profs.map(p => {
     "<span class='badge'>" + p.famille + "</span></div>" +
     "<div class='bandes'>" + bandes.map(present).join("") + "</div>" +
     "<div class='mini' style='margin-top:4px'>Lignes de matrice : " + p.canal + "</div></div>";
-}).join("");
+}).join("") + "<div style='margin-bottom:12px'><div class='prof vide'><span class='nom'>— classe libre (" + (3 - profs.length) + " place" + (3 - profs.length > 1 ? "s" : "") + " restante" + (3 - profs.length > 1 ? "s" : "") + ") —</span><span class='niv'>—</span></div></div>";
 
 const modsCar = { "For": 3, "Dex": 1, "Con": 2, "Int": 3, "Sag": 1, "Cha": 2 }; // For17 Dex13 Con14 Int16 Sag12 Cha15
 // Paires dirigeante / seconde par habileté — les deux bonus se CUMULENT (sentence de l'auteur)
@@ -533,29 +545,31 @@ const dirige = { "Cbt": ["For", "Dex"], "Frg": ["Int", "For"], "Srv": ["Sag", "C
 const be = (niv, sig) => niv + modsCar[dirige[sig][0]] + modsCar[dirige[sig][1]];
 
 function ligneHab(h) {
-  const [nom, sig, niv, src, ex] = h;
-  const vBE = niv > 0 ? be(niv, sig) : null;
-  return "<tr class='hab " + (ex ? "exercee" : "") + "'>" +
-    "<td>" + nom + " <span class='cle'>(" + sig + ")</span></td><td class='num'>" + (niv > 0 ? niv : "—") + "</td>" +
+  const [nom, sig, niv, src, ex, entr] = h;
+  const libre = entr === "libre";
+  const deriv = entr === "dérivée";
+  const be0 = (libre || deriv) ? 0 : -5;
+  const vBE = niv > 0 ? be(niv, sig) : be0;
+  const suffixe = niv > 0 ? "" : (deriv ? " (Plt ÷ 2 : 0)" : (libre ? " (libre : 0)" : " (non entraînée : −5)"));
+  return "<tr class='hab " + (ex ? "exercee" : "") + (libre ? " libre" : "") + (!libre && !deriv ? " entr" : "") + (deriv ? " deriv" : "") + "'>" +
+    "<td>" + nom + " <span class='cle'>(" + sig + ")</span></td><td class='num'>" + niv + "</td>" +
+    "<td class='num'>" + entr + "</td>" +
     "<td class='num'>" + (niv > 0 ? dirige[sig][0] + "+" + modsCar[dirige[sig][0]] + " / " + dirige[sig][1] + "+" + modsCar[dirige[sig][1]] : "—") + "</td>" +
-    "<td class='num be" + (vBE !== null && vBE >= 0 ? "pos" : "neg") + "'>" + (vBE !== null ? vBE : "—") + "</td>" +
+    "<td class='num be" + (vBE >= 0 ? "pos" : "neg") + "'>" + vBE + suffixe + "</td>" +
     "<td class='mini'>" + src + "</td></tr>";
 }
-const enteteHab = "<tr><th>Habileté</th><th class='num'>Niveau</th><th class='num'>Car. assoc.</th><th class='num'>BE</th><th>Source</th></tr>";
-$("tHab").innerHTML = enteteHab + habiletes.map(ligneHab).join("") +
-  [["Capacité militaire terrestre", "CMT", "+5", "échelle militaire −10 à +10"],
-   ["Capacité militaire aérienne", "CMA", "+2", "dérivé de CMT (−3)"],
-   ["Capacité militaire maritime", "CMM", "−1", "dérivé de CMT (−6)"],
-   ["Leadership", "LDS", "—", "leaders secrets uniquement"]]
-  .map(x => "<tr class='hab milit'><td>" + x[0] + " <span class='cle'>(" + x[1] + ")</span></td><td class='num'>" + x[2] + "</td><td class='num'>—</td><td class='num'>—</td><td class='mini'>" + x[3] + "</td></tr>").join("");
+const enteteHab = "<tr><th>Compétence</th><th class='num'>Niveau</th><th class='num'>Entraînement</th><th class='num'>Car. assoc.</th><th class='num'>BE</th><th>Source</th></tr>";
+$("tHab").innerHTML = enteteHab + habiletes.map(ligneHab).join("");
 
 function filtreHab(mode, el) {
   document.querySelectorAll("#p-professions .filtre").forEach(f => f.classList.remove("actif"));
   el.classList.add("actif");
   document.querySelectorAll("#tHab tr.hab").forEach(tr => {
-    const estMil = tr.classList.contains("milit");
-    const estEx = tr.classList.contains("exercee");
-    tr.style.display = (mode === "tous" || (mode === "exercees" && estEx) || (mode === "militaires" && estMil)) ? "" : "none";
+    let show = mode === "tous";
+    if (mode === "exercees") show = tr.classList.contains("exercee");
+    if (mode === "entrainees") show = tr.classList.contains("entr");
+    if (mode === "libres") show = tr.classList.contains("libre") || tr.classList.contains("deriv");
+    tr.style.display = show ? "" : "none";
   });
 }
 
