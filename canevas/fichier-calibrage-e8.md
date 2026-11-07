@@ -1,12 +1,12 @@
 ---
 name: "fichier-calibrage-e8"
-title: "Le fichier de calibrage — Édition 8, v0.2"
+title: "Le fichier de calibrage — Édition 8, v0.3"
 type: "text/markdown"
 ---
 
-# Le fichier de calibrage — Édition 8, v0.2 (28 octobre 2026, soir)
+# Le fichier de calibrage — Édition 8, v0.3 (7 novembre 2026, soir)
 
-Statut : v0.2 — section 9 « Le moteur de combat » ajoutée le 28 octobre au soir, relevé du chantier combat (valeurs natives E5/É7 consignées, formule du NDB en proposition). Version initiale v0.1, chantier ouvert par sentence de Francky du 28 octobre au soir. CHARTE : toute valeur du livret É8 passe par le pipeline ; toute constante vit dans CE fichier — les chantiers citent, le fichier recueille ; l'É7 demeure le guide des valeurs (les tables natives conservées ne se recalibrent pas sans sentence) ; l'équilibrage ABSOLU demeure différé aux exemples chiffrés de Francky — le fichier rassemble et statue, il ne fige pas les équilibres. Statuts : ARBITRÉ (avec date), PROPOSITION (attend le mot), CHÂSSIS (règle E5 consignée comme gabarit), À PROPOSER (cité sans valeur), CONSERVÉ (É7 tel quel).
+Statut : v0.3 — 7 novembre au soir : NÉGOCE et POLITIQUE portées à la ligne de la Base (natives 5, sentence de l'auteur — son édit de la matrice confirmé et étendu à tous les documents) ; observation du plancher de la base consignée (Adm = Plt ÷ 2 peut tomber sous la base 10). v0.2 — section 9 « Le moteur de combat » ajoutée le 28 octobre au soir, relevé du chantier combat (valeurs natives E5/É7 consignées, formule du NDB en proposition). Version initiale v0.1, chantier ouvert par sentence de Francky du 28 octobre au soir. CHARTE : toute valeur du livret É8 passe par le pipeline ; toute constante vit dans CE fichier — les chantiers citent, le fichier recueille ; l'É7 demeure le guide des valeurs (les tables natives conservées ne se recalibrent pas sans sentence) ; l'équilibrage ABSOLU demeure différé aux exemples chiffrés de Francky — le fichier rassemble et statue, il ne fige pas les équilibres. Statuts : ARBITRÉ (avec date), PROPOSITION (attend le mot), CHÂSSIS (règle E5 consignée comme gabarit), À PROPOSER (cité sans valeur), CONSERVÉ (É7 tel quel).
 
 ## 1. Le pipeline — la création de toute valeur
 
@@ -115,7 +115,7 @@ Statut : v0.2 — section 9 « Le moteur de combat » ajoutée le 28 octobre au 
 | Niveau d'habileté | pourcentage du niveau dans la profession (parmi 25, 50, 75, 100), arrondi au niveau supérieur ; l'histoire du personnage ajuste (MdM) | CONSERVÉ (chapitre 8 v01) | Matrice V7 |
 | Cumul entre professions | le meilleur calcul parmi les professions exercées, jamais la somme ; une ressource accordée deux fois ne se prend qu'une fois | PROPOSITION (point ouvert du chapitre 8) | Multi-classés |
 | Valeur d'épreuve (BE) | BE = niveau de profession × % de canal + bonus des DEUX caractéristiques associées cumulés (trigrammes For/Dex/Con/Int/Sag/Cha) ; les valeurs au-delà de 100 sont admises ; la difficulté se règle à l'échelle des niveaux (face à un égal, difficulté ≈ BE adverse) | SENTENCE É8 | Jets civils |
-| La Base, valeur native | LA BASE EST LA VALEUR NATIVE (sentence du 7 novembre au soir, inversion des suites 84-87) : base 5 = tentable à 5 par quiconque sans formation ; base 0 = jet interdit, la valeur vient dune formation professionnelle ; Administration base 10 native (Adm = Plt ÷ 2 pour les politiciens) ; Itd base 5, Dsf base 0 | SENTENCE É8 | Compétences |
+| La Base, valeur native | LA BASE EST LA VALEUR NATIVE (sentence du 7 novembre au soir, inversion des suites 84-87) : base 5 = tentable à 5 par quiconque sans formation ; base 0 = jet interdit, la valeur vient d'une formation professionnelle ; Administration base 10 native (Adm = Plt ÷ 2 pour les politiciens) ; Itd base 5, Dsf base 0 ; NÉGOCE et POLITIQUE natives 5 (sentence du 7 novembre au soir, mise en phase de tous les documents) ; QUESTION OUVERTE : la base est-elle aussi un PLANCHER quand un canal faible donne moins (proposition : oui — Adm = Plt ÷ 2 à Plt 5 natif donnerait 2, sous la base 10) | SENTENCE É8 + QUESTION OUVERTE | Compétences |
 | Échelle non militaire | de −6 (aucune) à 40 (maître de renommée mondiale) ; apprenti 10, professionnel 20 et plus | CONSERVÉ | Habiletés |
 | Échelle militaire | de −10 à +10, 0 = professionnel ; conversion de référence [(niveau + 10) × 2] | CONSERVÉ | CMT, CMA, CMM, LDS |
 | PA du leader | PA = plus grand NH ÷ 10, arrondi au plus proche | CONSERVÉ É7 | Actions |
@@ -191,3 +191,5 @@ Statut : v0.2 — section 9 « Le moteur de combat » ajoutée le 28 octobre au 
 PRÉREQUIS (sentence constante du projet) : l'équilibrage absolu attend les EXEMPLES CHIFFRÉS de Francky. Le banc d'essai est armé et l'attend : la légion hellène, la horde de squelettes, la conjonction des mages, le nœud de rang 2 ouvert et l'Éveil du cœur backfiré, la domination Co/Ho sur un leader de bande D, le templier sous le siège, le tir d'éclat du warlock face à une cohorte, le contre-espionnage de l'espion de bande D contre un leader de bande E, l'exfiltration du sicaire par téléportation.
 
 AJOURNÉ PAR SENTENCE de Francky du 28 octobre au soir : les exemples chiffrés sont À RETROUVER dans d'autres archives (« il faut que je creuse d'autres caves pour retrouver les exemples ; pas le temps en l'état »). Le prérequis demeure, la passe est EN ATTENTE — le banc reste armé, aucun exemple chiffré ne circule en l'état. Conséquence : l'équilibrage absolu reste gelé ; les chantiers et le fichier avancent sans lui, aucune proposition à statuer ne se bloque sur son absence.
+
+Règles de maintenance : une constante arbitrée ne bouge que par sentence de Francky, consignée au journal ; une proposition devient constante au mot ; un châssis E5 se modifie par relevé complémentaire ; toute nouvelle constante citée en chantier entre au fichier À SA CITATION, avec son statut — le fichier est la seule mémoire des nombres de l'É8.

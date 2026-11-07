@@ -123,7 +123,7 @@ type: "text/html"
         <tr><td>Race et culture</td><td>Humain, vhalornais</td></tr>
         <tr><td>Alignement / moralité</td><td>Loyal Mal</td></tr>
         <tr><td>Sexe, âge, taille, poids</td><td>M ; 47 ans ; 1,91 m ; 92 kg — informatif (déjà pris en compte par PP et TC)</td></tr>
-        <tr><td class="cal">Popularité (Pop)</td><td>4 — Général (+2), deux campagnes gagnées (+2) ; +½ par niveau en Politique (Plt 0)</td></tr>
+        <tr><td class="cal">Popularité (Pop)</td><td>4 — Général (+2), deux campagnes gagnées (+2) ; +½ par niveau en Politique (niveau 0 — valeur native 5)</td></tr>
         <tr class="ecl"><td>Valeur morale (VM)</td><td>8 — perte de moral de la puissance en cas de mort ou capture ; l'ordre de grandeur n'est pas table au corpus</td></tr>
         <tr class="cal"><td>Points de faveur divine (PFD)</td><td>0 — pas d'investissement religieux ; règle d'accès du non-prêtre à préciser</td></tr>
         <tr><td>Trésor personnel</td><td>74 S sur lui (plafond 100 S sans pénaliser le déplacement)</td></tr>
@@ -175,7 +175,7 @@ type: "text/html"
     <div class="bloc">
       <h3>Les compétences (habiletés É7 + créations É8)</h3>
       <p class="mini">Échelle non militaire : −6 (aucune compétence) à 40 (maître de renommée mondiale) ; la compétence est le pourcentage du niveau dans la classe, arrondi au supérieur.</p>
-      <p class="note">SENTENCE de l'auteur (inversion des sentences du matin même, suites 84-87) : LA BASE EST LA VALEUR NATIVE — une compétence de base 5 se tente à 5 par quiconque, sans formation ; une compétence de base 0 NE SE TENTE PAS sans formation professionnelle (jet interdit, la valeur vient d'une profession) ; Administration, base native 10, se tente à 10 par défaut — Adm = Plt ÷ 2 pour les politiciens, processus inversé pour les administrateurs. Créations É8 sentencées : Itd base 5 (natif), Dsf base 0 (professionnelle).</p>
+      <p class="note">SENTENCE de l'auteur (inversion des sentences du matin même, suites 84-87) : LA BASE EST LA VALEUR NATIVE — une compétence de base 5 se tente à 5 par quiconque, sans formation ; une compétence de base 0 NE SE TENTE PAS sans formation professionnelle (jet interdit, la valeur vient d'une profession) ; Administration, base native 10, se tente à 10 par défaut — Adm = Plt ÷ 2 pour les politiciens, processus inversé pour les administrateurs. Créations É8 sentencées : Itd base 5 (natif), Dsf base 0 (professionnelle). Négoce et Politique natives 5 (sentence du 7 novembre au soir — chacun sait marchander et politiquer un peu ; l'édit de la matrice de l'auteur, confirmé et étendu à tous les documents).</p>
       <div class="filtres">
         <div class="filtre actif" onclick="filtreHab('tous', this)">Toutes</div>
         <div class="filtre" onclick="filtreHab('exercees', this)">Exercées</div>
@@ -458,8 +458,8 @@ const habiletes = [
   ["Discrétion en ville", "Dsv", 17, "Nécromant 75 %", true, 5],
   ["Intimidation", "Itd", 17, "création É8 — MdM (histoire)", true, 5],
   ["Administration", "Adm", 0, "base 10 natif ; Plt ÷ 2 pour les politiciens", false, 10],
-  ["Politique", "Plt", 0, "—", false, 0],
-  ["Négoce", "Ngc", 0, "—", false, 0],
+  ["Politique", "Plt", 0, "native 5 (sentence du 7 novembre au soir)", false, 5],
+  ["Négoce", "Ngc", 0, "native 5 (sentence du 7 novembre au soir)", false, 5],
   ["Charpenterie", "Cpt", 0, "—", false, 0],
   ["Construction", "Cst", 0, "—", false, 0],
   ["Exploitation agricole", "Exa", 0, "—", false, 0],
@@ -496,7 +496,7 @@ const audit = [
   ["Classes (ex-professions)", "TROIS PLACES au plus (SENTENCE) ; niveaux séparés, bandes A-F", "OK", "grille des métiers"],
   ["Qualité du leader", "AUCUNE (SENTENCE) : les niveaux de profession définissent la valeur du leader", "OK", "onglet Professions"],
   ["Compétences (ex-habiletés)", "matrice métier × habileté ; LA BASE EST LA VALEUR NATIVE : base 5 tentable à 5 par tous, base 0 interdite sans formation, Adm 10 natif — SENTENCE (inversion des suites 84-87)", "OK", "matrice V7 transcrite"],
-  ["Classement natif / professionnel", "SENTENCE : base 5 = natif pour tous (Ass, Bbl, Dse, Dsv, Esp, Sed, Trc, Vol, Itd) ; base 0 = professionnel (Cbt, Cpt, Cst, Exa, Exf, Exm, Frg, Ngc, Plt, Srv, Dsf) ; Adm base 10 natif", "OK", "sentences de l'auteur"],
+  ["Classement natif / professionnel", "SENTENCE : base 5 = natif pour tous (Ass, Bbl, Dse, Dsv, Esp, Itd, Ngc, Plt, Sed, Trc, Vol — Ngc et Plt natives 5, sentence du 7 novembre au soir) ; base 0 = professionnel (Cbt, Cpt, Cst, Exa, Exf, Exm, Frg, Srv, Dsf) ; Adm base 10 natif", "OK", "sentences de l'auteur"],
   ["Paires de caractéristiques", "20/20 compétences couvertes, TOUTES SENTENCÉES (16 premières + Cpt Int/For, Cst Int/Con, Exa Sag/Con, Exf For/Sag, Exm Int/Con) ; lecture en deux familles pour le livret : Fabrication (Int dirige) / Milieu naturel (Sag-Con)", "OK", "sentences de l'auteur"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
   ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
