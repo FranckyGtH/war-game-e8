@@ -114,7 +114,7 @@ Statut : v0.2 — section 9 « Le moteur de combat » ajoutée le 28 octobre au 
 | --- | --- | --- | --- |
 | Niveau d'habileté | pourcentage du niveau dans la profession (parmi 25, 50, 75, 100), arrondi au niveau supérieur ; l'histoire du personnage ajuste (MdM) | CONSERVÉ (chapitre 8 v01) | Matrice V7 |
 | Cumul entre professions | le meilleur calcul parmi les professions exercées, jamais la somme ; une ressource accordée deux fois ne se prend qu'une fois | PROPOSITION (point ouvert du chapitre 8) | Multi-classés |
-| Conversion en bonus D20 | bonus = (niveau − 20) ÷ 2, arrondi vers le bas (apprenti 10 : −5 ; professionnel 20 : 0 ; maître 40 : +10) | PROPOSITION | Jets civils |
+| Valeur d'épreuve (BE) | BE = niveau de profession × % de canal + bonus des DEUX caractéristiques associées cumulés (trigrammes For/Dex/Con/Int/Sag/Cha) ; les valeurs au-delà de 100 sont admises ; la difficulté se règle à l'échelle des niveaux (face à un égal, difficulté ≈ BE adverse) | SENTENCE É8 | Jets civils |
 | Échelle non militaire | de −6 (aucune) à 40 (maître de renommée mondiale) ; apprenti 10, professionnel 20 et plus | CONSERVÉ | Habiletés |
 | Échelle militaire | de −10 à +10, 0 = professionnel ; conversion de référence [(niveau + 10) × 2] | CONSERVÉ | CMT, CMA, CMM, LDS |
 | PA du leader | PA = plus grand NH ÷ 10, arrondi au plus proche | CONSERVÉ É7 | Actions |

@@ -119,7 +119,7 @@ type: "text/html"
     </div>
     <div class="bloc">
       <h3>Caractéristiques naturelles (fiche individuelle)</h3>
-      <p class="mini">Conversion D20 : modificateur = (valeur − 10) ÷ 2. Les caractéristiques mentales nourrissent habiletés, commandement et magie ; jamais les PF de lot.</p>
+      <p class="mini">Conversion D20 : modificateur = (valeur − 10) ÷ 2. Abréviations en trigrammes : For, Dex, Con, Int, Sag, Cha. Les caractéristiques mentales nourrissent habiletés, commandement et magie ; jamais les PF de lot.</p>
       <table id="tCarac"></table>
       <p class="note">PP (puissance physique comparée à la taille) et TC (racine cubique de la masse) sont des données d'espèce : 1 et environ 0,57 pour un humain de 92 kg.</p>
     </div>
@@ -144,7 +144,7 @@ type: "text/html"
         <div class="filtre" onclick="filtreHab('militaires', this)">Militaires</div>
       </div>
       <table id="tHab"></table>
-      <p class="note">Lien 3.5 (en discussion avec l'auteur) : conv. = (niveau − 20) ÷ 2, arrondi vers le bas ; BE = conv. + mod. de la caractéristique dirigeante + mod. de la seconde ÷ 2. Le niveau paie, les caractéristiques bonifient — la dirigeante à plein, la seconde à moitié. L'échelle militaire garde [(niveau + 10) × 2] en conversion de référence.</p>
+      <p class="note">Sentence de l'auteur : BE (bonus d'épreuve) = valeur d'habileté (niveau de profession × % de canal) + les bonus des DEUX caractéristiques associées, cumulés. Si les chiffres dépassent 100, ce n'est pas grave — le niveau paie, les caractéristiques bonifient sans jamais écraser le niveau. L'échelle militaire garde [(niveau + 10) × 2] en conversion de référence.</p>
     </div>
   </div>
 </section>
@@ -307,10 +307,10 @@ type: "text/html"
       <h3>La chaîne de l'épreuve (lien D&D 3.5, proposition)</h3>
       <p class="mini">Le niveau paie, la caractéristique bonifie, la situation penche, le dé tranche.</p>
       <table>
-        <tr><td><span class="k">1. La caractéristique</span></td><td>assise 3.5 : modificateur = (score − 10) ÷ 2, arrondi vers le bas ; chaque habileté regarde DEUX caractéristiques : la dirigeante à plein, la seconde à moitié (proposition de l'auteur, en discussion)</td></tr>
-        <tr><td><span class="k">2. Le niveau</span></td><td>l'habileté = pourcentage du niveau dans la profession (matrice), meilleur calcul entre professions</td></tr>
+        <tr><td><span class="k">1. La caractéristique</span></td><td>assise 3.5 : six scores aux trigrammes For/Dex/Con/Int/Sag/Cha, modificateur = (score − 10) ÷ 2, arrondi vers le bas ; chaque habileté regarde DEUX caractéristiques associées</td></tr>
+        <tr><td><span class="k">2. Le niveau</span></td><td>l'habileté = niveau de la profession × % de canal (table 100/75/50 %), meilleur calcul entre professions</td></tr>
         <tr><td><span class="k">2 bis. L'entretien</span></td><td>chaque profession fournit une valeur de base dans certaines caractéristiques selon le niveau (canaux 100/75/50 %) — cadence exacte au fichier de calibrage (proposition)</td></tr>
-        <tr><td><span class="k">3. La bonification</span></td><td>BE = (niveau d'habileté − 20) ÷ 2 + mod. dirigeante + mod. seconde ÷ 2</td></tr>
+        <tr><td><span class="k">3. La bonification</span></td><td>BE = niveau × % + les bonus des deux caractéristiques associées, CUMULÉS ; au-delà de 100 : aucun souci (sentence de l'auteur)</td></tr>
         <tr><td><span class="k">4. La situation</span></td><td>avantage ou désavantage : deux dé, on garde le meilleur ou le pire (jamais cumulables, ils s'annulent) — actions individuelles ET engagements de masse (sentence de l'auteur)</td></tr>
         <tr><td><span class="k">5. Le verdict</span></td><td>réussite si d20 + BE ≥ 11 + difficulté ; marge = d20 + BE − 11 − difficulté ; PAS de relances (sentence)</td></tr>
       </table>
@@ -333,15 +333,15 @@ type: "text/html"
   <div class="bloc">
     <h3>Simulateur d'épreuve (échantillon)</h3>
     <div class="filtres" id="sAction">
-      <div class="filtre actif" data-be="7" onclick="choixAction(this)">Attaque à l'épée (Cbt 28, F+3 / D+0) — BE +7</div>
-      <div class="filtre" data-be="1" onclick="choixAction(this)">Discours de guerre (Itd 17, Cha+2 / F+1) — BE +1</div>
-      <div class="filtre" data-be="-2" onclick="choixAction(this)">Repérage en rase campagne (Dse 14, D+1 / S+0) — BE −2</div>
+      <div class="filtre actif" data-be="32" onclick="choixAction(this)">Attaque à l'épée (Cbt 28, For+3 / Dex+1) — BE 32</div>
+      <div class="filtre" data-be="22" onclick="choixAction(this)">Discours de guerre (Itd 17, Cha+2 / For+3) — BE 22</div>
+      <div class="filtre" data-be="16" onclick="choixAction(this)">Repérage en rase campagne (Dse 14, Dex+1 / Sag+1) — BE 16</div>
     </div>
     <div class="filtres">
       <div class="filtre actif" id="mNormal" onclick="choixMode('normal', this)">Normal</div>
       <div class="filtre" id="mAv" onclick="choixMode('avantage', this)">Avantage</div>
       <div class="filtre" id="mDes" onclick="choixMode('desavantage', this)">Désavantage</div>
-      <label class="mini" style="margin-left:12px">Difficulté : <input type="number" id="sDiff" value="0" style="width:52px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"> <span class="cle">(réussite à 11 + difficulté)</span></label>
+      <label class="mini" style="margin-left:12px">Difficulté : <input type="number" id="sDiff" value="0" style="width:52px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"> <span class="cle">(réussite à 11 + difficulté — la difficulté vit à l'échelle du niveau : face à un égal, difficulté ≈ BE adverse)</span></label>
     </div>
     <button class="btn-audit" style="color:var(--or2);border-color:var(--or)" onclick="lancer()">LANCER LE DÉ</button>
     <div id="sResultat" style="margin-top:12px"></div>
@@ -363,8 +363,8 @@ type: "text/html"
 <script>
 // ---------- DONNEES ----------
 const caracs = [
-  ["Force", 17], ["Dextérité", 13], ["Constitution", 14],
-  ["Intelligence", 16], ["Sagesse", 12], ["Charisme", 15],
+  ["Force", "For", 17], ["Dextérité", "Dex", 13], ["Constitution", "Con", 14],
+  ["Intelligence", "Int", 16], ["Sagesse", "Sag", 12], ["Charisme", "Cha", 15],
 ];
 const bandes = [["A","1-2"],["B","3-7"],["C","8-11"],["D","12-15"],["E","16-19"],["F","20+"]];
 const profs = [
@@ -410,12 +410,12 @@ const sorts = [
 ];
 const audit = [
   ["Identité et statut", "Pop initiale (statut), trésor, état-major", "OK", "natives É7"],
-  ["Caractéristiques", "F/D/C/I/S/Cha + conversion D20", "OK", "annexes de profils"],
+  ["Caractéristiques", "trigrammes For/Dex/Con/Int/Sag/Cha + conversion D20", "OK", "annexes de profils"],
   ["Professions, niveaux, bandes", "niveaux séparés, bandes A-F", "OK", "grille des métiers"],
   ["Habiletés", "matrice métier × habileté", "OK", "matrice V7 transcrite"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
-  ["Conversion habileté vers bonus D20", "(niveau − 20) ÷ 2", "CAL", "proposition à valider"],
-  ["Chaîne de l'épreuve (lien 3.5)", "BE = conv. + dirigeante + seconde ÷ 2 ; avantage/désavantage partout (SENTENCE) ; éventail par tranches, sans relances (SENTENCE)", "CAL", "tranches et paires à évaluer"],
+  ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
+  ["Chaîne de l'épreuve", "BE sentencé ; avantage/désavantage partout (SENTENCE) ; éventail par tranches, sans relances (SENTENCE)", "CAL", "tranches à évaluer au banc d'essai"],
   ["NE et PV du leader", "formule de dérivation individuelle", "ÉLUCIDER", "annexes de profils, étage 1"],
   ["Nourriture du leader et de l'état-major", "CCSN 1 par tête : interprétation", "CAL", "à trancher"],
   ["VM (valeur morale)", "ordre de grandeur non table", "ÉLUCIDER", "à calibrer"],
@@ -439,8 +439,8 @@ const audit = [
 // ---------- RENDU ----------
 const $ = (id) => document.getElementById(id);
 
-$("tCarac").innerHTML = "<tr><th>Caractéristique</th><th class='num'>Valeur</th><th class='num'>Mod. D20</th></tr>" +
-  caracs.map(c => "<tr><td>" + c[0] + "</td><td class='num'>" + c[1] + "</td><td class='num'>" + (((c[1]-10)/2) >= 0 ? "+" : "") + ((c[1]-10)/2) + "</td></tr>").join("");
+$("tCarac").innerHTML = "<tr><th>Caractéristique</th><th class='num'>Trig.</th><th class='num'>Valeur</th><th class='num'>Mod. D20</th></tr>" +
+  caracs.map(c => "<tr><td>" + c[0] + "</td><td class='num'>" + c[1] + "</td><td class='num'>" + c[2] + "</td><td class='num'>" + (((c[2]-10)/2) >= 0 ? "+" : "") + ((c[2]-10)/2) + "</td></tr>").join("");
 
 $("tProfs").innerHTML = profs.map(p => {
   const present = b => {
@@ -454,29 +454,29 @@ $("tProfs").innerHTML = profs.map(p => {
     "<div class='mini' style='margin-top:4px'>Lignes de matrice : " + p.canal + "</div></div>";
 }).join("");
 
-const modsCar = { "F": 3, "D": 1, "C": 2, "I": 3, "S": 1, "Cha": 2 }; // F17 D13 C14 I16 S12 Cha15
-// Paires dirigeante / seconde par habileté (proposition de l'auteur, en discussion)
-const dirige = { "Cbt": ["F", "D"], "Frg": ["I", "F"], "Srv": ["S", "C"], "Dse": ["D", "S"], "Trc": ["S", "D"], "Bbl": ["I", "S"], "Dsv": ["D", "Cha"], "Itd": ["Cha", "F"], "Adm": ["I", "Cha"], "Plt": ["Cha", "I"], "Ngc": ["Cha", "I"], "Sed": ["Cha", "D"], "Vol": ["D", "I"], "Ass": ["D", "I"], "Esp": ["I", "Cha"], "Dsf": ["Cha", "I"] };
-const be = (niv, sig) => Math.floor((niv - 20) / 2) + modsCar[dirige[sig][0]] + Math.floor(modsCar[dirige[sig][1]] / 2);
+const modsCar = { "For": 3, "Dex": 1, "Con": 2, "Int": 3, "Sag": 1, "Cha": 2 }; // For17 Dex13 Con14 Int16 Sag12 Cha15
+// Paires dirigeante / seconde par habileté — les deux bonus se CUMULENT (sentence de l'auteur)
+const dirige = { "Cbt": ["For", "Dex"], "Frg": ["Int", "For"], "Srv": ["Sag", "Con"], "Dse": ["Dex", "Sag"], "Trc": ["Sag", "Dex"], "Bbl": ["Int", "Sag"], "Dsv": ["Dex", "Cha"], "Itd": ["Cha", "For"], "Adm": ["Int", "Cha"], "Plt": ["Cha", "Int"], "Ngc": ["Cha", "Int"], "Sed": ["Cha", "Dex"], "Vol": ["Dex", "Int"], "Ass": ["Dex", "Int"], "Esp": ["Int", "Cha"], "Dsf": ["Cha", "Int"] };
+// Sentence : BE = niveau × % (déjà payé dans la valeur d'habileté) + Σ des bonus des deux caractéristiques associées.
+// Au-delà de 100 : aucun souci — la difficulté se règle à l'échelle des niveaux.
+const be = (niv, sig) => niv + modsCar[dirige[sig][0]] + modsCar[dirige[sig][1]];
 
 function ligneHab(h) {
   const [nom, sig, niv, src, ex] = h;
-  const conv = niv > 0 ? Math.floor((niv - 20) / 2) : null;
   const vBE = niv > 0 ? be(niv, sig) : null;
   return "<tr class='hab " + (ex ? "exercee" : "") + "'>" +
     "<td>" + nom + " <span class='cle'>(" + sig + ")</span></td><td class='num'>" + (niv > 0 ? niv : "—") + "</td>" +
-    "<td class='num'>" + (niv > 0 ? ((conv >= 0 ? "+" + conv : conv)) : "—") + "</td>" +
-    "<td class='num'>" + (niv > 0 ? dirige[sig][0] + "+" + modsCar[dirige[sig][0]] + " / " + dirige[sig][1] + "+" + Math.floor(modsCar[dirige[sig][1]] / 2) : "—") + "</td>" +
-    "<td class='num be" + (vBE !== null && vBE >= 0 ? "pos" : "neg") + "'>" + (vBE !== null ? (vBE >= 0 ? "+" + vBE : vBE) : "—") + "</td>" +
+    "<td class='num'>" + (niv > 0 ? dirige[sig][0] + "+" + modsCar[dirige[sig][0]] + " / " + dirige[sig][1] + "+" + modsCar[dirige[sig][1]] : "—") + "</td>" +
+    "<td class='num be" + (vBE !== null && vBE >= 0 ? "pos" : "neg") + "'>" + (vBE !== null ? vBE : "—") + "</td>" +
     "<td class='mini'>" + src + "</td></tr>";
 }
-const enteteHab = "<tr><th>Habileté</th><th class='num'>Niveau</th><th class='num'>Conv.</th><th class='num'>Car. dir.</th><th class='num'>BE</th><th>Source</th></tr>";
+const enteteHab = "<tr><th>Habileté</th><th class='num'>Niveau</th><th class='num'>Car. assoc.</th><th class='num'>BE</th><th>Source</th></tr>";
 $("tHab").innerHTML = enteteHab + habiletes.map(ligneHab).join("") +
   [["Capacité militaire terrestre", "CMT", "+5", "échelle militaire −10 à +10"],
    ["Capacité militaire aérienne", "CMA", "+2", "dérivé de CMT (−3)"],
    ["Capacité militaire maritime", "CMM", "−1", "dérivé de CMT (−6)"],
    ["Leadership", "LDS", "—", "leaders secrets uniquement"]]
-  .map(x => "<tr class='hab milit'><td>" + x[0] + " <span class='cle'>(" + x[1] + ")</span></td><td class='num'>" + x[2] + "</td><td class='num'>—</td><td class='num'>—</td><td class='num'>—</td><td class='mini'>" + x[3] + "</td></tr>").join("");
+  .map(x => "<tr class='hab milit'><td>" + x[0] + " <span class='cle'>(" + x[1] + ")</span></td><td class='num'>" + x[2] + "</td><td class='num'>—</td><td class='num'>—</td><td class='mini'>" + x[3] + "</td></tr>").join("");
 
 function filtreHab(mode, el) {
   document.querySelectorAll("#p-professions .filtre").forEach(f => f.classList.remove("actif"));
