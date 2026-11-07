@@ -1281,3 +1281,15 @@ Francky statue la présentation de longlet et le régime des compétences au niv
 SENTENCE — LE SEUIL DENTRAINEMENT : une compétence non entraînée (niveau 0) donne un MALUS de −5 si elle est « à entraîner », et zéro si elle est « libre ». Cest la colonne BASE de la grille des métiers (V7) qui fait le classement — LA TROUVAILLE : base 5 = à entraîner (Ass, Bbl, Dse, Dsv, Esp, Sed, Trc, Vol) ; base 0 = libre (Cbt, Cpt, Cst, Exa, Exf, Exm, Frg, Ngc, Plt, Srv) ; base 10 = dérivée (Adm = Plt ÷ 2, donc zéro à plat). CRÉATIONS É8 PROPOSÉES : Itd (Intimidation) libre, Dsf (Désinformation) à entraîner — à sentencer. Le malus sapplique en VALEUR DEPREUVE : le jet part de BE −5, la difficulté étant portée par léchelle des challenges.
 
 APPLICATIONS : maquette v11 — tableau des compétences réécrit (colonnes Compétence / Niveau / Entraînement / Car. assoc. / BE / Source, filtres Toutes-Exercées-À entraîner-Libres, classes CSS libre/entr/deriv) ; capacités militaires retirées du tableau vers la zone gauche ; audit mis à jour (Classes OK trois places, Compétences OK sentence du seuil, Classement entraîné/libre CAL proposition colonne Base). Valeurs vérifiées : Sed 0 → BE −5 ; Plt 0 → 0 ; Adm 0 → 0 ; Cbt 28 → BE 32. Le classement complet (toutes compétences, toutes bases) ira au LIVRET DES TABLES une fois les créations É8 sentencées.
+
+## 7 novembre 2026 (suite 85) — SENTENCES : CLASSEMENT ADOPTÉ ; ITD LIBRE, DSF À ENTRAÎNER ; SANS ENTRAÎNEMENT, LE JET EST INTERDIT
+
+Francky rend trois sentences sur le régime des compétences au niveau zéro.
+
+SENTENCE — LE CLASSEMENT PAR LA COLONNE BASE EST ADOPTÉ TEL QUEL : base 5 = à entraîner ; base 0 = libre ; base 10 = dérivée (Adm = Plt ÷ 2). Le classement complet ira au livret des tables.
+
+SENTENCE — CRÉATIONS É8 : INTIMIDATION (Itd) EST LIBRE ; DÉSINFORMATION (Dsf) EST À ENTRAÎNER.
+
+SENTENCE — SANS ENTRAÎNEMENT, LE JET EST INTERDIT : la proposition dun malus de −5 sur le BE est ÉCARTÉE — une compétence « à entraîner » au niveau 0 NE SE TENTE PAS, le MdM refuse le jet ; une compétence « libre » au niveau 0 vaut 0 et se tente normalement. Conséquence de consignation : la sentence du seuil de la suite 84 (−5 en BE) est REMPLACÉE par la présente interdiction. Vertu mécanique : la frontière « à entraîner / libre » devient une PORTE — ouvrir une compétence à entraîner exige un investissement (formation, maître, temps), ce qui redonne de la valeur aux places de classe et aux métiers de spécialiste ; le filtre « À entraîner » de la maquette devient la liste des portes fermées de Kaelen.
+
+APPLICATIONS : maquette v12 — note ENTRAÎNEMENT réécrite (jet interdit, classement sentencé, créations sentencées) ; ligneHab() réécrit (BE « interdit » pour les à entraîner au niveau 0, 0 pour les libres et la dérivée) ; audit : lignes Compétences et Classement passées à OK/SENTENCES. Fichier de calibrage : ligne « Entraînement au niveau 0 » créée (SENTENCE É8). Valeurs vérifiées : Sed 0 → INTERDIT ; Plt 0 → 0 ; Adm 0 → 0 ; Cbt 28 → BE 32. À TRACER au chantier expérience : le coût douverture dune porte (acquérir le premier niveau dune compétence à entraîner).

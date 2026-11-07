@@ -175,7 +175,7 @@ type: "text/html"
     <div class="bloc">
       <h3>Les compétences (habiletés É7 + créations É8)</h3>
       <p class="mini">Échelle non militaire : −6 (aucune compétence) à 40 (maître de renommée mondiale) ; la compétence est le pourcentage du niveau dans la classe, arrondi au supérieur.</p>
-      <p class="note">SENTENCE de l'auteur : une compétence À ENTRAÎNER vaut −5 au niveau 0 ; une compétence LIBRE vaut 0. PROPOSITION DE CLASSEMENT : la colonne Base native de la grille des métiers fait déjà ce travail — base 5 (panoplies des métiers de spécialiste) = à entraîner ; base 0 (compétences d'usage courant) = libre ; Administration dérivée (Plt ÷ 2). Créations É8 à arbitrer : Itd proposée libre, Dsf proposée à entraîner.</p>
+      <p class="note">SENTENCE de l'auteur : sans entraînement au niveau 0, une compétence À ENTRAÎNER NE SE TENTE PAS — le jet est INTERDIT ; une compétence LIBRE vaut 0 et se tente normalement. SENTENCE de classement : la colonne Base native de la grille des métiers fait le tri — base 5 (panoplies des métiers de spécialiste) = à entraîner ; base 0 (compétences d'usage courant) = libre ; Administration dérivée (Plt ÷ 2). Créations É8 sentencées : Itd LIBRE, Dsf À ENTRAÎNER.</p>
       <div class="filtres">
         <div class="filtre actif" onclick="filtreHab('tous', this)">Toutes</div>
         <div class="filtre" onclick="filtreHab('exercees', this)">Exercées</div>
@@ -490,8 +490,8 @@ const audit = [
   ["Caractéristiques", "trigrammes For/Dex/Con/Int/Sag/Cha + conversion D20", "OK", "annexes de profils"],
   ["Classes (ex-professions)", "TROIS PLACES au plus (SENTENCE) ; niveaux séparés, bandes A-F", "OK", "grille des métiers"],
   ["Qualité du leader", "AUCUNE (SENTENCE) : les niveaux de profession définissent la valeur du leader", "OK", "onglet Professions"],
-  ["Compétences (ex-habiletés)", "matrice métier × habileté ; entraînement : requis → −5 à 0, libre → 0 (SENTENCE du seuil)", "OK", "matrice V7 transcrite"],
-  ["Classement entraîné / libre", "PROPOSITION : la colonne Base native (5 = à entraîner, 0 = libre, 10 = dérivée) ; Itd libre et Dsf à entraîner proposées", "CAL", "à sentencer"],
+  ["Compétences (ex-habiletés)", "matrice métier × habileté ; sans entraînement : JET INTERDIT (à entraîner), 0 (libre) — SENTENCES", "OK", "matrice V7 transcrite"],
+  ["Classement entraîné / libre", "SENTENCE : colonne Base native (5 = à entraîner, 0 = libre, 10 = dérivée) ; Itd LIBRE et Dsf À ENTRAÎNER sentencées", "OK", "sentences de l'auteur"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
   ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
   ["Chaîne de l'épreuve", "règle première sentencée (jet par action déclarée) ; échelle des challenges SENTENCÉE ; opposition écart/miroir SENTENCÉE ; x au banc d'essai", "CAL", "x, effets de la spéciale et ressources (PS, PC, PFD, PMR) à arbitrer"],
@@ -548,14 +548,17 @@ function ligneHab(h) {
   const [nom, sig, niv, src, ex, entr] = h;
   const libre = entr === "libre";
   const deriv = entr === "dérivée";
-  const be0 = (libre || deriv) ? 0 : -5;
-  const vBE = niv > 0 ? be(niv, sig) : be0;
-  const suffixe = niv > 0 ? "" : (deriv ? " (Plt ÷ 2 : 0)" : (libre ? " (libre : 0)" : " (non entraînée : −5)"));
+  const interdit = !libre && !deriv && niv === 0;
+  const vBE = niv > 0 ? be(niv, sig) : (libre || deriv ? 0 : null);
+  const suffixe = niv > 0 ? "" : (deriv ? " (Plt ÷ 2 : 0)" : (libre ? " (libre : 0)" : " (jet interdit : à entraîner)"));
+  const cellBE = interdit
+    ? "<td class='num be neg'>interdit" + suffixe + "</td>"
+    : "<td class='num be" + (vBE >= 0 ? "pos" : "neg") + "'>" + vBE + suffixe + "</td>";
   return "<tr class='hab " + (ex ? "exercee" : "") + (libre ? " libre" : "") + (!libre && !deriv ? " entr" : "") + (deriv ? " deriv" : "") + "'>" +
     "<td>" + nom + " <span class='cle'>(" + sig + ")</span></td><td class='num'>" + niv + "</td>" +
     "<td class='num'>" + entr + "</td>" +
     "<td class='num'>" + (niv > 0 ? dirige[sig][0] + "+" + modsCar[dirige[sig][0]] + " / " + dirige[sig][1] + "+" + modsCar[dirige[sig][1]] : "—") + "</td>" +
-    "<td class='num be" + (vBE >= 0 ? "pos" : "neg") + "'>" + vBE + suffixe + "</td>" +
+    cellBE +
     "<td class='mini'>" + src + "</td></tr>";
 }
 const enteteHab = "<tr><th>Compétence</th><th class='num'>Niveau</th><th class='num'>Entraînement</th><th class='num'>Car. assoc.</th><th class='num'>BE</th><th>Source</th></tr>";

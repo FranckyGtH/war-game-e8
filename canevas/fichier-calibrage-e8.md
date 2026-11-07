@@ -115,6 +115,7 @@ Statut : v0.2 — section 9 « Le moteur de combat » ajoutée le 28 octobre au 
 | Niveau d'habileté | pourcentage du niveau dans la profession (parmi 25, 50, 75, 100), arrondi au niveau supérieur ; l'histoire du personnage ajuste (MdM) | CONSERVÉ (chapitre 8 v01) | Matrice V7 |
 | Cumul entre professions | le meilleur calcul parmi les professions exercées, jamais la somme ; une ressource accordée deux fois ne se prend qu'une fois | PROPOSITION (point ouvert du chapitre 8) | Multi-classés |
 | Valeur d'épreuve (BE) | BE = niveau de profession × % de canal + bonus des DEUX caractéristiques associées cumulés (trigrammes For/Dex/Con/Int/Sag/Cha) ; les valeurs au-delà de 100 sont admises ; la difficulté se règle à l'échelle des niveaux (face à un égal, difficulté ≈ BE adverse) | SENTENCE É8 | Jets civils |
+| Entraînement au niveau 0 | SANS ENTRAÎNEMENT, le jet est INTERDIT (compétences « à entraîner », colonne Base 5 de la grille) ; les compétences « libres » (Base 0) valent 0 et se tentent ; Administration dérivée (Plt ÷ 2) ; Itd libre, Dsf à entraîner (SENTENCES) | SENTENCE É8 | Compétences |
 | Échelle non militaire | de −6 (aucune) à 40 (maître de renommée mondiale) ; apprenti 10, professionnel 20 et plus | CONSERVÉ | Habiletés |
 | Échelle militaire | de −10 à +10, 0 = professionnel ; conversion de référence [(niveau + 10) × 2] | CONSERVÉ | CMT, CMA, CMM, LDS |
 | PA du leader | PA = plus grand NH ÷ 10, arrondi au plus proche | CONSERVÉ É7 | Actions |
@@ -190,4 +191,3 @@ Statut : v0.2 — section 9 « Le moteur de combat » ajoutée le 28 octobre au 
 PRÉREQUIS (sentence constante du projet) : l'équilibrage absolu attend les EXEMPLES CHIFFRÉS de Francky. Le banc d'essai est armé et l'attend : la légion hellène, la horde de squelettes, la conjonction des mages, le nœud de rang 2 ouvert et l'Éveil du cœur backfiré, la domination Co/Ho sur un leader de bande D, le templier sous le siège, le tir d'éclat du warlock face à une cohorte, le contre-espionnage de l'espion de bande D contre un leader de bande E, l'exfiltration du sicaire par téléportation.
 
 AJOURNÉ PAR SENTENCE de Francky du 28 octobre au soir : les exemples chiffrés sont À RETROUVER dans d'autres archives (« il faut que je creuse d'autres caves pour retrouver les exemples ; pas le temps en l'état »). Le prérequis demeure, la passe est EN ATTENTE — le banc reste armé, aucun exemple chiffré ne circule en l'état. Conséquence : l'équilibrage absolu reste gelé ; les chantiers et le fichier avancent sans lui, aucune proposition à statuer ne se bloque sur son absence.
-
