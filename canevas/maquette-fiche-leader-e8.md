@@ -183,7 +183,7 @@ type: "text/html"
         <div class="filtre" onclick="filtreHab('libres', this)">Libres</div>
       </div>
       <table id="tHab"></table>
-      <p class="note">Sentence de l'auteur : BE (bonus d'épreuve) = valeur de compétence (niveau de classe × % de canal) + les bonus des DEUX caractéristiques associées, cumulés. Si les chiffres dépassent 100, ce n'est pas grave — le niveau paie, les caractéristiques bonifient sans jamais écraser le niveau. L'échelle militaire garde [(niveau + 10) × 2] en conversion de référence. Les VINGT compétences de l'É8 portent désormais leur paire dirigeante/seconde : les seize premières par sentence de l'auteur ; les cinq compétences économiques par PROPOSITION à sentencer — Cpt Int/For (géométrie navale, charpente lourde), Cst Int/Con (statics du bâtiment, endurance du chantier), Exa Sag/Con (l'œil du sol et des saisons, la peine des champs), Exf For/Sag (la force abat, la sagesse choisit), Exm Int/Con (la géologie dirige, le fond mine).</p>
+      <p class="note">Sentence de l'auteur : BE (bonus d'épreuve) = valeur de compétence (niveau de classe × % de canal) + les bonus des DEUX caractéristiques associées, cumulés. Si les chiffres dépassent 100, ce n'est pas grave — le niveau paie, les caractéristiques bonifient sans jamais écraser le niveau. L'échelle militaire garde [(niveau + 10) × 2] en conversion de référence. Les VINGT compétences de l'É8 portent leur paire dirigeante/seconde, TOUTES SENTENCÉES — dont les cinq économiques : Cpt Int/For (géométrie navale, charpente lourde), Cst Int/Con (statics du bâtiment, endurance du chantier), Exa Sag/Con (l'œil du sol et des saisons, la peine des champs), Exf For/Sag (la force abat, la sagesse choisit), Exm Int/Con (la géologie dirige, le fond mine). LECTURE EN DEUX FAMILLES pour le livret des tables (SENTENCE) : FABRICATION — Int dirige la matière (Frg, Cpt ; Cst et Exm côté savoir) ; MILIEU NATUREL — Sag/Con (Srv, Exa ; Exf côté peine).</p>
     </div>
   </div>
 </section>
@@ -497,7 +497,7 @@ const audit = [
   ["Qualité du leader", "AUCUNE (SENTENCE) : les niveaux de profession définissent la valeur du leader", "OK", "onglet Professions"],
   ["Compétences (ex-habiletés)", "matrice métier × habileté ; sans entraînement : JET INTERDIT (à entraîner), 0 (libre) — SENTENCES", "OK", "matrice V7 transcrite"],
   ["Classement entraîné / libre", "SENTENCE : colonne Base native (5 = à entraîner, 0 = libre, 10 = dérivée) ; Itd LIBRE et Dsf À ENTRAÎNER sentencées", "OK", "sentences de l'auteur"],
-  ["Paires de caractéristiques", "20/20 compétences couvertes ; 16 sentencées ; PROPOSITION pour les 5 économiques : Cpt Int/For, Cst Int/Con, Exa Sag/Con, Exf For/Sag, Exm Int/Con", "CAL", "à sentencer"],
+  ["Paires de caractéristiques", "20/20 compétences couvertes, TOUTES SENTENCÉES (16 premières + Cpt Int/For, Cst Int/Con, Exa Sag/Con, Exf For/Sag, Exm Int/Con) ; lecture en deux familles pour le livret : Fabrication (Int dirige) / Milieu naturel (Sag-Con)", "OK", "sentences de l'auteur"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
   ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
   ["Chaîne de l'épreuve", "règle première sentencée (jet par action déclarée) ; échelle des challenges SENTENCÉE ; opposition écart/miroir SENTENCÉE ; x au banc d'essai", "CAL", "x, effets de la spéciale et ressources (PS, PC, PFD, PMR) à arbitrer"],

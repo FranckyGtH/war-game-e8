@@ -1301,3 +1301,13 @@ Francky demande les bonus de caractéristiques associés pour TOUTES les compét
 PROPOSITIONS DÉPOSÉES (à sentencer) — paires dirigeante/seconde : CPT INT/FOR (la géométrie navale dirige, la charpente lourde seconde — même famille que Forgeage) ; CST INT/CON (les statics du bâtiment dirigent, lendurance du chantier seconde) ; EXA SAG/CON (lœil du sol et des saisons, la peine des champs — même famille que Survie) ; EXF FOR/SAG (la force abat, la sagesse choisit lessence et la saison) ; EXM INT/CON (la géologie dirige la prospection, lendurance seconde au fond). Les seize paires existantes demeurent sentencées : Cbt For/Dex, Frg Int/For, Srv Sag/Con, Dse Dex/Sag, Trc Sag/Dex, Bbl Int/Sag, Dsv Dex/Cha, Itd Cha/For, Adm Int/Cha, Plt Cha/Int, Ngc Cha/Int, Sed Cha/Dex, Vol Dex/Int, Ass Dex/Int, Esp Int/Cha, Dsf Cha/Int.
 
 APPLICATIONS : maquette v13 — les cinq compétences économiques entrent au tableau (niveau 0, libres, BE 0) ; la carte dirige couvre les 20/20 ; note des paires complétée (16 sentencées, 5 proposées avec leur lecture) ; audit : ligne « Paires de caractéristiques » créée (CAL, à sentencer). Vérification au banc dessai pour Kaelen (For +3, Dex +1, Con +2, Int +3, Sag +1, Cha +2) : Cbt +4 BE 32 ; Frg +6 BE 27 ; Srv +3 BE 24 ; Dse +2 BE 16 ; Trc +2 BE 16 ; Bbl +4 BE 21 ; Dsv +3 BE 20 ; Itd +5 BE 22 ; les libres à 0 (Adm, Plt, Ngc, Cpt, Cst, Exa, Exf, Exm) ; les à entraîner INTERDITES (Sed +3, Vol +4, Ass +4, Esp +5, Dsf +5). La gamme complète des paires ira au livret des tables avec le classement entraîné/libre.
+
+## 7 novembre 2026 (suite 87) — SENTENCES : LES CINQ PAIRES ÉCONOMIQUES ADOPTÉES ; LECTURE EN DEUX FAMILLES POUR LE LIVRET
+
+Francky rend deux sentences qui ferment le chantier des paires.
+
+SENTENCE — LES CINQ PAIRES ADOPTÉES TELLES QUELLES : CPT INT/FOR ; CST INT/CON ; EXA SAG/CON ; EXF FOR/SAG ; EXM INT/CON. Les VINGT compétences de lÉ8 portent désormais une paire dirigeante/seconde sentencée (les seize premières + les cinq économiques), soit 20/20.
+
+SENTENCE — LECTURE EN DEUX FAMILLES POUR LE LIVRET DES TABLES : FABRICATION — Intelligence dirige la matière (Forgeage, Charpenterie ; Construction et Exploitation minière côté savoir) ; MILIEU NATUREL — Sag/Con (Survie, Exploitation agricole ; Exploitation forestière côté peine). Ces deux colonnes structureront la gamme des paires au livret des tables, aux côtés du classement entraîné/libre.
+
+APPLICATIONS : maquette v14 — note des paires passée aux sentences ; audit : ligne « Paires de caractéristiques » passée à OK/SENTENCES. Le registre des vingt paires est complet ; il migre vers le livret des tables avec les lectures de famille.
