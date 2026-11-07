@@ -33,6 +33,11 @@ type: "text/html"
   .panneau.actif { display: block; }
   .grille2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
   .bloc { background: var(--panneau2); border: 1px solid var(--bord); border-radius: 6px; padding: 14px; margin-bottom: 14px; }
+  .entete-ig { display: flex; gap: 16px; align-items: center; margin-bottom: 14px; }
+  .medaillon { width: 96px; height: 96px; min-width: 96px; border-radius: 50%; border: 3px solid var(--or); background: radial-gradient(circle at 35% 30%, #4a3a26, #241a10); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+  .medaillon .initiales { font-family: Georgia, serif; font-size: 28px; color: var(--or2); letter-spacing: 2px; }
+  .medaillon .sous { font-family: Verdana, sans-serif; font-size: 8px; color: var(--sous); margin-top: 2px; }
+  .background-zone { background: #241a10; border: 1px solid var(--bord); border-left: 3px solid var(--or); border-radius: 6px; padding: 14px; font-family: Georgia, serif; font-size: 13px; line-height: 1.55; color: #d8cbb2; font-style: italic; }
   .bloc h3 { font-size: 15px; margin-bottom: 10px; border-bottom: 1px solid var(--bord); padding-bottom: 6px; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid #33291d; }
@@ -89,19 +94,26 @@ type: "text/html"
 </header>
 
 <div class="tabs">
-  <div class="tab actif" data-p="identite">Identité et caractéristiques</div>
+  <div class="tab actif" data-p="identite">Informations générales</div>
   <div class="tab" data-p="professions">Professions et habiletés</div>
   <div class="tab" data-p="commandement">Commandement</div>
   <div class="tab" data-p="sante">Santé et besoins</div>
   <div class="tab" data-p="magie">Magie</div>
   <div class="tab" data-p="equipement">Équipement</div>
   <div class="tab" data-p="epreuve">Épreuve (jet D20)</div>
-  <div class="tab" data-p="mouvement">Déplacement et features</div>
+  <div class="tab" data-p="features">Features</div>
   <div class="tab" data-p="audit">Audit de complétude</div>
 </div>
 
-<!-- ============ IDENTITE ============ -->
+<!-- ============ INFORMATIONS GENERALES ============ -->
 <section class="panneau actif" id="p-identite">
+  <div class="entete-ig">
+    <div class="medaillon"><div class="initiales">KM</div><div class="sous">PORTRAIT</div></div>
+    <div>
+      <h2 style="margin:0;color:var(--or2);font-size:20px">Kaelen Morvran</h2>
+      <p class="mini" style="margin:2px 0 0">Duc-Général de Vhalorn — Guerrier 28 / Nécromant 22 (bande F)</p>
+    </div>
+  </div>
   <div class="grille2">
     <div class="bloc">
       <h3>État civil</h3>
@@ -124,6 +136,20 @@ type: "text/html"
       <table id="tCarac"></table>
       <p class="note">PP (puissance physique comparée à la taille) et TC (racine cubique de la masse) sont des données d'espèce : 1 et environ 0,57 pour un humain de 92 kg.</p>
     </div>
+  </div>
+  <div class="bloc">
+    <h3>Mouvement (selon la nature de l'unité — sentence : le reste est du calcul)</h3>
+    <table>
+      <tr><td>Mouvement terrestre</td><td class="cal">30 PMV — ordre de grandeur attendu (CAL : formule de dérivation au chantier mouvement)</td></tr>
+      <tr><td>Mouvement aérien</td><td>— (aucun : l'humain n'est pas une unité aérienne)</td></tr>
+      <tr><td>Mouvement maritime</td><td>— (aucun : il embarque sur les navires comme passager — mouvement maritime rapide des leaders, natif)</td></tr>
+      <tr class="cal"><td>Monture associée</td><td>cheval de guerre vhalornais — le mouvement de la monture est le sien quand il la chevauche ; ses PMV propres vivent sur la fiche de la monture (calibrage) ; sa nourriture compte (onglet Santé)</td></tr>
+    </table>
+    <p class="note">Coûts des terrains, effet de l'armure, marche forcée, fluvial, pillage : rien sur la fiche — c'est du calcul (livret des tables et moteur). La nature de l'unité (T, A, M, S) et la monture font la donnée.</p>
+  </div>
+  <div class="bloc">
+    <h3>Background (l'histoire du leader)</h3>
+    <div class="background-zone">Second fils d'une maison mineure des collines de Vhal, Kaelen n'hérita que d'une épée et d'une place à l'académie de guerre. Il en sortit maréchal de campagne à vingt-neuf ans, au prix d'une blessure qui le laissa pour mort sur les brousses de Kharen — et d'une nuit, dit-on, où il traita avec ce qui n'était pas la mort. Deux campagnes victorieuses contre les marches du nord lui valurent le titre de Duc-Général ; la nécromancie qu'il dissimule sous le gris de sa cuirasse lui donne ses espions les plus sûrs : ceux qui ne respirent plus. Loyal envers la couronne, mal envers tout le reste, il gouverne Vhalorn comme on entretient une lame : sans amour, sans pitié, avec une précision qui inquiète jusqu'à ses amis.</div>
   </div>
 </section>
 
@@ -213,15 +239,16 @@ type: "text/html"
       </table>
     </div>
     <div class="bloc">
-      <h3>Besoins de nourriture</h3>
+      <h3>Besoins de nourriture (à la semaine — la monture compte)</h3>
       <table>
-        <tr><th>Poste</th><th class="num">Besoins / jour</th><th>Statut</th></tr>
-        <tr><td>Kaelen (CCSN 1, omnivore)</td><td class="num">1 ration</td><td><span class="etat ok">CONSERVÉ</span></td></tr>
-        <tr class="cal"><td>État-major (15 personnes)</td><td class="num">15 rations</td><td><span class="etat cal">INTERPRÉTATION</span></td></tr>
-        <tr class="chant"><td>Escorte du pion leader</td><td class="num">—</td><td><span class="etat chant">À DÉFINIR</span> — le pion leader EST l'état-major (sentence) : unité d'élite associée, 10 à 20 créatures</td></tr>
-        <tr><td>En campagne avec un stack</td><td class="num">au prorata du stack</td><td><span class="etat ok">NATIF</span></td></tr>
+        <tr><th>Poste</th><th class="num">Par jour</th><th class="num">Par semaine</th><th>Statut</th></tr>
+        <tr><td>Kaelen (CCSN 1, omnivore)</td><td class="num">1 ration</td><td class="num">7 rations</td><td><span class="etat ok">CONSERVÉ</span></td></tr>
+        <tr class="cal"><td>État-major (15 créatures)</td><td class="num">15 rations</td><td class="num">105 rations</td><td><span class="etat cal">INTERPRÉTATION</span></td></tr>
+        <tr class="cal"><td>Monture : cheval de guerre (CCSN 2, herbivore)</td><td class="num">2 rations</td><td class="num">14 rations</td><td><span class="etat cal">INTERPRÉTATION</span> — la monture associée compte (sentence)</td></tr>
+        <tr><td>Total (leader et monture)</td><td class="num">18 rations</td><td class="num">126 rations</td><td><span class="etat ok">SOMME</span></td></tr>
+        <tr><td>En campagne avec un stack</td><td class="num">au prorata du stack</td><td class="num">—</td><td><span class="etat ok">NATIF</span></td></tr>
       </table>
-      <p class="note">Le CCSN (0, 1 ou 2) est une donnée d'unité ; la lecture individuelle du leader et de son état-major n'est pas table au corpus : l'interprétation « une ration par tête » est proposée pour l'audit. Le sort Nourriture (1 PST nourri par PMR) couvre les pénuries ; en réflecte de survie, double coût.</p>
+      <p class="note">La nourriture se lit À LA SEMAINE ; la monture associée au leader y compte comme une tête de plus (sentence de l'auteur). Le CCSN (0, 1 ou 2) est une donnée d'unité ; la lecture individuelle du leader, de son état-major et de sa monture n'est pas table au corpus : l'interprétation « une ration par tête, au CCSN de sa nature » est proposée pour l'audit. Le sort Nourriture (1 PST nourri par PMR) couvre les pénuries ; en réflecte de survie, double coût.</p>
     </div>
   </div>
   <div class="bloc">
@@ -371,26 +398,10 @@ type: "text/html"
   </div>
 </section>
 
-<!-- ============ MOUVEMENT ET FEATURES ============ -->
-<section class="panneau" id="p-mouvement">
-  <div class="grille2">
-    <div class="bloc">
-      <h3>Déplacement du leader</h3>
-      <table>
-        <tr><td>PMV de base</td><td class="cal">30 PMV — ordre de grandeur attendu pour un leader à cheval et son état-major (CAL : formule de dérivation au chantier mouvement)</td></tr>
-        <tr class="cal"><td>Armure portée</td><td>harnois lourd : × 0,50 (table native « effet de l'armure sur le mouvement ») — PMV effectifs 15</td></tr>
-        <tr><td>Position</td><td>coordonnées + marqueur de milieu : (v) vol, (s) sous-marin, (t) souterrain, (e) éthéré, (a) astral</td></tr>
-        <tr><td>Avec un stack</td><td>le stack est limité à l'unité la plus lente ; le leader reste stacké pour l'usage de sa CDS (renvoi onglet Commandement)</td></tr>
-        <tr class="cal"><td>Marche forcée donnée</td><td>gain maximum [1 + (CMT ou CMA + BC + BR) ÷ 4] au prorata du temps passé avec le stack — Kaelen : [1 + (5+3+2)÷4] = +3 PMV ; PF des unités multipliés [(PMV base + PMV MF) ÷ PMV base]</td></tr>
-        <tr><td>Mouvement maritime rapide</td><td>embarquement à volonté sur les navires de commerce (40 PMV, de port à port) — jet de disponibilité ; malus 20 si les deux ports sont en guerre, 6 si un seul</td></tr>
-        <tr><td>Déplacement fluvial</td><td>¼ PMV par côté d'hex vers l'aval, ⅓ vers l'amont (doublé en crue) — pour unités amphibies ou montures</td></tr>
-        <tr><td>Unité très lente</td><td>droit d'entrer d'au moins un hex par tour en subissant des NFV pour les PMV manquants</td></tr>
-        <tr><td>Pillage en chemin</td><td>2 × les PMV de l'hex (moitié pour les raiders) — butin : VTB délocalisée + PP</td></tr>
-      </table>
-      <p class="note">Coûts d'entrée des terrains, reliefs remarquables et routes (1 PMV/hex le long, mais repérage inévitable) : tables complètes au livret des tables. Contreparties de l'armure lourde (terrains impraticables, chaleur) : chantier mouvement. La dérivation du PMV de base du leader (30 attendu) reste à arbitrer.</p>
-    </div>
-    <div class="bloc">
-      <h3>Features (capacités spéciales déclarées)</h3>
+<!-- ============ FEATURES ============ -->
+<section class="panneau" id="p-features">
+  <div class="bloc">
+    <h3>Features (capacités spéciales déclarées)</h3>
       <p class="mini">Chaque feature se déclare par sa SOURCE (race, profession, équipement, sort permanent) et porte sa VALEUR — rien d'implicite sur la fiche.</p>
       <table>
         <tr><th>Feature</th><th>Source</th><th>Valeur</th><th>Effet</th></tr>
@@ -399,7 +410,6 @@ type: "text/html"
         <tr><td>Aucune feature raciale</td><td>Race : Humain</td><td>—</td><td>l'humain vhalornais ne porte pas de capacité spéciale de race</td></tr>
       </table>
       <p class="note">Registre des features natives (relevé complet §8.1.3) : Archer, Berserker, bonus/malus de terrain (+x), Dissimulation (DIS), Embarquement, Ignore fortification (IF), Immortels (Imm), Immunité au poison (IP), Infravision (INF), Infravision active (INFA), Peur, Poison (x), Résistance magique (MR), Résistance à la peur (RPE), Résistance au poison (RPO), Résistance au tournage (RAT), Raider, Ravitaillement, Régénération, Tournage, Vision dans les ténèbres, Vol mono-hex. Le leader en déclare au titre de sa race, de ses professions, de son équipement ou de sorts permanents ; les features d'unités vivent sur la fiche du pion leader — l'état-major, son unité d'élite associée (10 à 20 créatures, sentence). La RPE du leader et l'amortissement de la peur par [10 + 3×(BCM+BC+BR)] : chantier leaders L8.</p>
-    </div>
   </div>
 </section>
 
@@ -472,7 +482,7 @@ const audit = [
   ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
   ["Chaîne de l'épreuve", "règle première sentencée (jet par action déclarée) ; échelle des challenges SENTENCÉE ; opposition écart/miroir SENTENCÉE ; x au banc d'essai", "CAL", "x, effets de la spéciale et ressources (PS, PC, PFD, PMR) à arbitrer"],
   ["NE et PV du leader", "formule de dérivation individuelle", "ÉLUCIDER", "annexes de profils, étage 1"],
-  ["Nourriture du leader et de l'état-major", "CCSN 1 par tête : interprétation", "CAL", "à trancher"],
+  ["Nourriture du leader et de l'état-major", "à la semaine, monture comptée : 126 rations (interprétation une ration par tête au CCSN)", "CAL", "sentence semaine + monture"],
   ["VM (valeur morale)", "ordre de grandeur non table", "ÉLUCIDER", "à calibrer"],
   ["PFD du non-prêtre", "règle d'accès", "CAL", "à préciser"],
   ["LDS du leader militaire", "double profil guilde", "CAL", "chantier bas-fonds"],
@@ -485,10 +495,11 @@ const audit = [
   ["Borne du NM par objets", "montée par équipement magique", "CAL", "chantier magie"],
   ["Sorts accessibles", "35 standard + 43 grande magie", "OK", "relevé complet"],
   ["Armes et armures", "marge et absorption", "OK", "chantier armures v0.6"],
-  ["Contreparties armure lourde", "PMV, terrains, chaleur", "CAL", "onglet Déplacement — chantier mouvement"],
-  ["Déplacement du leader", "PMV, armure, marche forcée, maritime, fluvial — onglet dédié", "OK", "natives É7 §8.6"],
+  ["Contreparties armure lourde", "PMV, terrains, chaleur", "CAL", "calcul — chantier mouvement"],
+  ["Déplacement du leader", "mouvements T/A/M selon la nature + monture associée (SENTENCE) ; le reste est du calcul", "OK", "Informations générales"],
+  ["Portrait et background", "médaillon + zone histoire", "OK", "Informations générales"],
   ["Features du leader", "déclarées par source (race, profession, équipement, sort) ; registre natif §8.1.3", "OK", "onglet dédié — relevé natif"],
-  ["PMV du leader", "30 PMV attendus", "CAL", "onglet Déplacement — formule à arbitrer"],
+  ["PMV du leader", "30 PMV attendus (terrestre)", "CAL", "Informations générales — formule à arbitrer"],
   ["Panoplies", "relier panoplie et habileté", "CHANTIER", "table unique à ouvrir"],
   ["Cycle du Destin", "santé longue, séquelles", "CHANTIER", "à ouvrir (Chirurgien)"],
 ];
