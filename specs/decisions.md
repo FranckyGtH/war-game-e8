@@ -1218,3 +1218,19 @@ BONUS APPLICABLES DEPOSES : PA investis : +2 par point (proposition) ; S dépens
 MAQUETTE v5 : chaîne à sept marches (3 bis bonus applicables ; 5 verdict challenge ; 6 verdict opposition), bloc ÉCHELLE DES CHALLENGES (neuf marches, exemples, règle de routine, lecture des écarts), éventail symétrique à six marches avec super fumble, simulateur enrichi (champs PA et S, total détaillé). Fichier de calibrage : ligne Jets É8 réécrite (deux types, x/2x, PA/S en propositions). Audit : ligne chaîne mise à jour (x, PA, S, effets de la spéciale au banc dessai).
 
 SENTENCES ATTENDUES : (1) échelle des challenges 20-100+ adoptée avec le mnémonique à par ? ; (2) x = 5 ? ; (3) PA +2 par point et S +1 par solaire ? ; (4) opposition : lécart des jets lu sur la même échelle, perdant en miroir ?
+
+## 7 novembre 2026 (suite 79) — SENTENCES : ECHELLE DES CHALLENGES ET OPPOSITION GRAVEES ; REGLE PREMIERE DU JET ; LES RESSOURCES EN REFLEXION
+
+Francky rend ses sentences sur les propositions de la suite 78.
+
+SENTENCE — LA REGLE PREMIERE : toute action déclarée par un joueur donne lieu à un jet d'habileté pour déterminer le résultat. Le jet est le verdict UNIVERSEL de lÉ8 : aucune action déclarée ne se résout sans passer par lépreuve dhabileté.
+
+SENTENCE — LECHELLE DES CHALLENGES ADOPTÉE : 20 à 100+, de 10 en 10, la difficulté porte le numéro du niveau qui laffronte à par (20 ordinaire, 30 exigeant, 40 remarquable, 50 extraordinaire, 60 prodige, 70 héroïque, 80 légendaire, 90 mythique, 100+ épique/divin) ; règle de routine sous la marche 20 : le MdM ne demande pas de jet, la compétence courante suffit.
+
+SENTENCE — LOPPOSITION ADOPTÉE : les deux camps roulent leur total ; lÉCART des deux jets est la marge du vainqueur, le perdant lit son résultat en MIROIR sur la même échelle ; légalité déchelle fait le par.
+
+REPORTÉ AU BANC DESSAI — LA LARGEUR DE x : léventail symétrique x/2x est acquis dans sa structure (spéciale > +x, critique > +2x, fumble ≤ −x, super fumble ≤ −2x) ; la valeur de x (5 en piste) sera tranchée par les caves de Francky.
+
+EN REFLEXION DE LAUTEUR — LES BONUS APPLICABLES : la famille des ressources sajoute au jet selon laction et lhabileté, avec des effets variables : les PA universels ; les PA PARTICULIERS que sont les PS et les PC (économie de lombre) ; les PFD (points de faveur divine — labréviation retrouvée, déjà sur la fiche leader) ; les PMR (magie rituelle) ; et les S (graisse civile). Rappel du conseil : la conversion native PS/PC = (niveau ÷ 5) par PA est consignée au fichier de calibrage ; la proposition dessai PA +2/point et S +1/pièce reste au simulateur, étiquetée EN RÉFLEXION. La matrice ressources x domaines daction est un chantier à ouvrir.
+
+APPLICATIONS : maquette v6 — marche 0 LA RÈGLE PREMIÈRE en tête de la chaîne ; échelle des challenges et opposition marquées SENTENCÉES ; x marqué au banc dessai ; marche 3 bis réécrite (famille des ressources, effets à définir) ; audit mis à jour (chantier matrice ressources x domaines). Fichier de calibrage : ligne Jets É8 consolidée (règle première + deux sentences + x au banc dessai + ressources à définir).

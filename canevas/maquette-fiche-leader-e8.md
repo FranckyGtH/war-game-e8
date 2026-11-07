@@ -307,19 +307,20 @@ type: "text/html"
       <h3>La chaîne de l'épreuve (lien D&D 3.5, proposition)</h3>
       <p class="mini">Le niveau paie, la caractéristique bonifie, la situation penche, le dé tranche.</p>
       <table>
+        <tr><td><span class="k">0. La règle première</span></td><td>toute action déclarée par un joueur donne lieu à un jet d'habileté pour déterminer le résultat (sentence de l'auteur)</td></tr>
         <tr><td><span class="k">1. La caractéristique</span></td><td>assise 3.5 : six scores aux trigrammes For/Dex/Con/Int/Sag/Cha, modificateur = (score − 10) ÷ 2, arrondi vers le bas ; chaque habileté regarde DEUX caractéristiques associées</td></tr>
         <tr><td><span class="k">2. Le niveau</span></td><td>l'habileté = niveau de la profession × % de canal (table 100/75/50 %), meilleur calcul entre professions</td></tr>
         <tr><td><span class="k">2 bis. L'entretien</span></td><td>chaque profession fournit une valeur de base dans certaines caractéristiques selon le niveau (canaux 100/75/50 %) — cadence exacte au fichier de calibrage (proposition)</td></tr>
         <tr><td><span class="k">3. La bonification</span></td><td>BE = niveau × % + les bonus des deux caractéristiques associées, CUMULÉS ; au-delà de 100 : aucun souci (sentence de l'auteur)</td></tr>
-        <tr><td><span class="k">3 bis. Les bonus applicables</span></td><td>PA investis : +2 par point (proposition) ; S dépensés : +1 par solaire (proposition) ; sorts de soutien, équipement magique, terrain : selon leurs tables — plafonds par jet au fichier de calibrage</td></tr>
+        <tr><td><span class="k">3 bis. Les bonus applicables</span></td><td>la famille des ressources, dont les effets varient selon l'action et l'habileté (réflexion de l'auteur) : PA universels ; PS et PC (économie de l'ombre) ; PFD (points de faveur divine) ; PMR (magie rituelle) ; S (graisse civile) ; sorts de soutien, équipement magique, terrain : selon leurs tables — essai au simulateur : PA +2/point, S +1/pièce</td></tr>
         <tr><td><span class="k">4. La situation</span></td><td>avantage ou désavantage : deux dé, on garde le meilleur ou le pire (jamais cumulables, ils s'annulent) — actions individuelles ET engagements de masse (sentence de l'auteur)</td></tr>
         <tr><td><span class="k">5. Le verdict (challenge)</span></td><td>réussite si d20 + BE + bonus ≥ 11 + difficulté ; marge = total − 11 − difficulté ; PAS de relances (sentence)</td></tr>
-        <tr><td><span class="k">6. Le verdict (opposition)</span></td><td>les deux camps roulent leur total ; l'ÉCART des deux jets est la marge du vainqueur — et le miroir du perdant ; la même échelle se lit sur cet écart, l'égalité d'échelle fait le par</td></tr>
+        <tr><td><span class="k">6. Le verdict (opposition)</span></td><td>les deux camps roulent leur total ; l'ÉCART des deux jets est la marge du vainqueur — et le miroir du perdant ; la même échelle se lit sur cet écart, l'égalité d'échelle fait le par (sentence de l'auteur)</td></tr>
       </table>
       <p class="note">Le jet est FERMÉ : plus de relances sur 1 ou 20 (sentence de l'auteur). L'éventail se lit en tranches de marge. Dans la résolution de masse, l'avantage/désavantage s'applique à l'engagement pour les situations maîtresses non chiffrables (embuscade, nuit aveugle, enfoncement) ; les modificateurs chiffrés du terrain restent en marge — les deux monnaies ne se mélangent pas.</p>
     </div>
     <div class="bloc">
-      <h3>L'éventail des résultats (symétrique, x = 5 en proposition)</h3>
+      <h3>L'éventail des résultats (symétrique, largeur x au banc d'essai — sentence)</h3>
       <table>
         <tr><th>Résultat</th><th>Déclencheur</th><th>Effet</th></tr>
         <tr><td><span class="etat chant">SUPER FUMBLE</span></td><td>marge ≤ −2x (≤ −10)</td><td>catastrophe : en combat individuel, blessé et désarmé ou pire ; l'action se retourne contre son auteur ; en embuscade : repérage automatique</td></tr>
@@ -329,11 +330,11 @@ type: "text/html"
         <tr><td><span class="etat ok">SPÉCIALE</span></td><td>marge &gt; +x (&gt; +5)</td><td>réussite bonifiée : information totale, chef-d'œuvre, avantage au jet lié de la suite — effets à définir par domaine</td></tr>
         <tr><td><span class="etat ok">CRITIQUE</span></td><td>marge &gt; +2x (&gt; +10)</td><td>en combat individuel : blessure maximale ; le MdM offre l'effet héroïque</td></tr>
       </table>
-      <p class="note">Une seule largeur de tranche, x, sert les six marches : spéciale à +x, critique à +2x, fumble à −x, super fumble à −2x (proposition de l'auteur ; x = 5 déposé, largeur au banc d'essai). En opposition, l'écart des deux jets se lit sur cette même échelle : le vainqueur lit +écart, le perdant lit −écart en miroir. Cas particuliers natifs conservés : capture sur jet de survie raté de moins de 5 ; « à moins d'un fumble » des embuscades se lit désormais « à moins d'une marge ≤ −x ».</p>
+      <p class="note">Une seule largeur de tranche, x, sert les six marches : spéciale à +x, critique à +2x, fumble à −x, super fumble à −2x (sentence de l'auteur ; x = 5 en piste, largeur tranchée au banc d'essai). En opposition, l'écart des deux jets se lit sur cette même échelle : le vainqueur lit +écart, le perdant lit −écart en miroir (sentence). Cas particuliers natifs conservés : capture sur jet de survie raté de moins de 5 ; « à moins d'un fumble » des embuscades se lit désormais « à moins d'une marge ≤ −x ».</p>
     </div>
   </div>
   <div class="bloc">
-    <h3>L'échelle des challenges (proposition — de 10 en 10, la difficulté porte le numéro du niveau qui l'affronte à par)</h3>
+    <h3>L'échelle des challenges (sentence de l'auteur — de 10 en 10, la difficulté porte le numéro du niveau qui l'affronte à par)</h3>
     <table>
       <tr><th class="num">Défi</th><th>Nom</th><th>À par pour</th><th>Exemples</th></tr>
       <tr><td class="num">20</td><td>Ordinaire</td><td>professionnel de métier (niveau 20, bande F)</td><td>le pain quotidien du métier : forge d'une lame droite, discours de garnison</td></tr>
@@ -360,8 +361,8 @@ type: "text/html"
       <div class="filtre" id="mAv" onclick="choixMode('avantage', this)">Avantage</div>
       <div class="filtre" id="mDes" onclick="choixMode('desavantage', this)">Désavantage</div>
       <label class="mini" style="margin-left:12px">Difficulté : <input type="number" id="sDiff" value="0" style="width:52px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"></label>
-      <label class="mini">PA investis (+2/pa) : <input type="number" id="sPA" value="0" min="0" style="width:40px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"></label>
-      <label class="mini">S dépensés (+1/S) : <input type="number" id="sS" value="0" min="0" style="width:40px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"></label>
+      <label class="mini">PA investis (+2/pa, en réflexion) : <input type="number" id="sPA" value="0" min="0" style="width:40px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"></label>
+      <label class="mini">S dépensés (+1/S, en réflexion) : <input type="number" id="sS" value="0" min="0" style="width:40px;background:#33291d;border:1px solid var(--bord);color:var(--texte);padding:3px 6px;border-radius:3px"></label>
       <span class="cle">(réussite à 11 + difficulté — la difficulté vit à l'échelle du niveau : face à un égal, difficulté ≈ BE adverse)</span>
     </div>
     <button class="btn-audit" style="color:var(--or2);border-color:var(--or)" onclick="lancer()">LANCER LE DÉ</button>
@@ -436,7 +437,7 @@ const audit = [
   ["Habiletés", "matrice métier × habileté", "OK", "matrice V7 transcrite"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
   ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
-  ["Chaîne de l'épreuve", "BE sentencé ; avantage/désavantage partout (SENTENCE) ; DEUX types de jet : challenge (échelle 20-100+) et opposition (écart des jets) ; éventail symétrique x/2x sans relances", "CAL", "x, PA, S et effets de la spéciale au banc d'essai"],
+  ["Chaîne de l'épreuve", "règle première sentencée (jet par action déclarée) ; échelle des challenges SENTENCÉE ; opposition écart/miroir SENTENCÉE ; x au banc d'essai", "CAL", "x, effets de la spéciale et ressources (PS, PC, PFD, PMR) à arbitrer"],
   ["NE et PV du leader", "formule de dérivation individuelle", "ÉLUCIDER", "annexes de profils, étage 1"],
   ["Nourriture du leader et de l'état-major", "CCSN 1 par tête : interprétation", "CAL", "à trancher"],
   ["VM (valeur morale)", "ordre de grandeur non table", "ÉLUCIDER", "à calibrer"],
