@@ -183,7 +183,7 @@ type: "text/html"
         <div class="filtre" onclick="filtreHab('libres', this)">Libres</div>
       </div>
       <table id="tHab"></table>
-      <p class="note">Sentence de l'auteur : BE (bonus d'épreuve) = valeur de compétence (niveau de classe × % de canal) + les bonus des DEUX caractéristiques associées, cumulés. Si les chiffres dépassent 100, ce n'est pas grave — le niveau paie, les caractéristiques bonifient sans jamais écraser le niveau. L'échelle militaire garde [(niveau + 10) × 2] en conversion de référence.</p>
+      <p class="note">Sentence de l'auteur : BE (bonus d'épreuve) = valeur de compétence (niveau de classe × % de canal) + les bonus des DEUX caractéristiques associées, cumulés. Si les chiffres dépassent 100, ce n'est pas grave — le niveau paie, les caractéristiques bonifient sans jamais écraser le niveau. L'échelle militaire garde [(niveau + 10) × 2] en conversion de référence. Les VINGT compétences de l'É8 portent désormais leur paire dirigeante/seconde : les seize premières par sentence de l'auteur ; les cinq compétences économiques par PROPOSITION à sentencer — Cpt Int/For (géométrie navale, charpente lourde), Cst Int/Con (statics du bâtiment, endurance du chantier), Exa Sag/Con (l'œil du sol et des saisons, la peine des champs), Exf For/Sag (la force abat, la sagesse choisit), Exm Int/Con (la géologie dirige, le fond mine).</p>
     </div>
   </div>
 </section>
@@ -460,6 +460,11 @@ const habiletes = [
   ["Administration", "Adm", 0, "par défaut Plt ÷ 2", false, "dérivée"],
   ["Politique", "Plt", 0, "—", false, "libre"],
   ["Négoce", "Ngc", 0, "—", false, "libre"],
+  ["Charpenterie", "Cpt", 0, "—", false, "libre"],
+  ["Construction", "Cst", 0, "—", false, "libre"],
+  ["Exploitation agricole", "Exa", 0, "—", false, "libre"],
+  ["Exploitation forestière", "Exf", 0, "—", false, "libre"],
+  ["Exploitation minière", "Exm", 0, "—", false, "libre"],
   ["Séduction", "Sed", 0, "—", false, "requis"],
   ["Vol", "Vol", 0, "—", false, "requis"],
   ["Assassinat", "Ass", 0, "—", false, "requis"],
@@ -492,6 +497,7 @@ const audit = [
   ["Qualité du leader", "AUCUNE (SENTENCE) : les niveaux de profession définissent la valeur du leader", "OK", "onglet Professions"],
   ["Compétences (ex-habiletés)", "matrice métier × habileté ; sans entraînement : JET INTERDIT (à entraîner), 0 (libre) — SENTENCES", "OK", "matrice V7 transcrite"],
   ["Classement entraîné / libre", "SENTENCE : colonne Base native (5 = à entraîner, 0 = libre, 10 = dérivée) ; Itd LIBRE et Dsf À ENTRAÎNER sentencées", "OK", "sentences de l'auteur"],
+  ["Paires de caractéristiques", "20/20 compétences couvertes ; 16 sentencées ; PROPOSITION pour les 5 économiques : Cpt Int/For, Cst Int/Con, Exa Sag/Con, Exf For/Sag, Exm Int/Con", "CAL", "à sentencer"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
   ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
   ["Chaîne de l'épreuve", "règle première sentencée (jet par action déclarée) ; échelle des challenges SENTENCÉE ; opposition écart/miroir SENTENCÉE ; x au banc d'essai", "CAL", "x, effets de la spéciale et ressources (PS, PC, PFD, PMR) à arbitrer"],
@@ -539,7 +545,7 @@ $("tProfs").innerHTML = profs.map(p => {
 
 const modsCar = { "For": 3, "Dex": 1, "Con": 2, "Int": 3, "Sag": 1, "Cha": 2 }; // For17 Dex13 Con14 Int16 Sag12 Cha15
 // Paires dirigeante / seconde par habileté — les deux bonus se CUMULENT (sentence de l'auteur)
-const dirige = { "Cbt": ["For", "Dex"], "Frg": ["Int", "For"], "Srv": ["Sag", "Con"], "Dse": ["Dex", "Sag"], "Trc": ["Sag", "Dex"], "Bbl": ["Int", "Sag"], "Dsv": ["Dex", "Cha"], "Itd": ["Cha", "For"], "Adm": ["Int", "Cha"], "Plt": ["Cha", "Int"], "Ngc": ["Cha", "Int"], "Sed": ["Cha", "Dex"], "Vol": ["Dex", "Int"], "Ass": ["Dex", "Int"], "Esp": ["Int", "Cha"], "Dsf": ["Cha", "Int"] };
+const dirige = { "Cbt": ["For", "Dex"], "Frg": ["Int", "For"], "Srv": ["Sag", "Con"], "Dse": ["Dex", "Sag"], "Trc": ["Sag", "Dex"], "Bbl": ["Int", "Sag"], "Dsv": ["Dex", "Cha"], "Itd": ["Cha", "For"], "Adm": ["Int", "Cha"], "Plt": ["Cha", "Int"], "Ngc": ["Cha", "Int"], "Sed": ["Cha", "Dex"], "Vol": ["Dex", "Int"], "Ass": ["Dex", "Int"], "Esp": ["Int", "Cha"], "Dsf": ["Cha", "Int"], "Cpt": ["Int", "For"], "Cst": ["Int", "Con"], "Exa": ["Sag", "Con"], "Exf": ["For", "Sag"], "Exm": ["Int", "Con"] };
 // Sentence : BE = niveau × % (déjà payé dans la valeur d'habileté) + Σ des bonus des deux caractéristiques associées.
 // Au-delà de 100 : aucun souci — la difficulté se règle à l'échelle des niveaux.
 const be = (niv, sig) => niv + modsCar[dirige[sig][0]] + modsCar[dirige[sig][1]];
