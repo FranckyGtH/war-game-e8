@@ -1260,3 +1260,17 @@ SENTENCE — LE MOUVEMENT EST UNE DONNEE, PAS UNE REGLE : pour une unité ou un 
 SENTENCE — LA NOURRITURE SE LIT A LA SEMAINE ET LA MONTURE COMPTE : les besoins de nourriture saffichent par jour ET par semaine ; la monture associée au leader y compte comme une tête de plus, au CCSN de sa nature. Exemple Kaelen : 1 ration/jour (CCSN 1) + état-major 15 (interprétation) + cheval de guerre 2 rations/jour (CCSN 2, herbivore, interprétation) = 18 par jour, 126 rations par semaine.
 
 RESTRUCTURATION DE LA MAQUETTE (v9) : longlet « Identité et caractéristiques » devient « INFORMATIONS GÉNÉRALES » avec : un MÉDAILLON de portrait (rond, or, initiales KM, place réservée pour le portrait), le mouvement en bloc de données, et une zone BACKGROUND pour lhistoire du leader (exemple rédigé pour Kaelen : second fils, académie de guerre, le pacte de Kharen, deux campagnes, la nécromancie dissimulée). Les FEATURES héritent de leur ONGLET DÉDIÉ (longlet « Déplacement et features » devient « Features »). Audit mis à jour : déplacement (OK, sentence), portrait et background (OK), nourriture (CAL, sentence semaine + monture), PMV du leader (CAL), contreparties armure lourde (CAL, calcul — chantier mouvement).
+
+## 7 novembre 2026 (suite 83) — SENTENCES : TROIS PROFESSIONS MAXIMUM ; LA QUALITE EST LAFFAIRE DES UNITES ; ECHELLE ETENDUE AU SEMI-DIVIN ET DIVIN
+
+Francky statue sur les professions et la qualité.
+
+SENTENCE — TROIS PROFESSIONS MAXIMUM : un leader ne pourra pas avoir plus de TROIS professions. Kaelen (Guerrier 28 + Nécromant 22) reste en règle avec une place libre.
+
+SENTENCE — PAS DE QUALITE POUR UN LEADER : il nexiste PAS de notion de qualité pour un leader — ce sont ses NIVEAUX DE PROFESSION qui définissent sa valeur. (Précision de consignation : le natif É7 rangeait les leaders parmi les unités F ; pour lÉ8, la qualité dunité ne sapplique quaux unités, le leader sévaluant par ses professions et ses capacités. La fiche dunité du PION LEADER — létat-major, unité délite associée — porte, elle, une qualité dunité.)
+
+SENTENCE — LA QUALITE, DONNEE DUNITE, ET SES NIVEAUX DE BASE : la qualité sert aux UNITES pour définir le niveau dhabileté à prendre en compte À LA CRÉATION : A=5, B=10, C=15, D=20, E=25, F=37 — cest le niveau de base dune unité de cette qualité. Ensuite, LEXPÉRIENCE PEUT FAIRE AUGMENTER LE NIVEAU SANS CHANGER FORCÉMENT LA QUALITÉ. Conséquence de consignation : la ligne « Repère É7 qualité/NH » du fichier de calibrage passe de « repère conservé » à SENTENCE É8 (niveaux de base à la création) ; la recommandation « nombre de niveau dhabileté en Combat (NH) » et le baptême du feu (C) demeurent natifs.
+
+ÉCHELLE ETENDUE DEPOSÉE (à calibrer) : la gamme des qualités sélargit jusquau SEMI-DIVIN et au DIVIN. PROPOSITION : G = Semi-divin (NH de base 50), H = Divin (NH de base 75) — valeurs à arbitrer au banc dessai, les QE correspondantes au livret des tables. Ces marches serviront aux unités de créatures divines et aux incarnations.
+
+APPLICATIONS : maquette v10 — onglet Professions : sentence des trois professions en tête de bloc ; note de sentence « pas de qualité pour un leader » + niveaux de base A-F de la qualité dunité + renvoi des marches divines à la fiche du pion leader. Audit : ligne « Qualité du leader » créée (OK, sentence), ligne « Qualité des unités » créée (CAL : marches divines à calibrer), ligne professions annotée (SENTENCE). Fichier de calibrage : ligne « Repère É7 qualité/NH » consolidée (SENTENCE É8 + proposition G/H).

@@ -158,9 +158,10 @@ type: "text/html"
   <div class="grille2">
     <div class="bloc">
       <h3>Les professions et leurs niveaux</h3>
-      <p class="mini">Le niveau est enregistré séparément pour chaque profession ; les ressources ne se prennent qu'une fois ; l'habileté prend le meilleur calcul parmi les professions exercées (proposition à valider).</p>
+      <p class="mini">SENTENCE : un leader ne peut pas avoir plus de TROIS professions. Le niveau est enregistré séparément pour chaque profession ; les ressources ne se prennent qu'une fois ; l'habileté prend le meilleur calcul parmi les professions exercées (proposition à valider).</p>
       <div id="tProfs"></div>
       <p class="mini" style="margin-top:10px">Bandes É8 (mapping adopté) : A 1-2, B 3-7, C 8-11, D 12-15, E 16-19, F 20 et au-delà.</p>
+      <p class="note">SENTENCE : il n'y a PAS de notion de qualité pour un leader — ce sont ses niveaux de profession qui la définissent. La qualité (A à F) est une donnée d'UNITÉ : elle fixe le niveau d'habileté de base à la création (A=5, B=10, C=15, D=20, E=25, F=37) ; l'expérience élève ensuite le niveau sans changer forcément la qualité. L'échelle des qualités s'étend jusqu'au SEMI-DIVIN et au DIVIN (lettres et niveaux de base à calibrer — fiche du pion leader).</p>
     </div>
     <div class="bloc">
       <h3>Les habiletés (liste É7 conservée + six nouvelles)</h3>
@@ -476,7 +477,8 @@ const sorts = [
 const audit = [
   ["Identité et statut", "Pop initiale (statut), trésor, état-major", "OK", "natives É7"],
   ["Caractéristiques", "trigrammes For/Dex/Con/Int/Sag/Cha + conversion D20", "OK", "annexes de profils"],
-  ["Professions, niveaux, bandes", "niveaux séparés, bandes A-F", "OK", "grille des métiers"],
+  ["Professions, niveaux, bandes", "niveaux séparés, bandes A-F ; MAXIMUM TROIS PROFESSIONS (SENTENCE)", "OK", "grille des métiers"],
+  ["Qualité du leader", "AUCUNE (SENTENCE) : les niveaux de profession définissent la valeur du leader", "OK", "onglet Professions"],
   ["Habiletés", "matrice métier × habileté", "OK", "matrice V7 transcrite"],
   ["Cumul entre professions", "le meilleur calcul, jamais la somme", "CAL", "proposition à valider"],
   ["Valeur d'épreuve (BE)", "niveau × % + bonus des deux caractéristiques associées cumulés ; > 100 permis", "OK", "sentence de l'auteur"],
@@ -487,6 +489,7 @@ const audit = [
   ["PFD du non-prêtre", "règle d'accès", "CAL", "à préciser"],
   ["LDS du leader militaire", "double profil guilde", "CAL", "chantier bas-fonds"],
   ["Pion leader", "NATURE SENTENCÉE : le pion leader EST l'état-major, l'unité d'élite associée (10 à 20 créatures) ; fiche d'unité (PF, PMV, PST, ½ PMB, features d'unité)", "CHANTIER", "fiche à ouvrir — nature gravée"],
+  ["Qualité des unités", "base NH à la création : A=5, B=10, C=15, D=20, E=25, F=37 (SENTENCE) ; l'expérience élève le niveau sans changer forcément la qualité ; échelle étendue jusqu'au SEMI-DIVIN et au DIVIN", "CAL", "lettres et bases des marches divines à calibrer"],
   ["Jet de survie du leader", "proposition v2 déposée", "CHANTIER", "sentence attendue"],
   ["Protection magique personnelle", "remplacement RAM/TAM", "CHANTIER", "banc d'essai"],
   ["BCM, BC, BR — application", "châssis à deux étages", "OK", "sentencé ce soir"],
