@@ -96,6 +96,7 @@ type: "text/html"
   <div class="tab" data-p="magie">Magie</div>
   <div class="tab" data-p="equipement">Équipement</div>
   <div class="tab" data-p="epreuve">Épreuve (jet D20)</div>
+  <div class="tab" data-p="mouvement">Déplacement et features</div>
   <div class="tab" data-p="audit">Audit de complétude</div>
 </div>
 
@@ -370,6 +371,38 @@ type: "text/html"
   </div>
 </section>
 
+<!-- ============ MOUVEMENT ET FEATURES ============ -->
+<section class="panneau" id="p-mouvement">
+  <div class="grille2">
+    <div class="bloc">
+      <h3>Déplacement du leader</h3>
+      <table>
+        <tr><td>PMV de base</td><td class="cal">30 PMV — ordre de grandeur attendu pour un leader à cheval et son état-major (CAL : formule de dérivation au chantier mouvement)</td></tr>
+        <tr class="cal"><td>Armure portée</td><td>harnois lourd : × 0,50 (table native « effet de l'armure sur le mouvement ») — PMV effectifs 15</td></tr>
+        <tr><td>Position</td><td>coordonnées + marqueur de milieu : (v) vol, (s) sous-marin, (t) souterrain, (e) éthéré, (a) astral</td></tr>
+        <tr><td>Avec un stack</td><td>le stack est limité à l'unité la plus lente ; le leader reste stacké pour l'usage de sa CDS (renvoi onglet Commandement)</td></tr>
+        <tr class="cal"><td>Marche forcée donnée</td><td>gain maximum [1 + (CMT ou CMA + BC + BR) ÷ 4] au prorata du temps passé avec le stack — Kaelen : [1 + (5+3+2)÷4] = +3 PMV ; PF des unités multipliés [(PMV base + PMV MF) ÷ PMV base]</td></tr>
+        <tr><td>Mouvement maritime rapide</td><td>embarquement à volonté sur les navires de commerce (40 PMV, de port à port) — jet de disponibilité ; malus 20 si les deux ports sont en guerre, 6 si un seul</td></tr>
+        <tr><td>Déplacement fluvial</td><td>¼ PMV par côté d'hex vers l'aval, ⅓ vers l'amont (doublé en crue) — pour unités amphibies ou montures</td></tr>
+        <tr><td>Unité très lente</td><td>droit d'entrer d'au moins un hex par tour en subissant des NFV pour les PMV manquants</td></tr>
+        <tr><td>Pillage en chemin</td><td>2 × les PMV de l'hex (moitié pour les raiders) — butin : VTB délocalisée + PP</td></tr>
+      </table>
+      <p class="note">Coûts d'entrée des terrains, reliefs remarquables et routes (1 PMV/hex le long, mais repérage inévitable) : tables complètes au livret des tables. Contreparties de l'armure lourde (terrains impraticables, chaleur) : chantier mouvement. La dérivation du PMV de base du leader (30 attendu) reste à arbitrer.</p>
+    </div>
+    <div class="bloc">
+      <h3>Features (capacités spéciales déclarées)</h3>
+      <p class="mini">Chaque feature se déclare par sa SOURCE (race, profession, équipement, sort permanent) et porte sa VALEUR — rien d'implicite sur la fiche.</p>
+      <table>
+        <tr><th>Feature</th><th>Source</th><th>Valeur</th><th>Effet</th></tr>
+        <tr class="exercee"><td>Tournage des morts-vivants</td><td>Profession : Nécromant</td><td>force = PMB ÷ 8 → 3 PF</td><td>affecte, neutralise, détruit ou prend sous contrôle des morts-vivants et créatures extraplanaires ; bonus de +4 aux nécromants ; si habileté ≥ RAT + 5 : contrôle ou destruction, sinon neutralisation pour le combat</td></tr>
+        <tr class="exercee"><td>Pénétrante / Perforante</td><td>Équipement : épée +2</td><td>déclarée</td><td>features d'arme déclarées sur l'onglet Équipement — empilement régi par le chantier armures</td></tr>
+        <tr><td>Aucune feature raciale</td><td>Race : Humain</td><td>—</td><td>l'humain vhalornais ne porte pas de capacité spéciale de race</td></tr>
+      </table>
+      <p class="note">Registre des features natives (relevé complet §8.1.3) : Archer, Berserker, bonus/malus de terrain (+x), Dissimulation (DIS), Embarquement, Ignore fortification (IF), Immortels (Imm), Immunité au poison (IP), Infravision (INF), Infravision active (INFA), Peur, Poison (x), Résistance magique (MR), Résistance à la peur (RPE), Résistance au poison (RPO), Résistance au tournage (RAT), Raider, Ravitaillement, Régénération, Tournage, Vision dans les ténèbres, Vol mono-hex. Le leader en déclare au titre de sa race, de ses professions, de son équipement ou de sorts permanents — les features d'unités (Berserker, Raider, régiments) vivent sur la fiche du pion leader. La RPE du leader et l'amortissement de la peur par [10 + 3×(BCM+BC+BR)] : chantier leaders L8.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ AUDIT ============ -->
 <section class="panneau" id="p-audit">
   <div class="legende">
@@ -452,10 +485,12 @@ const audit = [
   ["Borne du NM par objets", "montée par équipement magique", "CAL", "chantier magie"],
   ["Sorts accessibles", "35 standard + 43 grande magie", "OK", "relevé complet"],
   ["Armes et armures", "marge et absorption", "OK", "chantier armures v0.6"],
-  ["Contreparties armure lourde", "PMV, terrains, chaleur", "CAL", "chantier mouvement"],
+  ["Contreparties armure lourde", "PMV, terrains, chaleur", "CAL", "onglet Déplacement — chantier mouvement"],
+  ["Déplacement du leader", "PMV, armure, marche forcée, maritime, fluvial — onglet dédié", "OK", "natives É7 §8.6"],
+  ["Features du leader", "déclarées par source (race, profession, équipement, sort) ; registre natif §8.1.3", "OK", "onglet dédié — relevé natif"],
+  ["PMV du leader", "30 PMV attendus", "CAL", "onglet Déplacement — formule à arbitrer"],
   ["Panoplies", "relier panoplie et habileté", "CHANTIER", "table unique à ouvrir"],
   ["Cycle du Destin", "santé longue, séquelles", "CHANTIER", "à ouvrir (Chirurgien)"],
-  ["PMV du leader", "30 PMV attendus", "CAL", "chantier mouvement"],
 ];
 
 // ---------- RENDU ----------
