@@ -1,6 +1,6 @@
 ---
 name: "generateur-leaders-e8"
-title: "Le générateur de leaders et de semi-leaders — Édition 8, v0.1"
+title: "Le générateur de leaders et de semi-leaders — Édition 8, v0.2"
 type: "text/html"
 ---
 
@@ -81,7 +81,7 @@ type: "text/html"
 <header class="top">
   <div>
     <h1>Le générateur de leaders et de semi-leaders</h1>
-    <div class="mini">Édition 8 — moteur de la maquette de fiche, matrice de la grille des métiers, registre de la fiche des races. v0.1 du 8 novembre 2026.</div>
+    <div class="mini">Édition 8 — moteur de la maquette de fiche, matrice de la grille des métiers, registre de la fiche des races. v0.2 du 8 novembre 2026.</div>
   </div>
   <div class="rangée" style="flex:none">
     <button class="btn sec" onclick="exporter()">EXPORTER LA PARTIE (JSON)</button>
@@ -252,11 +252,11 @@ var NOMS_RACES = Object.keys(RACES);
    budgets de points : PROPOSITIONS (fichier de calibrage)
    ============================================================ */
 var STATURES = {
-  LE: { nom: "Leader Élite", nprof: 3, budget: 36, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[20, 30], [12, 20], [6, 12]], pion: "L", titres: ["Roi", "Haut Roi", "Grand Duc", "Prince-Évêque", "Régent", "Archiduc"] },
-  L:  { nom: "Leader", nprof: 3, budget: 32, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[15, 25], [8, 15], [4, 10]], pion: "L", titres: ["Duc", "Comte", "Maréchal", "Général", "Gouverneur", "Baron"] },
-  SL:  { nom: "Semi-Leader", nprof: 2, budget: 28, etat: "5 à 10 (réduit — sentence du 8 novembre)", etatDef: 7, niveaux: [[12, 20], [6, 14]], pion: "S", titres: ["Chevalier", "Capitaine", "Bailli", "Prévôt", "Banneret"] },
-  MS:  { nom: "Maître Spécialiste", nprof: 2, budget: 25, artisan: true, etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[10, 18], [5, 12]], pion: "S", titres: ["Maître", "Savant", "Docteur", "Premier"] },
-  MA:  { nom: "Maître Artisan", nprof: 1, budget: 22, artisan: "only", etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[12, 20]], pion: "S", titres: ["Maître", "Maître Artisan", "Patricien", "Maïor"] }
+  LE: { nom: "Leader Élite", nprof: 3, budget: 54, nmax: 3, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[20, 30], [12, 20], [6, 12]], pion: "L", titres: ["Roi", "Haut Roi", "Grand Duc", "Prince-Évêque", "Régent", "Archiduc"] },
+  L:  { nom: "Leader", nprof: 3, budget: 44, nmax: 2, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[15, 25], [8, 15], [4, 10]], pion: "L", titres: ["Duc", "Comte", "Maréchal", "Général", "Gouverneur", "Baron"] },
+  SL:  { nom: "Semi-Leader", nprof: 2, budget: 30, nmax: 1, etat: "5 à 10 (réduit — sentence du 8 novembre)", etatDef: 7, niveaux: [[12, 20], [6, 14]], pion: "S", titres: ["Chevalier", "Capitaine", "Bailli", "Prévôt", "Banneret"] },
+  MS:  { nom: "Maître Spécialiste", nprof: 2, budget: 28, nmax: 1, artisan: true, etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[10, 18], [5, 12]], pion: "S", titres: ["Maître", "Savant", "Docteur", "Premier"] },
+  MA:  { nom: "Maître Artisan", nprof: 1, budget: 26, nmax: 1, artisan: "only", etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[12, 20]], pion: "S", titres: ["Maître", "Maître Artisan", "Patricien", "Maïor"] }
 };
 var COUT_ACHAT = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 6, 15: 8, 16: 10, 17: 13, 18: 16 };
 
@@ -420,11 +420,39 @@ function poidsCaracs(rec) {
   if (rec.stature === "SL") w.Cha += 2;
   return w;
 }
+function defautMax(rec) {
+  /* Coches par défaut (sentence du 8 novembre) : les caractéristiques
+     les plus pertinentes des professions retenues, au nombre que la
+     stature autorise (LE 3, L 2, autres 1). */
+  var st = STATURES[rec.stature];
+  var w = { For: 3, Dex: 3, Con: 3, Int: 3, Sag: 3, Cha: 3 };
+  rec.professions.forEach(function (p) {
+    var def = PROFS[p.nom]; if (!def) return;
+    Object.keys(def.c).forEach(function (sig) {
+      var c = def.c[sig]; if (!c || c < 25) return;
+      var paire = HABS[sig].paire;
+      var coef = c >= 100 ? 2.2 : c >= 75 ? 1.7 : c >= 50 ? 1.3 : 0.8;
+      w[paire[0]] += p.niveau * coef;
+      w[paire[1]] += p.niveau * coef * 0.6;
+    });
+  });
+  var tri = CARACS.slice().sort(function (a, b) { return w[b] - w[a] || CARACS.indexOf(a) - CARACS.indexOf(b); });
+  return tri.slice(0, st.nmax);
+}
 function distribuerAuto(rec, seed) {
   var rng = R(seed);
   var w = poidsCaracs(rec);
   var scores = { For: 8, Dex: 8, Con: 8, Int: 8, Sag: 8, Cha: 8 };
   var reste = STATURES[rec.stature].budget;
+  /* Phase 1 — les coches au maximum (18 à l'achat, hors modificateurs
+     raciaux), dans l'ordre de pertinence ; le budget de chaque stature
+     est taillé pour les porter tous. */
+  var coches = (rec.maxCaracs || []).slice().sort(function (a, b) { return w[b] - w[a]; });
+  coches.forEach(function (c) {
+    if (CARACS.indexOf(c) < 0) return;
+    var c18 = COUT_ACHAT[18] - COUT_ACHAT[scores[c]];
+    if (c18 > 0 && c18 <= reste) { reste -= c18; scores[c] = 18; }
+  });
   var garde = 0;
   while (reste > 0 && garde < 200) {
     garde++;
@@ -612,7 +640,7 @@ function nouveauBrouillon(stature) {
     race: null, raceAuto: true,
     align: null, alignAuto: true,
     professions: [], profAuto: true,
-    caracs: null, nom: "", titre: "", bio: "",
+    caracs: null, maxCaracs: [], nom: "", titre: "", bio: "",
     portraitMode: "svg", iaData: null,
     puissance: "", attributs: { POP: 1, BR: 0, VM: 5, PFD: 0, tresor: 10, etatMajor: null }
   };
@@ -665,6 +693,7 @@ function tirer(tout, premier) {
       deja[choix] = 1;
       poolRestant = poolRestant.filter(function (x) { return !deja[x]; });
     }
+    br.maxCaracs = br.professions.length ? defautMax(br) : [];
   }
   // caractéristiques
   if (br.caracs === null || tout) br.caracs = distribuerAuto(br, br.seed ^ 0x9E3779B);
@@ -686,7 +715,7 @@ function relancer(champ) {
   if (champ === "graine") { br.seed = graine(); tirer(true, false); }
 }
 function majBrouillon(champ, val) {
-  if (champ === "stature") { br.stature = val; br.professions = []; br.caracs = null; tirer(false, false); }
+  if (champ === "stature") { br.stature = val; br.professions = []; br.caracs = null; br.maxCaracs = []; tirer(false, false); }
   if (champ === "race") { br.race = val; br.raceAuto = false; rendAtelier(); }
   if (champ === "align") { br.align = val; br.alignAuto = false; rendAtelier(); }
   if (champ === "puissance") { br.puissance = val; rendAtelier(); }
@@ -694,18 +723,32 @@ function majBrouillon(champ, val) {
     var i = val[0];
     if (!val[1]) { br.professions.splice(i, 1); }
     else { if (br.professions[i]) br.professions[i].nom = val[1]; else br.professions.push({ nom: val[1], niveau: 5 }); }
-    br.profAuto = false; rendAtelier();
+    br.profAuto = false; br.maxCaracs = br.professions.length ? defautMax(br) : []; rendAtelier();
   }
   if (champ === "niveau") { br.professions[val[0]].niveau = Math.max(1, Math.min(40, parseInt(val[1]) || 1)); }
   if (champ === "carac") { br.caracs[val[0]] = Math.max(8, Math.min(18, parseInt(val[1]) || 8)); majEqAchat(); }
+  if (champ === "max") {
+    var stx = STATURES[br.stature];
+    if (val[1]) {
+      if (br.maxCaracs.indexOf(val[0]) < 0) {
+        if (br.maxCaracs.length >= stx.nmax) { alert(stx.nom + " : " + stx.nmax + " caractéristique(s) au maximum (sentence du 8 novembre) — décochez d'abord."); rendAtelier(); return; }
+        br.maxCaracs.push(val[0]);
+      }
+    } else { br.maxCaracs = br.maxCaracs.filter(function (x) { return x !== val[0]; }); }
+    rendAtelier();
+  }
   if (champ === "nom") br.nom = val;
   if (champ === "titre") br.titre = val;
   if (champ === "bio") br.bio = val;
   if (champ.indexOf("attr:") === 0) { br.attributs[champ.slice(5)] = val === "" ? "" : (parseFloat(val) || 0); }
 }
 function majEqAchat() {
+  var st = STATURES[br.stature];
+  var n18 = CARACS.filter(function (c) { return br.caracs[c] >= 18; }).length;
   var el = document.getElementById("eqAchat");
-  if (el) el.innerHTML = "Équivalence : <b>" + coutAchatTotal(br.caracs) + "</b> points d'achat — budget de la stature : " + STATURES[br.stature].budget + (coutAchatTotal(br.caracs) > STATURES[br.stature].budget ? ' <span class="alerte">(dépassement assumé par le MdM)</span>' : "");
+  if (el) el.innerHTML = "Équivalence : <b>" + coutAchatTotal(br.caracs) + "</b> points d'achat — budget de la stature : " + st.budget +
+    (coutAchatTotal(br.caracs) > st.budget ? ' <span class="alerte">(dépassement assumé par le MdM)</span>' : "") +
+    (n18 > st.nmax ? ' <span class="alerte">(maxima : ' + n18 + " — la stature en autorise " + st.nmax + ", sentence du 8 novembre)</span>" : "");
 }
 
 /* ============================================================
@@ -760,7 +803,7 @@ function rendAtelier() {
     var brut = br.caracs[c];
     var fin = Math.max(3, brut + race.aj[CARACS.indexOf(c)]);
     caracsHtml += '<tr><td>' + c + '</td><td class="num"><input type="number" style="width:64px" min="8" max="18" value="' + brut + '" onchange="majBrouillon(\'carac\',[\'' + c + '\',this.value])"></td>' +
-      '<td class="num">' + (race.aj[CARACS.indexOf(c)] >= 0 ? "+" : "") + race.aj[CARACS.indexOf(c)] + '</td><td class="num"><b>' + fin + '</b></td><td class="num">' + (fiche.mods[c] >= 0 ? "+" : "") + fiche.mods[c] + "</td></tr>";
+      '<td class="num">' + (race.aj[CARACS.indexOf(c)] >= 0 ? "+" : "") + race.aj[CARACS.indexOf(c)] + '</td><td class="num"><b>' + fin + '</b></td><td class="num">' + (fiche.mods[c] >= 0 ? "+" : "") + fiche.mods[c] + '</td><td class="num"><input type="checkbox"' + (br.maxCaracs.indexOf(c) >= 0 ? " checked" : "") + ' title="Forcer le maximum à la répartition (18, hors modificateurs raciaux)" onchange="majBrouillon(\'max\',[\'' + c + '\',this.checked])"></td></tr>';
   });
   var portraitHtml = br.portraitMode === "ia" && br.iaData
     ? '<img src="' + br.iaData + '" width="200" alt="portrait">'
@@ -770,7 +813,7 @@ function rendAtelier() {
     '<div class="grille2">' +
     "<div>" +
       '<div class="bloc"><h3>1. La stature</h3><div class="filtres">' + selectStature() + "</div>" +
-        '<p class="mini">' + st.nom + " — " + st.nprof + " profession(s)" + (st.artisan ? (st.artisan === "only" ? ", artisan obligatoire" : ", dont un artisan ou équivalent") : "") + " ; budget d'achat : " + st.budget + " points (proposition) ; état-major : " + st.etat + " ; pion " + st.pion + ".</p></div>" +
+        '<p class="mini">' + st.nom + " — " + st.nprof + " profession(s)" + (st.artisan ? (st.artisan === "only" ? ", artisan obligatoire" : ", dont un artisan ou équivalent") : "") + " ; budget d'achat : " + st.budget + " points (proposition) ; maximum(s) par coche : " + st.nmax + " (sentence) ; état-major : " + st.etat + " ; pion " + st.pion + ".</p></div>" +
       '<div class="bloc"><h3>2. La puissance <button class="btn sec" onclick="relancer(\'graine\')">NOUVELLE GRAINE</button></h3>' +
         '<label>Puissance d\'attribution (optionnel)</label><select onchange="majBrouillon(\'puissance\',this.value)"><option value="">— sans puissance —</option>' +
         etat.puissances.map(function (p) { return '<option value="' + p.id + '"' + (br.puissance === p.id ? " selected" : "") + ">" + p.nom + "</option>"; }).join("") + "</select>" +
@@ -779,9 +822,9 @@ function rendAtelier() {
         '<label>Alignement</label><select onchange="majBrouillon(\'align\',this.value)">' + (br.alignAuto ? '<option value="" selected>— aléatoire —</option>' : "") + ALIGNEMENTS.map(function (a) { return '<option value="' + a + '"' + (br.align === a ? " selected" : "") + ">" + a + "</option>"; }).join("") + "</select></div>" +
       '<div class="bloc"><h3>3. Les professions <button class="btn sec" onclick="relancer(\'profs\')">tirer</button></h3>' + profsHtml + "</div>" +
       '<div class="bloc"><h3>4. Les caractéristiques <button class="btn sec" onclick="relancer(\'caracs\')">répartir (auto)</button></h3>' +
-        "<table><tr><th>Car.</th><th class=\"num\">Achat</th><th class=\"num\">Racial</th><th class=\"num\">Final</th><th class=\"num\">Mod.</th></tr>" + caracsHtml + "</table>" +
+        "<table><tr><th>Car.</th><th class=\"num\">Achat</th><th class=\"num\">Racial</th><th class=\"num\">Final</th><th class=\"num\">Mod.</th><th class=\"num\">Max</th></tr>" + caracsHtml + "</table>" +
         '<div class="ligne-eq" id="eqAchat">Équivalence : <b>' + coutAchatTotal(br.caracs) + "</b> points d'achat — budget de la stature : " + st.budget + "</div>" +
-        '<p class="note">Méthode 3.5 : achat de points (8-18), les ajustements raciaux s\'appliquent après l\'achat. La répartition automatique pondère les six caractéristiques par les paires dirigeantes des métiers choisis et leurs niveaux (sentence du 8 novembre).</p></div>' +
+        '<p class="note">Méthode 3.5 : achat de points (8-18), les ajustements raciaux s\'appliquent après l\'achat (sentence). La coche « Max » force la caractéristique au maximum à la répartition automatique — trois coches pour un leader d\'élite, deux pour un leader, une pour les autres statures (sentence du 8 novembre) ; par défaut, les plus pertinentes des professions retenues sont cochées. Le restant du budget se répartit pondéré par les paires dirigeantes des métiers choisis et leurs niveaux.</p></div>' +
       '<div class="bloc"><h3>5. L\'identité</h3>' +
         '<label>Nom <button class="btn sec" style="padding:2px 7px" onclick="relancer(\'nom\')">relancer</button></label><input value="' + br.nom.replace(/"/g, "&quot;") + '" oninput="majBrouillon(\'nom\',this.value)">' +
         '<label>Titre <button class="btn sec" style="padding:2px 7px" onclick="relancer(\'titre\')">relancer</button></label><input value="' + br.titre.replace(/"/g, "&quot;") + '" oninput="majBrouillon(\'titre\',this.value)">' +
@@ -849,7 +892,7 @@ function importerIA(input) {
 function creer() {
   var rec = JSON.parse(JSON.stringify({
     seed: br.seed, portraitSeed: br.portraitSeed, stature: br.stature,
-    race: br.race, align: br.align, professions: br.professions, caracs: br.caracs,
+    race: br.race, align: br.align, professions: br.professions, caracs: br.caracs, maxCaracs: br.maxCaracs,
     nom: br.nom, titre: br.titre, bio: br.bio, portraitMode: br.portraitMode, iaData: br.iaData,
     puissance: br.puissance, attributs: br.attributs, notes: ""
   }));
