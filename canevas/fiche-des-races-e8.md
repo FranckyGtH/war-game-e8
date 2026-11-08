@@ -1,12 +1,12 @@
 ---
 name: "fiche-des-races-e8"
-title: "La fiche des races — Édition 8, v0.1"
+title: "La fiche des races — Édition 8, v0.2"
 type: "text/markdown"
 ---
 
-# La fiche des races — Édition 8, v0.1 (7 novembre 2026, soir)
+# La fiche des races — Édition 8, v0.2 (7 novembre 2026, nuit)
 
-Statut : v0.1 — chantier ouvert par sentence de l'auteur du 7 novembre au soir : la fiche des races doit précéder le reste du travail. QUATRE SENTENCES : (1) les ajustements de caractéristiques raciaux suivent D&D 3.5 (PHB table 2-1 vérifiée à la source ; le Monster Manual 3.5, présent à la bibliothèque, sert les races hors PHB) ; (2) le mot français pour « features » de race est APTITUDES ; (3) l'architecture de la base de données est arrêtée : SQLite dans les applications dédiées (MdM, joueur), PostgreSQL au portail central, schéma versionné au dépôt ; (4) le périmètre des races jouables couvre le PHB 3.5 ET tout le corpus É7 (PJ et PNJ), les monstres étant à part au bestiaire ; les bonus d'habiletés raciaux : l'assistant propose, l'auteur arbitre. Sources : section « Les races » des règles É7 (créatures standards et spéciales), table des créatures É7 (classeur — NH, NE, PP, RP, TC, Force, PST, PMV, EDT, MR, alignement par créature), PHB 3.5 (table 2-1 et traits raciaux, chapitre 2), Monster Manual 3.5 (ajustements des races hors PHB, relevé au chantier suivant).
+Statut : v0.2 — SENTENCE DE L'AUTEUR (7 novembre à la nuit) : LES BONUS RACIAUX S'AJOUTENT aux compétences, voire à la valeur de base — ILS NE REMPLACENT JAMAIS. Mécanisme de la section 5 réécrit en trois vecteurs ADDITIFS ; convention de lecture des valeurs natives É7 (bonus racial = valeur native − base É8) ; application au formé proposée à l'arbitrage. v0.1 — chantier ouvert par sentence de l'auteur du 7 novembre au soir : la fiche des races doit précéder le reste du travail. QUATRE SENTENCES : (1) les ajustements de caractéristiques raciaux suivent D&D 3.5 (PHB table 2-1 vérifiée à la source ; le Monster Manual 3.5, présent à la bibliothèque, sert les races hors PHB) ; (2) le mot français pour « features » de race est APTITUDES ; (3) l'architecture de la base de données est arrêtée : SQLite dans les applications dédiées (MdM, joueur), PostgreSQL au portail central, schéma versionné au dépôt ; (4) le périmètre des races jouables couvre le PHB 3.5 ET tout le corpus É7 (PJ et PNJ), les monstres étant à part au bestiaire ; les bonus d'habiletés raciaux : l'assistant propose, l'auteur arbitre. Sources : section « Les races » des règles É7 (créatures standards et spéciales), table des créatures É7 (classeur — NH, NE, PP, RP, TC, Force, PST, PMV, EDT, MR, alignement par créature), PHB 3.5 (table 2-1 et traits raciaux, chapitre 2), Monster Manual 3.5 (ajustements des races hors PHB, relevé au chantier suivant).
 
 ## 1. Fondations — la race dans l'architecture des capacités
 
@@ -78,7 +78,7 @@ Montures et bêtes à part : cheval, pégase, griffon, loup, requin, aigle géan
 
 ## 4. Le relevé des aptitudes raciales É7 (CONSERVÉ)
 
-Relevé de la section « Les races » des règles É7, race par race. Les valeurs d'habiletés citées (dissimulation, tracking) sont les DONNÉES NATIVES RACIALES de l'É7 — elles fondent le mécanisme de la section 5.
+Relevé de la section « Les races » des règles É7, race par race. Les valeurs d'habiletés citées (dissimulation, tracking) sont les DONNÉES NATIVES RACIALES de l'É7 — lues en É8 comme des VALEURS ATTEINTES, base + bonus (convention de la section 5).
 
 - DEMI-ELFE : infravision.
 - ELFE : infravision ; en forêt, bonus de 1, dissimulation et tracking de 25, déplacement comme en plaine, CCSN ¼.
@@ -99,15 +99,19 @@ Relevé de la section « Les races » des règles É7, race par race. Les valeur
 - HIGHMAN : hybride humains-géants ; IGNORE LA PEUR ; n'utilise pas la magie (rumeur de chamans highmen) ; RÉSISTANCE À LA MAGIE 50 %, sur les sorts subis comme acceptés.
 - DRIDER : infravision active, vol mono hex, poison (+½) et immunisé ; équipement des drows ; combat de jour ½ ; en souterrain, bonus 0,5, CCSN ¼, dissimulation 10, tracking 10, déplacement plaine ; en forêt épaisse, bonus 0,2, CCSN ½, dissimulation 5, tracking 5.
 
-## 5. Les bonus aux habiletés — mécanisme et propositions (À ARBITRER)
+## 5. Les bonus aux habiletés — mécanisme sentencé et propositions (À ARBITRER)
 
-MÉCANISME PROPOSÉ — trois vecteurs d'aptitude, jamais de niveau ni de pourcentage de canal :
+MÉCANISME SENTENCÉ (7 novembre à la nuit) : LES BONUS RACIAUX S'AJOUTENT aux compétences, voire à la valeur de base — ILS NE REMPLACENT JAMAIS. Trois vecteurs, tous ADDITIFS, jamais de niveau ni de pourcentage de canal :
 
-1. VALEUR NATIVE RACIALE : la race porte une valeur native supérieure à la base dans l'habileté (ex. hobbit Dsv 10 natif). La question du PLANCHER de la base (ouverte au calibrage) tranche le cas des canaux faibles.
-2. VALEUR DE TERRAIN : la valeur native raciale n'opère que dans le terrain de l'aptitude (ex. elfe Trc/Dse 25 en forêt) — le relevé É7 en est tissé.
-3. BONUS PLAT AU BE : l'aptitude ajoute un bonus plat (+1, +2) au BE de l'habileté liée, cumulé aux bonus de caractéristiques — c'est la traduction É8 des bonus de compétences raciaux 3.5 (l'elfe 3.5 « +2 Écoute, Fouille, Détection » ne devient pas des niveaux : il devient un bonus plat au BE de Trc, à la lecture du MdM).
+1. MAJORATION DE LA BASE : le bonus racial élève la valeur native de l'habileté PAR ADDITION — le hobbit tente Dsv à 10 (base 5 + bonus 5), le nain tente Exm à 5 (base 0 + bonus 5, « le sang de la pierre »). La base majorée demeure un socle : elle ne remplace jamais un canal.
+2. BONUS DE TERRAIN : le bonus s'ajoute à la valeur tentée dans le terrain de l'aptitude — l'elfe : +20 à Trc et Dse en forêt. Le relevé É7 en est tissé.
+3. BONUS PLAT AU BE : +1, +2 au BE de l'habileté liée, cumulé aux bonus de caractéristiques — c'est la traduction É8 des bonus de compétences raciaux 3.5 (l'elfe 3.5 « +2 Écoute, Fouille, Détection » ne devient pas des niveaux : il devient un bonus plat au BE de Trc, à la lecture du MdM).
 
-Garde-fou : la race ne donne JAMAIS de niveau, de pourcentage de canal ni de point d'habileté — la formation seule paie la progression ; l'aptitude raciale est un socle ou un bonus plat. Un bonus plat ne se prend qu'une fois, quelle que soit la voie qui le donne (règle de cumul déjà écrite).
+CONVENTION DE LECTURE des valeurs natives É7 : une valeur native de la section 4 se lit comme une VALEUR ATTEINTE (base É8 + bonus racial) — le BONUS RACIAL en est la différence avec la base : elfe +20 en forêt (25 − 5) ; elfe aquatique +15 en mer (20 − 5) ; drow +10 en souterrain (15 − 5) et +5 en forêt épaisse (10 − 5) ; hobbit +5 sans condition (10 − 5) ; quickling +10 (15 − 5) ; sahuagin +10 en mer (15 − 5) ; drider +5 en souterrain (10 − 5) — la valeur 5 du drider en forêt épaisse EST la base : aucune aptitude d'habileté ne s'y attache.
+
+PROPOSITION D'APPLICATION AU FORMÉ (arbitrage attendu) : le bonus racial s'ajoute à la valeur tentée, formée ou non — le hobbit voleur (Dsv 17 au canal) tente à 22 ; le bonus se lit comme un bonus de caractéristique permanent.
+
+Garde-fous : la race ne donne JAMAIS de niveau, de pourcentage de canal ni de point d'habileté — la formation seule paie la progression ; un bonus racial se prend UNE SEULE FOIS, quelle que soit la voie qui le donne (règle de cumul déjà écrite) ; la majoration de base ne remplace pas le canal : le formé garde sa valeur pleine, le bonus s'y ajoute.
 
 ### Propositions par race (l'assistant propose, l'auteur arbitre)
 
@@ -115,23 +119,24 @@ Garde-fou : la race ne donne JAMAIS de niveau, de pourcentage de canal ni de poi
 | Race           | Bonus proposé                                                                                       | Statut       |
 | -------------- | --------------------------------------------------------------------------------------------------- | ------------ |
 | Humain         | AUCUNE aptitude mécanique — l'ancre du pipeline ; souplesse narrative (toutes professions, cultures) | PROPOSITION  |
-| Elfe           | Trc/Dse 25 en forêt (natif É7 conservé) ; aucun bonus permanent                                      | CONSERVÉ É7  |
-| Nain           | Exm tentable à 5 natif (« le sang de la pierre ») ; +2 BE sur Exm et Frg                            | PROPOSITION  |
+| Elfe           | +20 à Trc/Dse en forêt (valeur native 25 conservée) ; aucun bonus permanent                          | CONSERVÉ É7  |
+| Elfe aquatique | +15 à Dsv/Trc en mer (valeur native 20 conservée)                                                    | CONSERVÉ É7  |
+| Nain           | Exm majorée à 5 natif (base 0 + 5, « le sang de la pierre ») ; +2 BE sur Exm et Frg                 | PROPOSITION  |
 | Gnome          | +2 BE sur Frg (technicien, alchimiste)                                                              | PROPOSITION  |
-| Hobbit         | Dsv 10 natif (natif É7 conservé) ; +2 BE sur Vol                                                   | CONSERVÉ É7 + PROPOSITION |
+| Hobbit         | Dsv majorée à 10 natif (base 5 + 5, conservé É7) ; +2 BE sur Vol                                    | CONSERVÉ É7 + PROPOSITION |
 | Demi-elfe      | infravision seule (l'entre-deux ne domine rien)                                                     | CONSERVÉ É7  |
-| Demi-orque     | Itd tentable à 10 natif (la férocité)                                                              | PROPOSITION  |
-| Drow           | Dsv/Trc 15 en souterrain, 10 en forêt épaisse (natif É7 conservé) ; +2 BE sur Sed (l'aristocratie cruelle) | CONSERVÉ É7 + PROPOSITION |
+| Demi-orque     | Itd majorée à 10 natif (base 5 + 5, la férocité)                                                    | PROPOSITION  |
+| Drow           | +10 à Dsv/Trc en souterrain, +5 en forêt épaisse (natif É7 conservé) ; +2 BE sur Sed (l'aristocratie cruelle) | CONSERVÉ É7 + PROPOSITION |
 | Nain gris      | à la curation (relevé d'aptitudes d'abord)                                                         | À RELEVER    |
-| Hobgobelin, orc, uruk, gnoll, goblin, kobold | Itd tentable à 10 natif (les races de la menace — la manière du raider) | PROPOSITION  |
+| Hobgobelin, orc, uruk, gnoll, goblin, kobold | Itd majorée à 10 natif (base 5 + 5, les races de la menace — la manière du raider) | PROPOSITION  |
 | Homme lézard   | aucune (le terrain paie déjà : marais)                                                              | PROPOSITION  |
-| Sahuagin       | Trc 15 en mer (natif É7 conservé)                                                                   | CONSERVÉ É7  |
-| Triton, merman | aucune en v0.1, à la curation                                                                      | À PROPOSER   |
-| Quickling      | Dsv 15 natif (natif É7 conservé)                                                                    | CONSERVÉ É7  |
+| Sahuagin       | +10 à Trc en mer (valeur native 15 conservée)                                                       | CONSERVÉ É7  |
+| Triton, merman | aucune en v0.2, à la curation                                                                      | À PROPOSER   |
+| Quickling      | Dsv majorée à 15 natif (base 5 + 10, conservé É7)                                                   | CONSERVÉ É7  |
 | Centaure       | à la curation (le terrain paie : forêt)                                                            | À PROPOSER   |
-| Ogre           | Itd tentable à 10 natif (la stature)                                                               | PROPOSITION  |
-| Highman        | Itd tentable à 10 natif (la lignée des géants)                                                      | PROPOSITION  |
-| Drider         | Dsv/Trc 10 en souterrain, 5 en forêt épaisse (natif É7 conservé)                                   | CONSERVÉ É7  |
+| Ogre           | Itd majorée à 10 natif (base 5 + 5, la stature)                                                     | PROPOSITION  |
+| Highman        | Itd majorée à 10 natif (base 5 + 5, la lignée des géants)                                           | PROPOSITION  |
+| Drider         | +5 à Dsv/Trc en souterrain (natif É7 conservé) ; RIEN en forêt épaisse (la valeur 5 EST la base)   | CONSERVÉ É7  |
 
 
 La question de l'humain 3.5 (don au départ, points de compétence supplémentaires) est posée à l'arbitrage : proposition de l'assistant — NE PAS transposer ; l'humain est l'ancre, sa force est narrative (toutes les professions et cultures lui sont ouvertes, c'est la race des empires de la carte).
@@ -154,7 +159,7 @@ Schéma v0.1 proposé (PROPOSITION — dérivé de la présente fiche, à valide
 3. Nain gris : aptitudes É7 à relever (les classeurs É7 le citent aux matrices de métiers — « le niveau paie au NH, précédents drow et duergar »).
 4. L'humain 3.5 (don au départ, points de compétence) — transposition à arbitrer ; proposition : ne pas transposer.
 5. Les propositions de bonus d'habiletés de la section 5 — arbitrage ligne par ligne.
-6. Le PLANCHER de la base (déjà ouvert au fichier de calibrage) — tranche les valeurs natives raciales des canaux faibles.
+6. Le PLANCHER de la base (déjà ouvert au fichier de calibrage) — tranche la majoration de base des canaux faibles (nain : base 0 + 5 sur Exm).
 7. Ajustements É8 naturels des races sans contrepartie 3.5 (highman) et des races de créature (ogre, centaure, drider, quickling).
 8. Le bestiaire séparé (montures, bêtes, monstres) — chantier futur, hors périmètre de la présente fiche.
 9. La classe favorite 3.5 — non transposée (aucune pénalité d'expérience multiclassée en É8) ; à lire comme repère de culture raciale à la curation.
