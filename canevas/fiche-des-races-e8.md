@@ -1,12 +1,12 @@
 ---
 name: "fiche-des-races-e8"
-title: "La fiche des races — Édition 8, v0.2"
+title: "La fiche des races — Édition 8, v0.3"
 type: "text/markdown"
 ---
 
-# La fiche des races — Édition 8, v0.2 (7 novembre 2026, nuit)
+# La fiche des races — Édition 8, v0.3 (8 novembre 2026)
 
-Statut : v0.2 — SENTENCE DE L'AUTEUR (7 novembre à la nuit) : LES BONUS RACIAUX S'AJOUTENT aux compétences, voire à la valeur de base — ILS NE REMPLACENT JAMAIS. Mécanisme de la section 5 réécrit en trois vecteurs ADDITIFS ; convention de lecture des valeurs natives É7 (bonus racial = valeur native − base É8) ; application au formé proposée à l'arbitrage. v0.1 — chantier ouvert par sentence de l'auteur du 7 novembre au soir : la fiche des races doit précéder le reste du travail. QUATRE SENTENCES : (1) les ajustements de caractéristiques raciaux suivent D&D 3.5 (PHB table 2-1 vérifiée à la source ; le Monster Manual 3.5, présent à la bibliothèque, sert les races hors PHB) ; (2) le mot français pour « features » de race est APTITUDES ; (3) l'architecture de la base de données est arrêtée : SQLite dans les applications dédiées (MdM, joueur), PostgreSQL au portail central, schéma versionné au dépôt ; (4) le périmètre des races jouables couvre le PHB 3.5 ET tout le corpus É7 (PJ et PNJ), les monstres étant à part au bestiaire ; les bonus d'habiletés raciaux : l'assistant propose, l'auteur arbitre. Sources : section « Les races » des règles É7 (créatures standards et spéciales), table des créatures É7 (classeur — NH, NE, PP, RP, TC, Force, PST, PMV, EDT, MR, alignement par créature), PHB 3.5 (table 2-1 et traits raciaux, chapitre 2), Monster Manual 3.5 (ajustements des races hors PHB, relevé au chantier suivant).
+Statut : v0.3 — sentences du 8 novembre (calibrage racial, argument chiffré au journal suite 95) : le BONUS DE SOCLE (majoration de la base) DEMEURE À +5 — la naissance paie le socle, la formation paie la carrière, la maîtrise efface l'origine ; le BONUS PLAT AU BE EST PORTÉ DE +2 À +5 — le +2 de la 3.5 vaut dix pour cent au dé de vingt, soit +5 à l'échelle de centaine ; un APANAGE à +10 (compétence signature d'une race extrême, précédent natif du quickling) demeure en proposition. v0.2 — SENTENCE DE L'AUTEUR (7 novembre à la nuit) : LES BONUS RACIAUX S'AJOUTENT aux compétences, voire à la valeur de base — ILS NE REMPLACENT JAMAIS. : la fiche des races doit précéder le reste du travail. QUATRE SENTENCES : (1) les ajustements de caractéristiques raciaux suivent D&D 3.5 (PHB table 2-1 vérifiée à la source ; le Monster Manual 3.5, présent à la bibliothèque, sert les races hors PHB) ; (2) le mot français pour « features » de race est APTITUDES ; (3) l'architecture de la base de données est arrêtée : SQLite dans les applications dédiées (MdM, joueur), PostgreSQL au portail central, schéma versionné au dépôt ; (4) le périmètre des races jouables couvre le PHB 3.5 ET tout le corpus É7 (PJ et PNJ), les monstres étant à part au bestiaire ; les bonus d'habiletés raciaux : l'assistant propose, l'auteur arbitre. Sources : section « Les races » des règles É7 (créatures standards et spéciales), table des créatures É7 (classeur — NH, NE, PP, RP, TC, Force, PST, PMV, EDT, MR, alignement par créature), PHB 3.5 (table 2-1 et traits raciaux, chapitre 2), Monster Manual 3.5 (ajustements des races hors PHB, relevé au chantier suivant).
 
 ## 1. Fondations — la race dans l'architecture des capacités
 
@@ -105,7 +105,7 @@ MÉCANISME SENTENCÉ (7 novembre à la nuit) : LES BONUS RACIAUX S'AJOUTENT aux 
 
 1. MAJORATION DE LA BASE : le bonus racial élève la valeur native de l'habileté PAR ADDITION — le hobbit tente Dsv à 10 (base 5 + bonus 5), le nain tente Exm à 5 (base 0 + bonus 5, « le sang de la pierre »). La base majorée demeure un socle : elle ne remplace jamais un canal.
 2. BONUS DE TERRAIN : le bonus s'ajoute à la valeur tentée dans le terrain de l'aptitude — l'elfe : +20 à Trc et Dse en forêt. Le relevé É7 en est tissé.
-3. BONUS PLAT AU BE : +1, +2 au BE de l'habileté liée, cumulé aux bonus de caractéristiques — c'est la traduction É8 des bonus de compétences raciaux 3.5 (l'elfe 3.5 « +2 Écoute, Fouille, Détection » ne devient pas des niveaux : il devient un bonus plat au BE de Trc, à la lecture du MdM).
+3. BONUS PLAT AU BE : +5 STANDARD (sentence du 8 novembre), cumulé aux bonus de caractéristiques — c'est la traduction É8 des bonus de compétences raciaux 3.5 : le +2 de la 3.5 vaut dix pour cent au dé de vingt, soit +5 sur l'échelle de centaine (l'elfe 3.5 « +2 Écoute, Fouille, Détection » ne devient pas des niveaux : il devient +5 au BE de Trc, à la lecture du MdM). Un APANAGE à +10 demeure en proposition pour la compétence signature d'une race extrême (précédent natif du quickling, +10 en discrétion).
 
 CONVENTION DE LECTURE des valeurs natives É7 : une valeur native de la section 4 se lit comme une VALEUR ATTEINTE (base É8 + bonus racial) — le BONUS RACIAL en est la différence avec la base : elfe +20 en forêt (25 − 5) ; elfe aquatique +15 en mer (20 − 5) ; drow +10 en souterrain (15 − 5) et +5 en forêt épaisse (10 − 5) ; hobbit +5 sans condition (10 − 5) ; quickling +10 (15 − 5) ; sahuagin +10 en mer (15 − 5) ; drider +5 en souterrain (10 − 5) — la valeur 5 du drider en forêt épaisse EST la base : aucune aptitude d'habileté ne s'y attache.
 
@@ -121,12 +121,12 @@ Garde-fous : la race ne donne JAMAIS de niveau, de pourcentage de canal ni de po
 | Humain         | AUCUNE aptitude mécanique — l'ancre du pipeline ; souplesse narrative (toutes professions, cultures) | PROPOSITION  |
 | Elfe           | +20 à Trc/Dse en forêt (valeur native 25 conservée) ; aucun bonus permanent                          | CONSERVÉ É7  |
 | Elfe aquatique | +15 à Dsv/Trc en mer (valeur native 20 conservée)                                                    | CONSERVÉ É7  |
-| Nain           | Exm majorée à 5 natif (base 0 + 5, « le sang de la pierre ») ; +2 BE sur Exm et Frg                 | PROPOSITION  |
-| Gnome          | +2 BE sur Frg (technicien, alchimiste)                                                              | PROPOSITION  |
-| Hobbit         | Dsv majorée à 10 natif (base 5 + 5, conservé É7) ; +2 BE sur Vol                                    | CONSERVÉ É7 + PROPOSITION |
+| Nain           | Exm majorée à 5 natif (base 0 + 5, « le sang de la pierre ») ; +5 BE sur Exm et Frg                 | PROPOSITION  |
+| Gnome          | +5 BE sur Frg (technicien, alchimiste)                                                              | PROPOSITION  |
+| Hobbit         | Dsv majorée à 10 natif (base 5 + 5, conservé É7) ; +5 BE sur Vol                                    | CONSERVÉ É7 + PROPOSITION |
 | Demi-elfe      | infravision seule (l'entre-deux ne domine rien)                                                     | CONSERVÉ É7  |
 | Demi-orque     | Itd majorée à 10 natif (base 5 + 5, la férocité)                                                    | PROPOSITION  |
-| Drow           | +10 à Dsv/Trc en souterrain, +5 en forêt épaisse (natif É7 conservé) ; +2 BE sur Sed (l'aristocratie cruelle) | CONSERVÉ É7 + PROPOSITION |
+| Drow           | +10 à Dsv/Trc en souterrain, +5 en forêt épaisse (natif É7 conservé) ; +5 BE sur Sed (l'aristocratie cruelle) | CONSERVÉ É7 + PROPOSITION |
 | Nain gris      | à la curation (relevé d'aptitudes d'abord)                                                         | À RELEVER    |
 | Hobgobelin, orc, uruk, gnoll, goblin, kobold | Itd majorée à 10 natif (base 5 + 5, les races de la menace — la manière du raider) | PROPOSITION  |
 | Homme lézard   | aucune (le terrain paie déjà : marais)                                                              | PROPOSITION  |
