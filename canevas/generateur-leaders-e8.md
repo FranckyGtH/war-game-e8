@@ -1,6 +1,6 @@
 ---
 name: "generateur-leaders-e8"
-title: "Le générateur de leaders et de semi-leaders — Édition 8, v0.2"
+title: "Le générateur de leaders et de semi-leaders — Édition 8, v0.3"
 type: "text/html"
 ---
 
@@ -81,7 +81,7 @@ type: "text/html"
 <header class="top">
   <div>
     <h1>Le générateur de leaders et de semi-leaders</h1>
-    <div class="mini">Édition 8 — moteur de la maquette de fiche, matrice de la grille des métiers, registre de la fiche des races. v0.2 du 8 novembre 2026.</div>
+    <div class="mini">Édition 8 — moteur de la maquette de fiche, matrice de la grille des métiers, registre de la fiche des races. v0.3 du 8 novembre 2026.</div>
   </div>
   <div class="rangée" style="flex:none">
     <button class="btn sec" onclick="exporter()">EXPORTER LA PARTIE (JSON)</button>
@@ -252,11 +252,11 @@ var NOMS_RACES = Object.keys(RACES);
    budgets de points : PROPOSITIONS (fichier de calibrage)
    ============================================================ */
 var STATURES = {
-  LE: { nom: "Leader Élite", nprof: 3, budget: 54, nmax: 3, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[20, 30], [12, 20], [6, 12]], pion: "L", titres: ["Roi", "Haut Roi", "Grand Duc", "Prince-Évêque", "Régent", "Archiduc"] },
-  L:  { nom: "Leader", nprof: 3, budget: 44, nmax: 2, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[15, 25], [8, 15], [4, 10]], pion: "L", titres: ["Duc", "Comte", "Maréchal", "Général", "Gouverneur", "Baron"] },
-  SL:  { nom: "Semi-Leader", nprof: 2, budget: 30, nmax: 1, etat: "5 à 10 (réduit — sentence du 8 novembre)", etatDef: 7, niveaux: [[12, 20], [6, 14]], pion: "S", titres: ["Chevalier", "Capitaine", "Bailli", "Prévôt", "Banneret"] },
-  MS:  { nom: "Maître Spécialiste", nprof: 2, budget: 28, nmax: 1, artisan: true, etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[10, 18], [5, 12]], pion: "S", titres: ["Maître", "Savant", "Docteur", "Premier"] },
-  MA:  { nom: "Maître Artisan", nprof: 1, budget: 26, nmax: 1, artisan: "only", etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[12, 20]], pion: "S", titres: ["Maître", "Maître Artisan", "Patricien", "Maïor"] }
+  LE: { nom: "Leader Élite", nprof: 3, budget: 100, nmax: 3, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[20, 30], [12, 20], [6, 12]], pion: "L", titres: ["Roi", "Haut Roi", "Grand Duc", "Prince-Évêque", "Régent", "Archiduc"] },
+  L:  { nom: "Leader", nprof: 3, budget: 80, nmax: 2, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[15, 25], [8, 15], [4, 10]], pion: "L", titres: ["Duc", "Comte", "Maréchal", "Général", "Gouverneur", "Baron"] },
+  SL:  { nom: "Semi-Leader", nprof: 2, budget: 60, nmax: 1, etat: "5 à 10 (réduit — sentence du 8 novembre)", etatDef: 7, niveaux: [[12, 20], [6, 14]], pion: "S", titres: ["Chevalier", "Capitaine", "Bailli", "Prévôt", "Banneret"] },
+  MS:  { nom: "Maître Spécialiste", nprof: 2, budget: 50, nmax: 1, artisan: true, etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[10, 18], [5, 12]], pion: "S", titres: ["Maître", "Savant", "Docteur", "Premier"] },
+  MA:  { nom: "Maître Artisan", nprof: 1, budget: 40, nmax: 1, artisan: "only", etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[12, 20]], pion: "S", titres: ["Maître", "Maître Artisan", "Patricien", "Maïor"] }
 };
 var COUT_ACHAT = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 6, 15: 8, 16: 10, 17: 13, 18: 16 };
 
@@ -744,11 +744,9 @@ function majBrouillon(champ, val) {
 }
 function majEqAchat() {
   var st = STATURES[br.stature];
-  var n18 = CARACS.filter(function (c) { return br.caracs[c] >= 18; }).length;
   var el = document.getElementById("eqAchat");
   if (el) el.innerHTML = "Équivalence : <b>" + coutAchatTotal(br.caracs) + "</b> points d'achat — budget de la stature : " + st.budget +
-    (coutAchatTotal(br.caracs) > st.budget ? ' <span class="alerte">(dépassement assumé par le MdM)</span>' : "") +
-    (n18 > st.nmax ? ' <span class="alerte">(maxima : ' + n18 + " — la stature en autorise " + st.nmax + ", sentence du 8 novembre)</span>" : "");
+    (coutAchatTotal(br.caracs) > st.budget ? ' <span class="alerte">(dépassement assumé par le MdM)</span>' : "");
 }
 
 /* ============================================================
@@ -813,7 +811,7 @@ function rendAtelier() {
     '<div class="grille2">' +
     "<div>" +
       '<div class="bloc"><h3>1. La stature</h3><div class="filtres">' + selectStature() + "</div>" +
-        '<p class="mini">' + st.nom + " — " + st.nprof + " profession(s)" + (st.artisan ? (st.artisan === "only" ? ", artisan obligatoire" : ", dont un artisan ou équivalent") : "") + " ; budget d'achat : " + st.budget + " points (proposition) ; maximum(s) par coche : " + st.nmax + " (sentence) ; état-major : " + st.etat + " ; pion " + st.pion + ".</p></div>" +
+        '<p class="mini">' + st.nom + " — " + st.nprof + " profession(s)" + (st.artisan ? (st.artisan === "only" ? ", artisan obligatoire" : ", dont un artisan ou équivalent") : "") + " ; budget d'achat : " + st.budget + " points (sentence du 8 novembre) ; maximum(s) par coche : " + st.nmax + " (sentence) ; état-major : " + st.etat + " ; pion " + st.pion + ".</p></div>" +
       '<div class="bloc"><h3>2. La puissance <button class="btn sec" onclick="relancer(\'graine\')">NOUVELLE GRAINE</button></h3>' +
         '<label>Puissance d\'attribution (optionnel)</label><select onchange="majBrouillon(\'puissance\',this.value)"><option value="">— sans puissance —</option>' +
         etat.puissances.map(function (p) { return '<option value="' + p.id + '"' + (br.puissance === p.id ? " selected" : "") + ">" + p.nom + "</option>"; }).join("") + "</select>" +
