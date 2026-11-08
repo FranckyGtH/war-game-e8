@@ -1,12 +1,12 @@
 ---
 name: "grille-metiers-e8"
-title: "La grille des métiers et des habiletés — Édition 8, v0.5"
+title: "La grille des métiers et des habiletés — Édition 8, v0.6"
 type: "text/markdown"
 ---
 
-# La grille des métiers et des habiletés — Édition 8, v0.5 (7 novembre 2026)
+# La grille des métiers et des habiletés — Édition 8, v0.6 (8 novembre 2026)
 
-Statut : v0.5 — mise en phase du soir : NÉGOCE et POLITIQUE NATIVES 5 (sentence de l'auteur : son édit de la matrice est confirmé et étendu à tous les documents) ; sigles des six professions ADOPTÉS (Ch, Cn, Fg, Ea, Ef, Em) ; canaux Itd proposés aux trois commandeurs d'équipes (Cn, Fg, Em à 25), Dsf laissé vierge pour les six — la rumeur n'est pas leur métier. v0.4 — les six PROFESSIONS DE LA PRODUCTION de l'auteur (trois artisans, trois exploitants ; spécialité 100, Négoce 50, Adm 25 en canal direct) ; colonne Adm ajoutée à la matrice ; registre à trente-huit ; ligne Base corrigée de la main de l'auteur (Ngc 5, Plt 5). v0.3 — sentence du soir : LA BASE EST LA VALEUR NATIVE (base 5 tentable à 5 par tous, base 0 interdite sans formation professionnelle, Adm base 10 native, Itd 5 / Dsf 0) ; six canaux créés par l'auteur à sa passe de vérification, marqués en gras. v0.2 — la matrice passe en mode vérification : ligne Base et colonnes Itd\* / Dsf\* (créations É8, propositions à valider) ajoutées à la transcription V7. v0.1 arbitrée dans la nuit du 27 octobre 2026 (les quatre métiers, les cinq habiletés, Templier et Warlock retenus) ; les fiches de la première cuvée sont déposées au canevas « La première cuvée des fiches de métier ». Sources : liste des professions et des habiletés de l'É7 (conservées selon le chapitre 8 v01 en rédaction), matrices des classeurs É7 (génération « par déduction », supersédée), table des unités spéciales des règles É7, relevé consolidé des capacités v0.7 (architecture des trois origines, suites 17 et 20 du journal). Manquent toujours à la bibliothèque : Stormwrack (environnement maritime — le Player's Handbook 3.5, châssis des classes de base, est arrivé au sixième ajout, 27 octobre au petit matin).
+Statut : v0.6 — 8 novembre : ALCHIMIE (Alc, base 0 professionnelle), SEPTIÈME habileté nouvelle, PROPOSÉE DE LA MAIN DE L'AUTEUR (fiche des races : +10 BE d'apanage du gnome ; canal propre de l'alchimiste, Al) ; sentence attendue — la colonne n'entre pas encore à la matrice. v0.5 — mise en phase du soir : NÉGOCE et POLITIQUE NATIVES 5 (sentence de l'auteur : son édit de la matrice est confirmé et étendu à tous les documents) ; sigles des six professions ADOPTÉS (Ch, Cn, Fg, Ea, Ef, Em) ; canaux Itd proposés aux trois commandeurs d'équipes (Cn, Fg, Em à 25), Dsf laissé vierge pour les six — la rumeur n'est pas leur métier. v0.4 — les six PROFESSIONS DE LA PRODUCTION de l'auteur (trois artisans, trois exploitants ; spécialité 100, Négoce 50, Adm 25 en canal direct) ; colonne Adm ajoutée à la matrice ; registre à trente-huit ; ligne Base corrigée de la main de l'auteur (Ngc 5, Plt 5). v0.3 — sentence du soir : LA BASE EST LA VALEUR NATIVE (base 5 tentable à 5 par tous, base 0 interdite sans formation professionnelle, Adm base 10 native, Itd 5 / Dsf 0) ; six canaux créés par l'auteur à sa passe de vérification, marqués en gras. v0.2 — la matrice passe en mode vérification : ligne Base et colonnes Itd\* / Dsf\* (créations É8, propositions à valider) ajoutées à la transcription V7. v0.1 arbitrée dans la nuit du 27 octobre 2026 (les quatre métiers, les cinq habiletés, Templier et Warlock retenus) ; les fiches de la première cuvée sont déposées au canevas « La première cuvée des fiches de métier ». Sources : liste des professions et des habiletés de l'É7 (conservées selon le chapitre 8 v01 en rédaction), matrices des classeurs É7 (génération « par déduction », supersédée), table des unités spéciales des règles É7, relevé consolidé des capacités v0.7 (architecture des trois origines, suites 17 et 20 du journal). Manquent toujours à la bibliothèque : Stormwrack (environnement maritime — le Player's Handbook 3.5, châssis des classes de base, est arrivé au sixième ajout, 27 octobre au petit matin).
 
 ## 1. Fondations — le métier dans l'architecture des capacités
 
@@ -211,7 +211,7 @@ Arbitrage de Francky (27 octobre au soir) : les quatre métiers et les cinq habi
 | Chirurgien (Sn) | Non lanceur | Physique | Med 100, Srv 50, Bbl 25, Plt 25, Lgs 25          | Les règles de pertes et de soins du chapitre des unités et le Cycle du Destin ; la capacité « Hospitaliers » attendue au registre trouve son porteur ; le soin magique demeure au prêtre |
 
 
-### Six habiletés nouvelles
+### Sept habiletés nouvelles (la septième en proposition)
 
 
 | Habileté       | Abr. | Base | Lecture                                                                                     | Mécanisme servi                                                                                                                               |
@@ -222,9 +222,10 @@ Arbitrage de Francky (27 octobre au soir) : les quatre métiers et les cinq habi
 | Logistique     | Lgs  | 0    | Ravitaillement, convois, lignes d'approvisionnement                                         | Phase ravitaillement, efficacité des PS des guildes                                                                                           |
 | Intimidation   | Itd  | 5    | Menace exercée, recrutement forcé, peur non naturelle                                       | Règle Peur v0.2 (leaders), mobilisation, mercenaires                                                                                          |
 | Désinformation | Dsf  | 0    | Manipulation de l'information, rumeurs, fausses pistes — le verbe offensif du renseignement | Guilde des Espions et contre-espionnage (chantier Bas-fonds, arbitrée le 27 octobre ; base 0 professionnelle, sentence du 7 novembre au soir) |
+| Alchimie       | Alc  | 0    | Potions, explosifs, matériaux alchimiques                                                    | Canal propre de l'alchimiste (Al) ; PROPOSITION DE L'AUTEUR du 8 novembre (fiche des races : +10 BE d'apanage du gnome) ; sentence attendue    |
 
 
-Lecture de conception : chaque ajout rend payable un mécanisme existant du jeu — le siège, la mer, les soins, le ravitaillement, la peur, la guerre de l'information — sans créer de sous-système. Les six colonnes s'ajoutent à la matrice ; les métiers existants recevront leurs lignes à la curation des fiches (proposition indicatrice : marchand Lgs 75, barde Med 25 et Itd 25, rôdeur Srv et Trc inchangés).
+Lecture de conception : chaque ajout rend payable un mécanisme existant du jeu — le siège, la mer, les soins, le ravitaillement, la peur, la guerre de l'information — sans créer de sous-système. Les six colonnes s'ajoutent à la matrice ; les métiers existants recevront leurs lignes à la curation des fiches (proposition indicatrice : marchand Lgs 75, barde Med 25 et Itd 25, rôdeur Srv et Trc inchangés). L'ALCHIMIE (Alc) s'ajoute comme septième en proposition de l'auteur du 8 novembre : potions et explosifs, canal propre de l'alchimiste — sa colonne entrera à la matrice à sa sentence.
 
 ### La première cuvée de grilles curées (proposition de dix)
 
