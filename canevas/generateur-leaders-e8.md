@@ -1,6 +1,6 @@
 ---
 name: "generateur-leaders-e8"
-title: "Le générateur de leaders et de semi-leaders — Édition 8, v0.3"
+title: "Le générateur de leaders et de semi-leaders — Édition 8, v0.4"
 type: "text/html"
 ---
 
@@ -81,7 +81,7 @@ type: "text/html"
 <header class="top">
   <div>
     <h1>Le générateur de leaders et de semi-leaders</h1>
-    <div class="mini">Édition 8 — moteur de la maquette de fiche, matrice de la grille des métiers, registre de la fiche des races. v0.3 du 8 novembre 2026.</div>
+    <div class="mini">Édition 8 — moteur de la maquette de fiche, matrice de la grille des métiers, registre de la fiche des races. v0.4 du 8 novembre 2026.</div>
   </div>
   <div class="rangée" style="flex:none">
     <button class="btn sec" onclick="exporter()">EXPORTER LA PARTIE (JSON)</button>
@@ -252,13 +252,13 @@ var NOMS_RACES = Object.keys(RACES);
    budgets de points : PROPOSITIONS (fichier de calibrage)
    ============================================================ */
 var STATURES = {
-  LE: { nom: "Leader Élite", nprof: 3, budget: 100, nmax: 3, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[20, 30], [12, 20], [6, 12]], pion: "L", titres: ["Roi", "Haut Roi", "Grand Duc", "Prince-Évêque", "Régent", "Archiduc"] },
+  LE: { nom: "Leader Élite", nprof: 3, budget: 100, nmax: 3, achatMax: 24, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[20, 30], [12, 20], [6, 12]], pion: "L", titres: ["Roi", "Haut Roi", "Grand Duc", "Prince-Évêque", "Régent", "Archiduc"] },
   L:  { nom: "Leader", nprof: 3, budget: 80, nmax: 2, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[15, 25], [8, 15], [4, 10]], pion: "L", titres: ["Duc", "Comte", "Maréchal", "Général", "Gouverneur", "Baron"] },
   SL:  { nom: "Semi-Leader", nprof: 2, budget: 60, nmax: 1, etat: "5 à 10 (réduit — sentence du 8 novembre)", etatDef: 7, niveaux: [[12, 20], [6, 14]], pion: "S", titres: ["Chevalier", "Capitaine", "Bailli", "Prévôt", "Banneret"] },
   MS:  { nom: "Maître Spécialiste", nprof: 2, budget: 50, nmax: 1, artisan: true, etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[10, 18], [5, 12]], pion: "S", titres: ["Maître", "Savant", "Docteur", "Premier"] },
   MA:  { nom: "Maître Artisan", nprof: 1, budget: 40, nmax: 1, artisan: "only", etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[12, 20]], pion: "S", titres: ["Maître", "Maître Artisan", "Patricien", "Maïor"] }
 };
-var COUT_ACHAT = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 6, 15: 8, 16: 10, 17: 13, 18: 16 };
+var COUT_ACHAT = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 6, 15: 8, 16: 10, 17: 13, 18: 16, 19: 20, 20: 24, 21: 28, 22: 32, 23: 36, 24: 40 };
 
 /* ============================================================
    6. NOMS, TITRES, LIEUX — générateurs syllabiques
@@ -470,9 +470,10 @@ function distribuerAuto(rec, seed) {
   }
   return scores;
 }
-function coutAchatTotal(caracs) {
+function coutAchatTotal(caracs, plafond) {
+  var p = plafond || 18;
   var t = 0;
-  CARACS.forEach(function (c) { t += COUT_ACHAT[Math.max(8, Math.min(18, caracs[c]))] || 0; });
+  CARACS.forEach(function (c) { t += COUT_ACHAT[Math.max(8, Math.min(p, caracs[c]))] || 0; });
   return t;
 }
 
@@ -726,7 +727,7 @@ function majBrouillon(champ, val) {
     br.profAuto = false; br.maxCaracs = br.professions.length ? defautMax(br) : []; rendAtelier();
   }
   if (champ === "niveau") { br.professions[val[0]].niveau = Math.max(1, Math.min(40, parseInt(val[1]) || 1)); }
-  if (champ === "carac") { br.caracs[val[0]] = Math.max(8, Math.min(18, parseInt(val[1]) || 8)); majEqAchat(); }
+  if (champ === "carac") { br.caracs[val[0]] = Math.max(8, Math.min(STATURES[br.stature].achatMax || 18, parseInt(val[1]) || 8)); majEqAchat(); }
   if (champ === "max") {
     var stx = STATURES[br.stature];
     if (val[1]) {
@@ -745,7 +746,7 @@ function majBrouillon(champ, val) {
 function majEqAchat() {
   var st = STATURES[br.stature];
   var el = document.getElementById("eqAchat");
-  if (el) el.innerHTML = "Équivalence : <b>" + coutAchatTotal(br.caracs) + "</b> points d'achat — budget de la stature : " + st.budget +
+  if (el) el.innerHTML = "Équivalence : <b>" + coutAchatTotal(br.caracs, st.achatMax || 18) + "</b> points d'achat — budget de la stature : " + st.budget +
     (coutAchatTotal(br.caracs) > st.budget ? ' <span class="alerte">(dépassement assumé par le MdM)</span>' : "");
 }
 
@@ -800,7 +801,7 @@ function rendAtelier() {
   CARACS.forEach(function (c) {
     var brut = br.caracs[c];
     var fin = Math.max(3, brut + race.aj[CARACS.indexOf(c)]);
-    caracsHtml += '<tr><td>' + c + '</td><td class="num"><input type="number" style="width:64px" min="8" max="18" value="' + brut + '" onchange="majBrouillon(\'carac\',[\'' + c + '\',this.value])"></td>' +
+    caracsHtml += '<tr><td>' + c + '</td><td class="num"><input type="number" style="width:64px" min="8" max="' + (st.achatMax || 18) + '" value="' + brut + '" onchange="majBrouillon(\'carac\',[\'' + c + '\',this.value])"></td>' +
       '<td class="num">' + (race.aj[CARACS.indexOf(c)] >= 0 ? "+" : "") + race.aj[CARACS.indexOf(c)] + '</td><td class="num"><b>' + fin + '</b></td><td class="num">' + (fiche.mods[c] >= 0 ? "+" : "") + fiche.mods[c] + '</td><td class="num"><input type="checkbox"' + (br.maxCaracs.indexOf(c) >= 0 ? " checked" : "") + ' title="Forcer le maximum à la répartition (18, hors modificateurs raciaux)" onchange="majBrouillon(\'max\',[\'' + c + '\',this.checked])"></td></tr>';
   });
   var portraitHtml = br.portraitMode === "ia" && br.iaData
@@ -821,8 +822,8 @@ function rendAtelier() {
       '<div class="bloc"><h3>3. Les professions <button class="btn sec" onclick="relancer(\'profs\')">tirer</button></h3>' + profsHtml + "</div>" +
       '<div class="bloc"><h3>4. Les caractéristiques <button class="btn sec" onclick="relancer(\'caracs\')">répartir (auto)</button></h3>' +
         "<table><tr><th>Car.</th><th class=\"num\">Achat</th><th class=\"num\">Racial</th><th class=\"num\">Final</th><th class=\"num\">Mod.</th><th class=\"num\">Max</th></tr>" + caracsHtml + "</table>" +
-        '<div class="ligne-eq" id="eqAchat">Équivalence : <b>' + coutAchatTotal(br.caracs) + "</b> points d'achat — budget de la stature : " + st.budget + "</div>" +
-        '<p class="note">Méthode 3.5 : achat de points (8-18), les ajustements raciaux s\'appliquent après l\'achat (sentence). La coche « Max » force la caractéristique au maximum à la répartition automatique — trois coches pour un leader d\'élite, deux pour un leader, une pour les autres statures (sentence du 8 novembre) ; par défaut, les plus pertinentes des professions retenues sont cochées. Le restant du budget se répartit pondéré par les paires dirigeantes des métiers choisis et leurs niveaux.</p></div>' +
+        '<div class="ligne-eq" id="eqAchat">Équivalence : <b>' + coutAchatTotal(br.caracs, st.achatMax || 18) + "</b> points d'achat — budget de la stature : " + st.budget + "</div>" +
+        '<p class="note">Méthode 3.5 : achat de points, les ajustements raciaux s\'appliquent après l\'achat (sentence). La coche « Max » force la caractéristique au maximum à la répartition automatique — trois coches pour un leader d\'élite, deux pour un leader, une pour les autres statures (sentence du 8 novembre) ; par défaut, les plus pertinentes des professions retenues sont cochées. Le restant du budget se répartit pondéré par les paires dirigeantes des métiers choisis et leurs niveaux. ÉCHELLE ÉLITE (sentence du 8 novembre) : le Leader Élite achète au-delà de 18 — jusqu\'à 24 à +4 points par cran (19 : 20, 20 : 24, 21 : 28, 22 : 32, 23 : 36, 24 : 40 — barème en proposition), les autres statures demeurent plafonnées à 18 ; la répartition automatique s\'arrête à 18, l\'extension Élite relève du choix manuel dans le budget.</p></div>' +
       '<div class="bloc"><h3>5. L\'identité</h3>' +
         '<label>Nom <button class="btn sec" style="padding:2px 7px" onclick="relancer(\'nom\')">relancer</button></label><input value="' + br.nom.replace(/"/g, "&quot;") + '" oninput="majBrouillon(\'nom\',this.value)">' +
         '<label>Titre <button class="btn sec" style="padding:2px 7px" onclick="relancer(\'titre\')">relancer</button></label><input value="' + br.titre.replace(/"/g, "&quot;") + '" oninput="majBrouillon(\'titre\',this.value)">' +
@@ -1004,7 +1005,7 @@ function majFiche(champ, val) {
     if (l.professions.length >= 3) { alert("Trois professions maximum (sentence)."); return; }
     l.professions.push({ nom: val, niveau: 5 });
   }
-  if (champ === "carac") l.caracs[val[0]] = Math.max(8, Math.min(18, parseInt(val[1]) || 8));
+  if (champ === "carac") l.caracs[val[0]] = Math.max(8, Math.min(STATURES[l.stature].achatMax || 18, parseInt(val[1]) || 8));
   if (champ === "portraitSeed") l.portraitSeed = graine();
   if (champ === "etatMajor") l.attributs.etatMajor = parseInt(val) || 0;
   if (champ.indexOf("attr:") === 0) l.attributs[champ.slice(5)] = parseFloat(val) || 0;
@@ -1048,7 +1049,7 @@ function rendFiche() {
   var caracsHtml = "";
   CARACS.forEach(function (c) {
     var fin = Math.max(3, l.caracs[c] + race.aj[CARACS.indexOf(c)]);
-    caracsHtml += "<tr><td>" + c + '</td><td class="num"><input type="number" style="width:64px" min="8" max="18" value="' + l.caracs[c] + '" onchange="majFiche(\'carac\',[\'' + c + '\',this.value])"></td>' +
+    caracsHtml += "<tr><td>" + c + '</td><td class="num"><input type="number" style="width:64px" min="8" max="' + (STATURES[l.stature].achatMax || 18) + '" value="' + l.caracs[c] + '" onchange="majFiche(\'carac\',[\'' + c + '\',this.value])"></td>' +
       '<td class="num">' + (race.aj[CARACS.indexOf(c)] >= 0 ? "+" : "") + race.aj[CARACS.indexOf(c)] + '</td><td class="num"><b>' + fin + '</b></td><td class="num">' + (fiche.mods[c] >= 0 ? "+" : "") + fiche.mods[c] + "</td></tr>";
   });
   el.innerHTML =
