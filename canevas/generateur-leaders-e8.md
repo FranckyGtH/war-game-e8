@@ -1,6 +1,6 @@
 ---
 name: "generateur-leaders-e8"
-title: "Le générateur de leaders et de semi-leaders — Édition 8, v0.4"
+title: "Le générateur de leaders et de semi-leaders — Édition 8, v0.5"
 type: "text/html"
 ---
 
@@ -81,7 +81,7 @@ type: "text/html"
 <header class="top">
   <div>
     <h1>Le générateur de leaders et de semi-leaders</h1>
-    <div class="mini">Édition 8 — moteur de la maquette de fiche, matrice de la grille des métiers, registre de la fiche des races. v0.4 du 8 novembre 2026.</div>
+    <div class="mini">Édition 8 — moteur de la maquette de fiche, matrice de la grille des métiers, registre de la fiche des races. v0.5 du 8 novembre 2026.</div>
   </div>
   <div class="rangée" style="flex:none">
     <button class="btn sec" onclick="exporter()">EXPORTER LA PARTIE (JSON)</button>
@@ -252,8 +252,8 @@ var NOMS_RACES = Object.keys(RACES);
    budgets de points : PROPOSITIONS (fichier de calibrage)
    ============================================================ */
 var STATURES = {
-  LE: { nom: "Leader Élite", nprof: 3, budget: 100, nmax: 3, achatMax: 24, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[20, 30], [12, 20], [6, 12]], pion: "L", titres: ["Roi", "Haut Roi", "Grand Duc", "Prince-Évêque", "Régent", "Archiduc"] },
-  L:  { nom: "Leader", nprof: 3, budget: 80, nmax: 2, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[15, 25], [8, 15], [4, 10]], pion: "L", titres: ["Duc", "Comte", "Maréchal", "Général", "Gouverneur", "Baron"] },
+  LE: { nom: "Leader Élite", nprof: 3, budget: 80, nmax: 3, achatMax: 24, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[20, 30], [12, 20], [6, 12]], pion: "L", titres: ["Roi", "Haut Roi", "Grand Duc", "Prince-Évêque", "Régent", "Archiduc"] },
+  L:  { nom: "Leader", nprof: 3, budget: 70, nmax: 2, etat: "10 à 20 (sentence)", etatDef: 14, niveaux: [[15, 25], [8, 15], [4, 10]], pion: "L", titres: ["Duc", "Comte", "Maréchal", "Général", "Gouverneur", "Baron"] },
   SL:  { nom: "Semi-Leader", nprof: 2, budget: 60, nmax: 1, etat: "5 à 10 (réduit — sentence du 8 novembre)", etatDef: 7, niveaux: [[12, 20], [6, 14]], pion: "S", titres: ["Chevalier", "Capitaine", "Bailli", "Prévôt", "Banneret"] },
   MS:  { nom: "Maître Spécialiste", nprof: 2, budget: 50, nmax: 1, artisan: true, etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[10, 18], [5, 12]], pion: "S", titres: ["Maître", "Savant", "Docteur", "Premier"] },
   MA:  { nom: "Maître Artisan", nprof: 1, budget: 40, nmax: 1, artisan: "only", etat: "sans état-major (pion S de spécialiste)", etatDef: 0, niveaux: [[12, 20]], pion: "S", titres: ["Maître", "Maître Artisan", "Patricien", "Maïor"] }
@@ -309,8 +309,12 @@ function genBio(rng, rec) {
    ============================================================ */
 function mod(score) { return Math.floor((score - 10) / 2); }
 function modsCaracs(rec) {
+  /* Sentence de l'essai de l'auteur (8 novembre) : le modificateur se
+     calcule sur le TOTAL (achat + ajustement racial), jamais sur le seul
+     achat — un total de 20 rend +5. */
+  var race = RACES[rec.race] || RACES["Humain"];
   var m = {};
-  CARACS.forEach(function (c) { m[c] = mod(rec.caracs[c]); });
+  CARACS.forEach(function (c, i) { m[c] = mod(Math.max(3, rec.caracs[c] + race.aj[i])); });
   return m;
 }
 function niveauCanaux(rec, sig) {
@@ -823,7 +827,7 @@ function rendAtelier() {
       '<div class="bloc"><h3>4. Les caractéristiques <button class="btn sec" onclick="relancer(\'caracs\')">répartir (auto)</button></h3>' +
         "<table><tr><th>Car.</th><th class=\"num\">Achat</th><th class=\"num\">Racial</th><th class=\"num\">Final</th><th class=\"num\">Mod.</th><th class=\"num\">Max</th></tr>" + caracsHtml + "</table>" +
         '<div class="ligne-eq" id="eqAchat">Équivalence : <b>' + coutAchatTotal(br.caracs, st.achatMax || 18) + "</b> points d'achat — budget de la stature : " + st.budget + "</div>" +
-        '<p class="note">Méthode 3.5 : achat de points, les ajustements raciaux s\'appliquent après l\'achat (sentence). La coche « Max » force la caractéristique au maximum à la répartition automatique — trois coches pour un leader d\'élite, deux pour un leader, une pour les autres statures (sentence du 8 novembre) ; par défaut, les plus pertinentes des professions retenues sont cochées. Le restant du budget se répartit pondéré par les paires dirigeantes des métiers choisis et leurs niveaux. ÉCHELLE ÉLITE (sentence du 8 novembre) : le Leader Élite achète au-delà de 18 — jusqu\'à 24 à +4 points par cran (19 : 20, 20 : 24, 21 : 28, 22 : 32, 23 : 36, 24 : 40 — barème en proposition), les autres statures demeurent plafonnées à 18 ; la répartition automatique s\'arrête à 18, l\'extension Élite relève du choix manuel dans le budget.</p></div>' +
+        '<p class="note">Méthode 3.5 : achat de points, les ajustements raciaux s\'appliquent après l\'achat (sentence). La coche « Max » force la caractéristique au maximum à la répartition automatique — trois coches pour un leader d\'élite, deux pour un leader, une pour les autres statures (sentence du 8 novembre) ; par défaut, les plus pertinentes des professions retenues sont cochées. Le restant du budget se répartit pondéré par les paires dirigeantes des métiers choisis et leurs niveaux. Le modificateur (colonne Mod.) se calcule sur le TOTAL, achat + ajustement racial — un total de 20 rend +5 (sentence de l\'essai de l\'auteur). ÉCHELLE ÉLITE (sentence du 8 novembre) : le Leader Élite achète au-delà de 18 — jusqu\'à 24 à +4 points par cran (19 : 20, 20 : 24, 21 : 28, 22 : 32, 23 : 36, 24 : 40 — barème en proposition), les autres statures demeurent plafonnées à 18 ; la répartition automatique s\'arrête à 18, l\'extension Élite relève du choix manuel dans le budget.</p></div>' +
       '<div class="bloc"><h3>5. L\'identité</h3>' +
         '<label>Nom <button class="btn sec" style="padding:2px 7px" onclick="relancer(\'nom\')">relancer</button></label><input value="' + br.nom.replace(/"/g, "&quot;") + '" oninput="majBrouillon(\'nom\',this.value)">' +
         '<label>Titre <button class="btn sec" style="padding:2px 7px" onclick="relancer(\'titre\')">relancer</button></label><input value="' + br.titre.replace(/"/g, "&quot;") + '" oninput="majBrouillon(\'titre\',this.value)">' +
